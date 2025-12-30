@@ -1,0 +1,38 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #E7ECEF;
+}
+
+nav{
+    height: 100%;
+    width: 15%;
+    line-height: 30px;
+    position: sticky;
+}
+
+.nav_item{
+    list-style: none;
+}
+
+.nav_item>a{
+    text-decoration: none;
+    color: black;
+}
+
+.nav_img{
+    width: 50px;
+    padding-left: 30px;
+    margin-left: 8px;
+}
+
+.header_search{
+    float: right;
+    border-radius: 25px;
+    border: none;
+    padding: 8px;
+    margin-top: 15px;
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+}
