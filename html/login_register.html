@@ -9,20 +9,32 @@
 </head>
     <body>
         <header>
+            <button class="logReg_btn" type="button" onclick="Login()">Bejelentkezés</button>
+            <button class="logReg_btn" type="button" onclick="Registration()">Regisztráció</button>
             <h1 id="title"></h1>
         </header>
         <section>
-            <form action="">
-                <label id="Name">Név</label>
-                <input type="text"><br>
-                <label id="Email">Email</label>
-                <input type="text"><br>
-                <label id="Mobile"></label>
-                <input type="number" id="Telefonszam"><br>
-                <label id="Type_ceges"></label>
-                <input type="checkbox" name="" id="Ceges">
-                <label id="Type_egyeni"></label>
-                <input type="checkbox" name="" id="egyeni">
+            <form id="logReg_form" action="">
+                <label id="Name">Név</label><br>
+                <input type="text" id="con_name"><br>
+
+                <label id="Email">Email</label><br>
+                <input type="text" id="con_email"><br>
+
+                <label id="Mobile">Telefonszám</label><br>
+                <input type="number" id="con_mobile"><br>
+
+                <label id="Mobile">Cég neve</label><br>
+                <input type="number" id="con_comp_name"><br>
+
+                <label id="Mobile">Adószám</label><br>
+                <input type="number" id="con_ado"><br>
+
+                <label id="Type_ceges">Céges fiók</label>
+                <input type="radio" name="fiok" id="Ceges"><br>
+
+                <label id="Type_egyeni">Egyéni fiók</label>
+                <input type="radio" name="fiok" id="egyeni">
             </form>
         </section>
     </body>
