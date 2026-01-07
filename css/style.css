@@ -226,3 +226,62 @@ a {
   width: 100%;
   border-radius: 10px;
 }
+
+#logReg_form{
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    text-align: center;
+    line-height: 10px;
+    margin-top: 100px;
+}
+
+#logReg_form>div>input{
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    background-color: rgba(1, 1, 1, 0);
+
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+#logReg_form>div>input:focus{
+    outline: none;
+    font-weight: bold;
+}
+
+#logReg_container{
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    grid-template-columns: auto auto;
+}
+
+.logReg_btn{
+    border: none;
+    border-radius: 25px;
+    padding: 8px;
+    cursor:pointer;
+    transition: all ease-in-out 0.35s;
+}
+
+.logReg_btn:hover{
+    box-shadow: var(--blue-color) 2px 2px 3px 1px;
+    font-weight: bolder;
+}
+
+#con_submit{
+    border:none;
+    border-radius: 25px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    margin-top: 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+
