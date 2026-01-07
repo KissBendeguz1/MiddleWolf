@@ -58,4 +58,5 @@ function Load() {
         <img id="sidebar-setting" src="../assets/settings.png" alt="" />
       </div>
     </section>`;
+    
 }
