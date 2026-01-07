@@ -77,9 +77,11 @@ nav {
 /*sidebar design*/
 
 .sidebar-container {
-    width: 220px;
+    min-width: 200px;
+    width: 15%;
+    max-width: 300px;
     background: #E7ECEF;
-    padding: 20px;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -141,3 +143,18 @@ a {
 }
 
 
+/*Rolunk design*/
+
+.content-section {
+    width: 80%;
+    margin: 10px;
+}
+
+#contentholder {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    padding: 0px;
+    gap: 0px;
+    margin: 0px;
+}
