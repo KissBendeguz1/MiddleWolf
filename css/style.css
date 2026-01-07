@@ -2,11 +2,12 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: var(--background-color);
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
+    background-color: var(--background-color);
     display: flex;
     flex-direction: column;
 }
@@ -162,13 +163,13 @@ a {
 #first-container {
     display: flex;
     flex-direction: row;
-    align-items: space-around;
+    justify-content: space-around;
 }
 
 .first-container-div {
     background-color: var(--blue-color);
     height: 200px;
-    width: 10%;
+    width: 50%;
     margin: 10px;
     border-radius: 10px;
 }
