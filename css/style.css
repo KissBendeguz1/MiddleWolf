@@ -285,3 +285,74 @@ a {
     cursor: pointer;
 }
 
+.dashboard {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 70%;
+}
+
+.right-column {
+    width: 30%;
+}
+
+.main-frame, .main-frame-lower, .main-frame-right {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: var(--shad-color) 2px 2px 3px 1px;
+}
+
+.main-frame {
+    min-height: 500px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.main-frame-lower {
+    height: 260px;
+}
+
+.main-frame-right {
+    height: 820px;
+}
+
+.small-window{
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+}
+
+.small-windows{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: var(--background-color);
+    min-width: 220px;
+    max-width: 33%;
+    border-radius: 10px;
+    box-shadow: var(--shad-color) 2px 2px 3px 1px;
+}
+
+.member-windows{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    box-shadow: var(--shad-color) 2px 2px 3px 1px;
+
+}
+
+
