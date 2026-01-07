@@ -152,9 +152,14 @@ a {
 
 #contentholder {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-grow: 1;
     padding: 0px;
     gap: 0px;
     margin: 0px;
+}
+
+#first-container {
+    display: flex;
+    flex-direction: row;
 }
