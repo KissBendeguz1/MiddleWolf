@@ -1,6 +1,6 @@
 function Load() {
     body = document.body;
-    body.innerHTML = `<nav>
+    body.innerHTML += `<nav>
       <section class="nav-container">
         <img
           id="nav-logo-big"
