@@ -1,6 +1,6 @@
 function Load() {
     body = document.body;
-    body.innerHTML += `<nav>
+    html = `<nav>
       <section class="nav-container">
         <img
           id="nav-logo-big"
@@ -58,6 +58,7 @@ function Load() {
         <img id="sidebar-setting" src="../assets/settings.png" alt="" />
       </div>
     </section>`;
+    body.insertAdjacentHTML("afterbegin", html);
 
     function setFavicons(favImg){
     let headTitle = document.querySelector('head');
