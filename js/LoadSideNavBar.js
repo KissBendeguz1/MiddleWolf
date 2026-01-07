@@ -58,5 +58,22 @@ function Load() {
         <img id="sidebar-setting" src="../assets/settings.png" alt="" />
       </div>
     </section>`;
+
+    function setFavicons(favImg){
+    let headTitle = document.querySelector('head');
     
+    let favIcons = [
+        { rel: 'apple-touch-icon' },
+        { rel: 'apple-touch-startup-image' },
+        { rel: 'shortcut icon' }
+    ]
+    
+    favIcons.forEach(function(favIcon){
+        let setFavicon = document.createElement('link');
+        setFavicon.setAttribute('rel', favIcon.rel);
+        setFavicon.setAttribute('href', favImg);
+        headTitle.appendChild(setFavicon);
+    });
+}
+setFavicons('..//assets/favicon.png');
 }
