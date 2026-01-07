@@ -47,7 +47,7 @@ function Types(){
         CompanyName.style.display = "none";
         Adomszam.style.display = "none";
     }
-}
+};
 
 function Submit(){
     const NewProfile = {
@@ -60,4 +60,4 @@ function Submit(){
 
     Data.push(NewProfile);
     localStorage.setItem('Profiles',JSON.stringify(Data))
-}
+};
