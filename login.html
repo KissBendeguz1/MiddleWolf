@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="shortcut icon" href="../img/Favicon.png" type="image/x-icon">
+    <title>MiddleWolf</title>
+</head>
+    <body>
+        <header id="logReg_container">
+            <button class="logReg_btn" type="button" onclick="Login()">Bejelentkezés</button>
+            <button class="logReg_btn" type="button" onclick="Registration()">Regisztráció</button>
+            <h1 id="title"></h1>
+        </header>
+        <section>
+            <form id="logReg_form">
+                <div id="Name">
+                    <label>Név</label><br>
+                    <input type="text" id="con_name"><br>
+                </div>
+
+                <div id="Email">
+                    <label>Email</label><br>
+                    <input type="text" id="con_email"><br>
+                </div>
+
+                <div id="Password">
+                    <label>Jelszó</label><br>
+                    <input type="password" id="con_Password"><br>
+                </div>
+
+                <div id="Mobile">
+                    <label>Telefonszám</label><br>
+                    <input type="number" id="con_mobile"><br>
+                </div>
+
+                <div id="CompanyName">
+                    <label>Cég neve</label><br>
+                    <input type="number" id="con_comp_name"><br>
+                </div>
+
+                <div id="Adoszam">
+                    <label>Adószám</label><br>
+                    <input type="number" id="con_ado"><br>
+                </div>
+
+                <div id="Type_ceges">
+                    <label>Céges fiók</label>
+                    <input type="radio" name="fiok" id="Ceges" onclick="Types()"><br>
+                </div>
+
+                <div id="Type_egyeni">
+                    <label>Egyéni fiók</label>
+                    <input type="radio" name="fiok" id="egyeni" onclick="Types()">
+                </div>
+
+                <button type="submit" id="con_submit" onclick="Submit()"></button>
+            </form>
+        </section>
+    </body>
+    <script src="../js/login.js"></script>
+</html>
