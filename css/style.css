@@ -74,6 +74,10 @@ nav {
   object-fit: cover;
 }
 
+#nav-profile>h1{
+  font-size: small;
+}
+
 #nav-logo-big {
   padding-left: 20px;
 }
@@ -333,13 +337,14 @@ a {
 }
 
 .small-windows{
+  font-size:small;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 10px;
     background-color: var(--background-color);
-    min-width: 220px;
-    max-width: 33%;
+    width: 28%;
+    text-align: center;
     border-radius: 10px;
     box-shadow: var(--shad-color) 2px 2px 3px 1px;
 }
@@ -354,5 +359,3 @@ a {
     box-shadow: var(--shad-color) 2px 2px 3px 1px;
 
 }
-
-
