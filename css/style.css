@@ -347,15 +347,17 @@ a {
 
 .small-windows{
   font-size:small;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    background-color: var(--background-color);
-    width: 28%;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: var(--shad-color) 2px 2px 3px 1px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: var(--background-color);
+  width: 28%;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: var(--shad-color) 2px 2px 3px 1px;
 }
 
 .member-windows{
@@ -366,5 +368,51 @@ a {
     background-color: var(--background-color);
     border-radius: 10px;
     box-shadow: var(--shad-color) 2px 2px 3px 1px;
+}
 
+.felso-window{
+  width:100%; 
+  display:flex; 
+  justify-content:center;
+}
+
+.kozepsü-window{
+  display:flex;
+  justify-content:space-around; 
+  width:100%; 
+  margin-top:10px;
+}
+
+.third-container-div{
+  background-color: var(--white-color);
+  height: 330px;
+  width: 43%;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s;
+  transform: scale(1);
+}
+
+.third-container-div:hover {
+  box-shadow: var(--blue-color) 4px 4px 6px 2px;
+  transition: ease-in-out 0.3s;
+  transform: scale(1.01);
+}
+
+.frth-container-div{
+  background-color: var(--white-color);
+  height: 170px;
+  width: 96%;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s;
+  transform: scale(1);
+}
+
+.frth-container-div:hover {
+  box-shadow: var(--blue-color) 4px 4px 6px 2px;
+  transition: ease-in-out 0.3s;
+  transform: scale(1.01);
 }
