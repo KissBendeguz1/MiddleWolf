@@ -1,63 +1,192 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="shortcut icon" href="../img/Favicon.png" type="image/x-icon">
-    <title>MiddleWolf</title>
-</head>
-    <body>
-        <header id="logReg_container">
-            <button class="logReg_btn" type="button" onclick="Login()">Bejelentkezés</button>
-            <button class="logReg_btn" type="button" onclick="Registration()">Regisztráció</button>
-            <h1 id="title"></h1>
-        </header>
-        <section>
-            <form id="logReg_form">
-                <div id="Name">
-                    <label>Név</label><br>
-                    <input type="text" id="con_name" placeholder="Gipsz Jakab"><br>
-                </div>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="shortcut icon"
+      href="../assets/Favicon.png"
+      type="image/x-icon"
+    />
+    <title>Bejelentkezés - MiddleWolf</title>
+  </head>
+  <body>
+    <nav>
+      <section class="nav-container">
+        <img
+          id="nav-logo-big"
+          class="nav-img"
+          src="../assets/Logo1.png"
+          alt="MiddleWolf Logo"
+        />
+      </section>
+      <section class="nav-container">
+        <input
+          type="text"
+          name="navsearch"
+          id="search"
+          placeholder="Search..."
+        />
+        <div id="nav-profile">
+          <img
+            id="nav-profile-img"
+            class="nav-img"
+            src="../assets/nav-logo-placeholder.jpg"
+            alt="Profile"
+          />
+          <h1>Regisztráció</h1>
+        </div>
+      </section>
+    </nav>
 
-                <div id="Email">
-                    <label>Email</label><br>
-                    <input type="text" id="con_email" placeholder="ceg@gmail.com"><br>
-                </div>
+    <div id="contentholder">
+      <section class="sidebar-container">
+        <div class="sidebar-item-container">
+          <a href="../html/index.html">
+            <div class="sidebar-item">
+              <img class="sidebar-icon" src="../assets/main.png" alt="Home" />
+              <h2>Főoldal</h2>
+            </div>
+          </a>
+          <a href="../html/about.html">
+            <div class="sidebar-item">
+              <img class="sidebar-icon" src="../assets/about.png" alt="About" />
+              <h2>Rólunk</h2>
+            </div>
+          </a>
+          <a href="../html/map.html">
+            <div class="sidebar-item">
+              <img class="sidebar-icon" src="../assets/map.png" alt="Map" />
+              <h2>Térkép</h2>
+            </div>
+          </a>
+          <a href="../html/contact.html">
+            <div class="sidebar-item">
+              <img
+                class="sidebar-icon"
+                src="../assets/contact.png"
+                alt="Contact"
+              />
+              <h2>Kapcsolat</h2>
+            </div>
+          </a>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="sidebar-item-container">
+            <a href="../html/login.html">
+              <div class="sidebar-item">
+                <p>Regisztrácio/bejelentkezes</p>
+              </div>
+            </a>
+          </div>
 
-                <div id="Password">
-                    <label>Jelszó</label><br>
-                    <input type="password" id="con_Password"><br>
-                </div>
+          <div class="sidebar-settings">
+            <img
+              id="sidebar-setting"
+              src="../assets/settings.png"
+              alt="Settings"
+            />
+            <div>
+              <label>sötét</label>
+              <input type="checkbox" />
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <div id="Mobile">
-                    <label>Telefonszám</label><br>
-                    <input type="number" id="con_mobile" placeholder="06308769567"><br>
-                </div>
+      <div class="login-wrapper">
+        <div class="login-header">
+          <h1 id="title">Bejelentkezés</h1>
+          <p id="subtitle">Kérjük, jelentkezzen be vagy regisztráljon</p>
+        </div>
 
-                <div id="CompanyName">
-                    <label>Cég neve</label><br>
-                    <input type="text" id="con_comp_name" placeholder="Gipsz KFT."><br>
-                </div>
+        <div class="login-tabs">
+          <button class="tab-btn active" type="button" onclick="Login()">
+            Bejelentkezés
+          </button>
+          <button class="tab-btn" type="button" onclick="Registration()">
+            Regisztráció
+          </button>
+        </div>
 
-                <div id="Adoszam">
-                    <label>Adószám</label><br>
-                    <input type="number" id="con_ado" placeholder="12345678-6-67"><br>
-                </div>
+        <div class="login-form-container">
+          <form id="logReg_form">
+            <div id="Name" class="form-group">
+              <label>Név</label>
+              <input type="text" id="con_name" placeholder="Gipsz Jakab" />
+            </div>
 
-                <div id="Type_ceges">
-                    <label>Céges fiók</label>
-                    <input type="radio" name="fiok" id="Ceges" onclick="Types()"><br>
-                </div>
+            <div id="Email" class="form-group">
+              <label>Email</label>
+              <input type="email" id="con_email" placeholder="ceg@gmail.com" />
+            </div>
 
-                <div id="Type_egyeni">
-                    <label>Egyéni fiók</label>
-                    <input type="radio" name="fiok" id="egyeni" onclick="Types()">
-                </div>
+            <div id="Password" class="form-group">
+              <label>Jelszó</label>
+              <input type="password" id="con_Password" placeholder="••••••••" />
+            </div>
 
-                <button type="submit" id="con_submit" onclick="Submit()"></button>
-            </form>
-        </section>
-    </body>
+            <div id="Mobile" class="form-group">
+              <label>Telefonszám</label>
+              <input type="tel" id="con_mobile" placeholder="06308769567" />
+            </div>
+
+            <div id="CompanyName" class="form-group">
+              <label>Cég neve</label>
+              <input type="text" id="con_comp_name" placeholder="Gipsz KFT." />
+            </div>
+
+            <div id="Adoszam" class="form-group">
+              <label>Adószám</label>
+              <input type="text" id="con_ado" placeholder="12345678-6-67" />
+            </div>
+
+            <div id="Type_ceges" class="form-group">
+              <label>Fiók típusa</label>
+              <div class="radio-group">
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    name="fiok"
+                    id="Ceges"
+                    onclick="Types()"
+                  />
+                  <label for="Ceges">Céges fiók</label>
+                </div>
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    name="fiok"
+                    id="egyeni"
+                    onclick="Types()"
+                  />
+                  <label for="egyeni">Egyéni fiók</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="login-buttons">
+              <button
+                type="submit"
+                id="con_submit"
+                class="btn-submit"
+                onclick="Submit()"
+              >
+                Küldés
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="form-toggle">
+          <p id="toggle-text">
+            Már van fiókja? <a onclick="Login()">Bejelentkezés</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
     <script src="../js/login.js"></script>
+  </body>
 </html>
