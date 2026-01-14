@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="shortcut icon" href="../assets/Favicon.png" type="image/x-icon">
   </head>
-  <script src="../js/LoadSideNavBar.js"></script>
+  
   <body>
 <nav>
       <section class="nav-container">
@@ -76,8 +76,8 @@
             <div class="sidebar-settings">
               <img id="sidebar-setting" src="../assets/settings.png" alt="" />
                   <div>
-                    <label>sötét</label>
-                    <input type="checkbox">
+                    <label class="sotetszoveg" for="dark-mode-toggle">Sötét mód:</label>
+                    <input type="checkbox" id="dark-mode-toggle">
                   </div>
             </div>
             </div>
@@ -88,10 +88,7 @@
                 <h2>Management Neked, és cégednek, </h2>  <h2>Átláthatóság az ügyfeleidnek.</h2></div>
                 <div id="index-top-right">
                 <img src="../assets/Logo1.png" alt="">
-            </div>
-
-
-
+                </div>
               </div>
 
              <div id="index-list">
@@ -122,7 +119,7 @@
                 </div>
               </div>
 
-                              <div id="index-middle">
+              <div id="index-middle">
                 <div class="index-middle-item">
                     <h2>Tartsd a kapcsolatot</h2>
                     <p>Egyszerű és hatékony kapcsolattartási eszközöket kínálunk, hogy mindig elérhető legyél ügyfeleid és alkalmazottaid számára.</p>
@@ -130,12 +127,13 @@
                 <div class="index-middle-item">
                     <h2>Semmi ne vonja el a figyelmed</h2>
                     <p>Felhasználóbarát felületünk és intuitív navigációs rendszerünk lehetővé teszi, hogy könnyedén kezelhesd vállalatod folyamatait anélkül, hogy elvesznél a részletekben.</p>
-                    <img src="../assets/4.png" alt=""
+                    <img src="../assets/4.png" alt="">
                 </div>
               </div>
 
 
         </section>
     </div>
+    <script src="../js/LoadSideNavBar.js"></script>
   </body>
 </html>
