@@ -98,16 +98,41 @@
         </div>
 
         <div class="login-tabs">
-          <button class="tab-btn active" type="button" onclick="Login()">
+          <button class="tab-btn" id="log" type="button" onclick="Login()">
             Bejelentkezés
           </button>
-          <button class="tab-btn" type="button" onclick="Registration()">
+          <button class="tab-btn active" id="reg" type="button" onclick="Registration()">
             Regisztráció
           </button>
         </div>
 
         <div class="login-form-container">
           <form id="logReg_form">
+
+            <div id="Type_ceges" class="form-group">
+              <label>Fiók típusa</label>
+              <div class="radio-group">
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    name="fiok"
+                    id="Ceges"
+                    onclick="Types()"
+                  />
+                  <label for="Ceges">Céges fiók</label>
+                </div>
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    name="fiok"
+                    id="egyeni"
+                    onclick="Types()"
+                  />
+                  <label for="egyeni">Egyéni fiók</label>
+                </div>
+              </div>
+            </div>
+
             <div id="Name" class="form-group">
               <label>Név</label>
               <input type="text" id="con_name" placeholder="Gipsz Jakab" />
@@ -136,30 +161,6 @@
             <div id="Adoszam" class="form-group">
               <label>Adószám</label>
               <input type="text" id="con_ado" placeholder="12345678-6-67" />
-            </div>
-
-            <div id="Type_ceges" class="form-group">
-              <label>Fiók típusa</label>
-              <div class="radio-group">
-                <div class="radio-item">
-                  <input
-                    type="radio"
-                    name="fiok"
-                    id="Ceges"
-                    onclick="Types()"
-                  />
-                  <label for="Ceges">Céges fiók</label>
-                </div>
-                <div class="radio-item">
-                  <input
-                    type="radio"
-                    name="fiok"
-                    id="egyeni"
-                    onclick="Types()"
-                  />
-                  <label for="egyeni">Egyéni fiók</label>
-                </div>
-              </div>
             </div>
 
             <div class="login-buttons">

@@ -6,27 +6,28 @@ const Password = document.getElementById("Password");
 const Mobile = document.getElementById("Mobile");
 const CompanyName = document.getElementById("CompanyName");
 const Adomszam = document.getElementById("Adoszam");
-const Type_ceges = document.getElementById("Type_ceges");
-const Type_egyeni = document.getElementById("Type_egyeni");
+const types = document.getElementById('Type_ceges');
 document.getElementById('con_submit').textContent = "Regisztráció";
 document.getElementById('Ceges').checked = true;
 
 function Login(){
+    document.getElementById('con_submit').textContent = "Belépés";
+    document.getElementById('log').classList.add('active');
+    document.getElementById('reg').classList.remove('active');
     Mobile.style.display = "none";
     CompanyName.style.display = "none";
     Adomszam.style.display = "none";
-    Type_ceges.style.display = "none";
-    Type_egyeni.style.display = "none";
-    document.getElementById('con_submit').textContent = "Belépés";
+types.style.display = "none";
 }
 
 function Registration(){
+    document.getElementById('reg').classList.add('active');
+    document.getElementById('log').classList.remove('active');
+    document.getElementById('con_submit').textContent = "Regisztráció";
     Mobile.style.display = "";
     CompanyName.style.display = "";
     Adomszam.style.display = "";
-    Type_ceges.style.display = "";
-    Type_egyeni.style.display = "";
-    document.getElementById('con_submit').textContent = "Regisztráció";
+    types.style.display = "";
 }
 
 function Eldontes(){
