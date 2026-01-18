@@ -56,16 +56,26 @@ function Types(){
 };
 
 function Submit(){
-    const NewProfile = {
-        Name: document.getElementById('con_name').value,
-        Email: document.getElementById('con_email').value,
-        Password: document.getElementById('con_Password').value,
-        Mobile: document.getElementById('con_mobile').value,
-        Profile: Eldontes()
-    }
+    if(document.getElementById('reg').classList.contains('active') && !document.getElementById('log').classList.contains('active')){
+        const NewProfile = {
+            Name: document.getElementById('con_name').value,
+            Email: document.getElementById('con_email').value,
+            Password: document.getElementById('con_Password').value,
+            Mobile: document.getElementById('con_mobile').value,
+            Profile: Eldontes()
+        }
 
-    Data.push(NewProfile);
-    localStorage.setItem('Profiles',JSON.stringify(Data))
+        Data.push(NewProfile);
+        localStorage.setItem('Profiles',JSON.stringify(Data))
+    }
+    if(document.getElementById('log').classList.contains('active') && !document.getElementById('reg').classList.contains('active')){
+        const fiokok = JSON.parse(localStorage.getItem('Profiles'));
+        for(let keys of fiokok){
+            if(keys.Name == document.getElementById('con_name').value && keys.Email == document.getElementById('con_email').value && keys.Password == document.getElementById('con_Password').value){
+                sessionStorage.setItem("Login", "true");
+            }
+        }
+    }
 };
 
 document.addEventListener('input', function () {
@@ -75,11 +85,23 @@ document.addEventListener('input', function () {
     const con_Password = document.getElementById('con_Password');
     const submitBtn = document.getElementById('con_submit');
 
-    submitBtn.disabled =
+    if(submitBtn.innerHTML == "Regisztráció"){
+        submitBtn.disabled =
         !con_name.value ||
         !con_email.value ||
         !con_mobile.value ||
         !con_Password.value;
+        sessionStorage.setItem("Register", "true");
+    }
+    if(submitBtn.innerHTML == "Belépés"){
+        if(submitBtn.innerHTML == "Belépés"){
+            submitBtn.disabled =
+            !con_name.value ||
+            !con_email.value ||
+            !con_Password.value;
+            sessionStorage.setItem("Login", "false");
+        }
+    }
 });
 
 document.getElementById('con_submit').addEventListener("click", () => {
@@ -89,10 +111,26 @@ document.getElementById('con_submit').addEventListener("click", () => {
 window.addEventListener("load", () => {
     if (sessionStorage.getItem("fromRegister") === "true") {
         sessionStorage.removeItem("fromRegister");
-        Box.style.display = "";
-        BoxH1.innerText = "Sikeres regisztáció!";
-        setTimeout(() => {
-            window.location.href = "./index.html";
-        }, 2000);
+        if(sessionStorage.getItem("Register") === "true"){
+            Box.style.display = "";
+            BoxH1.innerText = `Sikeres Regisztráció!`;
+            setTimeout(() => {
+                window.location.href = "./index.html";
+            }, 2000);
+        }
+        if(sessionStorage.getItem("Login") === "false"){
+            Box.style.display = "";
+            BoxH1.innerText = `Sikertelen Bejelentkezés!`;
+            setTimeout(() => {
+                window.location.href = "./login.html";
+            }, 2000);
+        }
+        if(sessionStorage.getItem("Login") === "true"){
+            Box.style.display = "";
+            BoxH1.innerText = `Sikeres Bejelentkezés!`;
+            setTimeout(() => {
+                window.location.href = "./index.html";
+            }, 2000);
+        }
     }
 });
