@@ -73,6 +73,7 @@ function Submit(){
         for(let keys of fiokok){
             if(keys.Name == document.getElementById('con_name').value && keys.Email == document.getElementById('con_email').value && keys.Password == document.getElementById('con_Password').value){
                 sessionStorage.setItem("Login", "true");
+                sessionStorage.setItem("Type",keys.Profile);
             }
         }
     }
@@ -109,28 +110,41 @@ document.getElementById('con_submit').addEventListener("click", () => {
 });
 
 window.addEventListener("load", () => {
-    if (sessionStorage.getItem("fromRegister") === "true") {
-        sessionStorage.removeItem("fromRegister");
-        if(sessionStorage.getItem("Register") === "true"){
-            Box.style.display = "";
-            BoxH1.innerText = `Sikeres Regisztráció!`;
-            setTimeout(() => {
+
+    if (sessionStorage.getItem("fromRegister") !== "true") return;
+    sessionStorage.removeItem("fromRegister");
+
+    if (sessionStorage.getItem("Register") === "true") {
+        Box.style.display = "";
+        BoxH1.innerText = "Sikeres Regisztráció!";
+        sessionStorage.removeItem("Register");
+
+        setTimeout(() => {
+            window.location.href = "./index.html";
+        }, 2000);
+    }
+
+    else if (sessionStorage.getItem("Login") === "false") {
+        Box.style.display = "";
+        BoxH1.innerText = "Sikertelen Bejelentkezés!";
+        sessionStorage.removeItem("Login");
+
+        setTimeout(() => {
+            window.location.href = "./login.html";
+        }, 2000);
+    }
+
+    else if (sessionStorage.getItem("Login") === "true") {
+        Box.style.display = "";
+        BoxH1.innerText = "Sikeres Bejelentkezés!";
+        sessionStorage.removeItem("Login");
+
+        setTimeout(() => {
+            if (sessionStorage.getItem("Type") === "Egyeni") {
                 window.location.href = "./index.html";
-            }, 2000);
-        }
-        if(sessionStorage.getItem("Login") === "false"){
-            Box.style.display = "";
-            BoxH1.innerText = `Sikertelen Bejelentkezés!`;
-            setTimeout(() => {
-                window.location.href = "./login.html";
-            }, 2000);
-        }
-        if(sessionStorage.getItem("Login") === "true"){
-            Box.style.display = "";
-            BoxH1.innerText = `Sikeres Bejelentkezés!`;
-            setTimeout(() => {
-                window.location.href = "./index.html";
-            }, 2000);
-        }
+            } else {
+                window.location.href = "./logged-in-index.html";
+            }
+        }, 2000);
     }
 });

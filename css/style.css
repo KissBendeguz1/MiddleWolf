@@ -442,9 +442,8 @@ a {
 }
 
 .right-column {
-  width: 30%;
+  width: 35%;
 }
-
 .main-frame,
 .main-frame-lower,
 .main-frame-right {
@@ -469,8 +468,20 @@ a {
 }
 
 .main-frame-right {
+  padding: 20px;
   height: 820px;
+
+
+  display:flex;
+  flex-direction: row;
 }
+
+.main_frame_title{
+  width: fit-content;
+  height: fit-content;
+  margin-left: 10px;
+}
+
 
 .small-window {
   display: flex;
@@ -479,13 +490,15 @@ a {
 }
 
 .small-windows {
+  margin-left: auto;
+  margin-right: auto;
   font-size: small;
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 10px;
   background-color: var(--background-color);
-  width: 28%;
+  width: 27%;
   text-align: center;
   border-radius: 10px;
   box-shadow: var(--shad-color) 2px 2px 3px 1px;
