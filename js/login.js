@@ -9,6 +9,11 @@ const Adomszam = document.getElementById("Adoszam");
 const types = document.getElementById('Type_ceges');
 document.getElementById('con_submit').textContent = "Regisztráció";
 document.getElementById('Ceges').checked = true;
+document.getElementById('con_submit').disabled = true;
+
+const loginBTN = document.getElementsByClassName('login-buttons');
+const Box = document.getElementById('Box');
+Box.style.display = "none"
 
 function Login(){
     document.getElementById('con_submit').textContent = "Belépés";
@@ -17,7 +22,7 @@ function Login(){
     Mobile.style.display = "none";
     CompanyName.style.display = "none";
     Adomszam.style.display = "none";
-types.style.display = "none";
+    types.style.display = "none";
 }
 
 function Registration(){
@@ -62,3 +67,32 @@ function Submit(){
     Data.push(NewProfile);
     localStorage.setItem('Profiles',JSON.stringify(Data))
 };
+
+document.addEventListener('input', function () {
+    const con_name = document.getElementById('con_name');
+    const con_email = document.getElementById('con_email');
+    const con_mobile = document.getElementById('con_mobile');
+    const con_Password = document.getElementById('con_Password');
+    const submitBtn = document.getElementById('con_submit');
+
+    submitBtn.disabled =
+        !con_name.value ||
+        !con_email.value ||
+        !con_mobile.value ||
+        !con_Password.value;
+});
+
+document.getElementById('con_submit').addEventListener("click", () => {
+    sessionStorage.setItem("fromRegister", "true");
+});
+
+window.addEventListener("load", () => {
+    if (sessionStorage.getItem("fromRegister") === "true") {
+        sessionStorage.removeItem("fromRegister");
+        Box.style.display = "";
+        BoxH1.innerText = "Sikeres regisztáció!";
+        setTimeout(() => {
+            window.location.href = "./index.html";
+        }, 2000);
+    }
+});
