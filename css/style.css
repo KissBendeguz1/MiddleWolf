@@ -469,11 +469,26 @@ a {
 
 .main-frame-right {
   padding: 20px;
-  height: 820px;
-
+  height: 780px;
+  position: relative;
 
   display:flex;
   flex-direction: row;
+}
+
+#Company_message{
+  text-indent: 5px;
+  font-size: large;
+  padding: 20px;
+  text-align: justify;
+  padding: 0;
+  top: 95%;
+  width: 90%;
+  position: absolute;
+  height: 25px;
+  display: flex;
+  border-radius: 25px;
+  border: none;
 }
 
 .main_frame_title{
