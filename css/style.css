@@ -27,7 +27,7 @@ body {
 
 /* Sötét mód */
 body.dark-mode {
-  --background-color: #1a1a1a;
+  --background-color: #1e1e1e;
   --secondary-color: #e0e0e0;
   --text-color: #e0e0e0;
   --blue-color: #0b446c;
@@ -279,7 +279,7 @@ a {
 /*Rolunk design*/
 
 .content-section {
-  width: 80%;
+  width: 100%;
   margin: 10px;
   background-color: var(--background-color);
   color: var(--text-color);
@@ -457,7 +457,6 @@ a {
 .main-frame {
   min-height: 500px;
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
   padding: 20px;
   align-items: flex-start;
@@ -498,10 +497,54 @@ a {
 }
 
 
-.small-window {
+
+.kezelesgomb{
+  width: 10%;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin: 20px;
+  border: var(--blue-color) 3px solid;
+  box-shadow: var(--blue-color) 2px 2px 3px 1px;
+  transition: all 0.3s;
+  transform: scale(1);
+}
+
+.kezelesgomb:hover {
+  box-shadow: var(--blue-color) 4px 4px 6px 2px;
+  transition: ease-in-out 0.3s;
+  transform: scale(1.05);
+  background-color: var(--blue-color);
+}
+
+.flehek{
   display: flex;
-  flex-direction: row;
-  gap: 10%;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+
+}
+
+.fleh-windows {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: var(--shad-color) 2px 2px 3px 1px;
+  gap: 16px;
+  padding: 10px;
+  background-color: var(--background-color);
+}
+
+.smalls{
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .small-windows {
@@ -513,7 +556,7 @@ a {
   gap: 10px;
   padding: 10px;
   background-color: var(--background-color);
-  width: 27%;
+  width: 30%;
   text-align: center;
   border-radius: 10px;
   box-shadow: var(--shad-color) 2px 2px 3px 1px;
@@ -1175,6 +1218,48 @@ a {
   display: none !important;
 }
 
+/* Dark mode for iframe (maps) */
+iframe {
+  transition: filter 0.3s ease;
+}
+
+body.dark-mode iframe {
+  filter: invert(0.93) hue-rotate(180deg);
+}
+
+
+#Box{
+    position: fixed;
+    z-index: 1002;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+
+}
+
+.Box-content{
+    position: relative;
+    text-align: center;
+    background-color: #0b446c;
+    align-items: center;
+    overflow: auto;
+    margin-top: 20%;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 25px;
+    font-size: large;
+}
+
 /* Animations */
 @keyframes fadeInDown {
   from {
@@ -1283,44 +1368,3 @@ a {
   }
 }
 
-/* Dark mode for iframe (maps) */
-iframe {
-  transition: filter 0.3s ease;
-}
-
-body.dark-mode iframe {
-  filter: invert(0.93) hue-rotate(180deg);
-}
-
-
-#Box{
-    position: fixed;
-    z-index: 1002;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.6);
-    justify-content: center;
-    align-items: center;
-
-}
-
-.Box-content{
-    position: relative;
-    text-align: center;
-    background-color: #0b446c;
-    align-items: center;
-    overflow: auto;
-    margin-top: 20%;
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 30px;
-    padding-right: 30px;
-    color: white;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    border-radius: 25px;
-    font-size: large;
-}
