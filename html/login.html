@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/mai.css">
     <link
       rel="shortcut icon"
       href="../assets/Favicon.png"
@@ -56,19 +57,11 @@
           </a>
         </div>
         <div class="sidebar-bottom">
-          <div class="sidebar-item-container">
-            <a href="../html/login.html">
-              <div class="sidebar-item">
-                <p>Regisztrácio/bejelentkezes</p>
-              </div>
-            </a>
-          </div>
-
           <div class="sidebar-settings">
               <img id="sidebar-setting" src="../assets/settings.png" alt="" />
                   <div>
-                    <label for="dark-mode-toggle">sötét</label>
-                    <input type="checkbox" id="dark-mode-toggle">
+                      <label for="dark-mode-toggle">sötét</label>
+                      <input type="checkbox" id="dark-mode-toggle">
                   </div>
             </div>
         </div>
@@ -79,18 +72,16 @@
           <h1 id="title">Bejelentkezés</h1>
           <p id="subtitle">Kérjük, jelentkezzen be vagy regisztráljon</p>
         </div>
-
-        <div class="login-tabs">
-          <button class="tab-btn" id="log" type="button" onclick="Login()">
-            Bejelentkezés
-          </button>
-          <button class="tab-btn active" id="reg" type="button" onclick="Registration()">
-            Regisztráció
-          </button>
-        </div>
-
         <div class="login-form-container">
           <form id="logReg_form">
+            <div class="login-tabs">
+              <button class="tab-btn" id="log" type="button" onclick="Login()">
+                Bejelentkezés
+              </button>
+              <button class="tab-btn active" id="reg" type="button" onclick="Registration()">
+                Regisztráció
+              </button>
+            </div>
 
             <div id="Type_ceges" class="form-group">
               <label>Fiók típusa</label>
@@ -128,6 +119,11 @@
 
             <div id="Password" class="form-group">
               <label>Jelszó</label>
+              <input type="password" id="con_Password" placeholder="••••••••" />
+            </div>
+
+            <div id="Password" class="form-group">
+              <label>Jelszó Újra</label>
               <input type="password" id="con_Password" placeholder="••••••••" />
             </div>
 
