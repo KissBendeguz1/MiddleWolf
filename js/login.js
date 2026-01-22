@@ -148,3 +148,15 @@ window.addEventListener("load", () => {
         }, 2000);
     }
 });
+
+
+Adomszam.addEventListener('input', (e) =>{
+    e.preventDefault();
+
+    if(document.getElementById(con_ado).innerText.length == 8){
+        document.getElementById(con_ado).innerText.substring("-")
+    }
+    if(document.getElementById(con_ado).innerText.length == 9){
+        document.getElementById(con_ado).innerText.substring("-")
+    }
+})

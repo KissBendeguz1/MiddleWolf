@@ -880,19 +880,6 @@ a {
 }
 
 /* Tab buttons for login/registration */
-.login-tabs {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.5);
-  padding: 8px;
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
-  animation: fadeInUp 0.6s ease-out 0.1s both;
-  width: 100%;
-  max-width: 500px;
-}
-
 .tab-btn {
   flex: 1;
   padding: 12px 30px;
@@ -902,17 +889,34 @@ a {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  background-color: transparent;
-  color: var(--secondary-color);
+  background-color:transparent;
+  color: var(--white-black);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  transform: translateX(-6px);
+}
+
+.login-tabs {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  line-height: 10px;
+  margin-top: -70px;
+  margin-bottom: 25px;
+  gap: 15px;
+  Background: var(--white-color);
+  padding: 8px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+  width: 100%;
+  max-width: 500px;
 }
 
 .tab-btn.active {
-  background: linear-gradient(135deg, var(--blue-color), #8bb5d9);
-  color: var(--white-color);
   box-shadow: var(--blue-color) 0px 4px 15px 0px;
   transform: translateY(-2px);
+  background-image: linear-gradient(135deg, var(--blue-color), #8bb5d9);
 }
 
 .tab-btn:hover {
@@ -976,10 +980,11 @@ a {
 
 .form-group label {
   color: var(--text-color);
-  font-weight: 600;
+  font-weight: bolder;
   font-size: 0.95em;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-family:system-ui, -apple-system;
 }
 
 .form-group input[type="text"],
@@ -1068,8 +1073,12 @@ a {
 
 .btn-submit,
 .btn-primary {
-  flex: 1;
-  min-width: 140px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  min-width: 500px;
   padding: 14px 28px;
   border: none;
   border-radius: 10px;
