@@ -1424,3 +1424,170 @@ body.dark-mode iframe {
       transform: scale(1.1, );
       font-size: large;
     }
+
+    #docs-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+      background-color: var(--white-color);
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
+      border-radius: 10px;
+
+    }
+
+    #docs-top-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  
+    }
+
+    #docs-title {
+      font-size: 150%;
+      font-weight: bold;
+      color: var(--text-color);
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    } 
+
+    #docs-top-button {
+      height: 100%;
+      width: 20%;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      filter: drop-shadow(0 0 0 transparent);
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-color), #8bb5d9);
+      color: var(--white-color);
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
+      padding: 10px;
+      border: none;
+    }
+
+    #docs-top-button:hover {
+      transform: scale(1.05);
+      box-shadow: var(--blue-color) 4px 4px 6px 2px;
+      transition: ease-in-out 0.3s;
+      background-color: var(--blue-color);
+    }
+
+    #docs-list-container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      gap: 15px;
+    }
+
+    #docs-main-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+      background-color: var(--white-color);
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    #docs-main-top-bar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #docs-main-top-bar input{
+            height: 100%;
+      width: 20%;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      filter: drop-shadow(0 0 0 transparent);
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-color), #8bb5d9);
+      color: var(--white-color);
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
+      padding: 10px;
+      border: none;
+            placeholder {
+        color: var(--white-color);
+      }
+
+    }
+
+    #docs-main-top-bar input:hover {
+      transform: scale(1.05);
+      box-shadow: var(--blue-color) 4px 4px 6px 2px;
+      transition: ease-in-out 0.3s;
+      background-color: var(--blue-color);
+      border: none;
+      placeholder {
+        color: var(--white-color);
+      }
+    }
+
+    #docs-main-top-bar select {
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
+      border: none;
+      background-color: var(--blue-color);
+      color: var(--white-color);
+      border: none;
+    }
+
+    .docs-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      box-shadow: var(--shad-color) 2px 2px 3px 1px;
+      border-radius: 10px;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    .docs-item img {
+      width: 15%;
+      height: 15%;
+      border-radius: 5px;
+      align-items: center;
+    }
+
+    .docs-item-inner {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+      width: 70%;
+    }
+
+    .doc-date {
+      color: var(--blue-color);
+    }
+
+        .docs-item-buttons {
+      display: flex;
+      flex-direction: column;
+        }
+
+    .docs-item-button {
+      padding: 8px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
+      border: none;
+      background: linear-gradient(135deg, var(--blue-color), #8bb5d9);
+      color: var(--white-color);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .docs-item-button:hover {
+      transform: scale(1.05);
+      box-shadow: var(--blue-color) 4px 4px 6px 2px;
+      transition: ease-in-out 0.3s;
+      background-color: var(--blue-color);
+    }
