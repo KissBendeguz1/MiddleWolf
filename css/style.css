@@ -1333,3 +1333,94 @@ body.dark-mode iframe {
     border-radius: 25px;
     font-size: large;
 }
+
+    #review-container {
+        display: flex;
+        width: 30%;
+        height: fit-content;
+        flex-direction: column;
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+        top: 10%;
+        border-radius: 10px;
+        box-shadow: 0 0 10px var(--blue-color);
+        padding: 5%;
+        gap: 30px;
+        background-color: var(--white-color);
+        box-shadow: 0 0 10px var(--blue-color);
+        border-radius: 10px;
+        padding: 5%;
+        transition: all 0.3s ease-in-out;
+    }
+
+    #review-title {
+        flex-direction: column;
+        gap: 15;
+    }
+
+    #review-title span {
+     background: -webkit-linear-gradient(var(--text-color), var(--blue-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    }
+
+    #stars {
+        display: flex;
+        flex-direction: row;
+        padding: 10px 0 10px 0;
+        font-size: 125%;
+    }
+
+    #rating {
+        display: flex;
+        flex-direction: row;
+        padding: 3px;
+        font-size: 20px;
+    }
+
+    #stars p{
+        margin-left: 10px;
+    }
+
+     p {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #rating-input {
+        
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        gap: 10px;
+    }
+
+    #rating-input textarea {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 0 10px var(--blue-color);
+        border: 0px solid var(--blue-color) ;
+        padding: 5px;
+        font-size: 125%;
+        resize: none;
+        height: 4em;
+    }
+
+
+    #review-input button {
+      width: 70%;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 15px;
+      background: linear-gradient(135deg, var(--blue-color), #8bb5d9);
+      color: var(--white-color);
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
+      transform: scale(1.1, );
+      font-size: large;
+    }
