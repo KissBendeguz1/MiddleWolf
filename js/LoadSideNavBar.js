@@ -2,8 +2,9 @@ const darkModeScript = document.createElement('script');
 darkModeScript.src = '../js/DarkMode.js';
 document.head.appendChild(darkModeScript);
 
-
-if (sessionStorage.getItem("Login") === "true") {
+document.addEventListener('DOMContentLoaded', (e) =>{
+    e.preventDefault()
+    if (sessionStorage.getItem("Login") === "true") {
     if (sessionStorage.getItem("Type") === "Ceges" || localStorage.getItem('Load') === true) {
         const sideNavBarHTML =`<hr>
             <a href="../html/logged-in-index.html">
@@ -50,3 +51,4 @@ if (sessionStorage.getItem("Login") === "true") {
     sideBarItemHolder[0].appendChild(document.createRange().createContextualFragment(sideNavBarHTML));
     }
 }
+})

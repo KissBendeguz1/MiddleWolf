@@ -1591,3 +1591,72 @@ body.dark-mode iframe {
       margin-top: 20px;
       margin-bottom: 0px;
     }
+
+    
+    #Company_message{
+    position: absolute;
+    text-indent: 10px;
+    font-size: large;
+    padding: 20px;
+    text-align: justify;
+    padding: 0;
+    top: 95%;
+    width: 70%;
+    height: 25px;
+    display: flex;
+    border-radius: 25px;
+    border: none;
+    box-shadow: var(--blue-color) 2px 2px 3px 1px;
+  }
+
+  #Company_message:focus{
+    outline: none;
+  }
+
+    .content{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 20px;
+      margin: 10px;
+      position: relative;
+    }
+
+    .content-left{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 20px;
+      margin: 10px;
+      position: relative;
+    }
+
+    #Peoples{
+      background-color: #333;
+    }
+
+    #people{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 10px 20px;
+      text-indent: 10px;
+    }
+
+    .people_hr{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      margin: 10px;
+      position:static;
+    }
+    
+    .out_hr{
+      
+    }
+
+    #people>img{
+      width: 60px;
+      height: 60px;
+      border-radius: 50px;
+    }
