@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="shortcut icon" href="../assets/Favicon.png" type="image/x-icon">
   </head>
-  <script src="../js/LoadSideNavBar.js"></script>
+  
   <body>
 <nav>
       <section class="nav-container">
@@ -32,7 +32,7 @@
             src="../assets/nav-logo-placeholder.jpg"
             alt=""
           />
-          <a href="./login.html">Regisztráció</a>
+         <a href="./login.html">Regisztráció</a>
         </div>
       </section>
     </nav>
@@ -62,10 +62,8 @@
                   <img class="sidebar-icon" src="../assets/contact.png" alt="" />
                   <h2>Kapcsolat</h2>
                 </div>
-                
+                </div>
             </a>
-
-          </div>
           <div class="sidebar-bottom">
             <div class="sidebar-item-container">
               <a class="" href="../html/login.html"></a>
@@ -78,16 +76,39 @@
             <div class="sidebar-settings">
               <img id="sidebar-setting" src="../assets/settings.png" alt="" />
                   <div>
-                    <label for="dark-mode-toggle">sötét</label>
+                    <label class="sotetszoveg" for="dark-mode-toggle">Sötét mód:</label>
                     <input type="checkbox" id="dark-mode-toggle">
                   </div>
             </div>
             </div>
-        </div>
         </section>
         <section class="content-section">
-<!--IDE KELL IORNI MINDEN UJ HTML KODOT KULOMBEN SZAR LESZ-->
+              <div class="notification-container">
+                    <h1 style="text-align: center;">Értesítések</h1>
+                    <div class="notification-item">
+                      <div class="notification-header">
+                        <h3>Új üzenet</h3>
+                        <span class="notification-date">2026. január 27.</span>
+                      </div>
+                      <p class="notification-content">Új üzenet érkezett az admin csapattól</p>
+                    </div>
+                    <div class="notification-item">
+                      <div class="notification-header">
+                        <h3>Profil frissítés</h3>
+                        <span class="notification-date">2026. január 26.</span>
+                      </div>
+                      <p class="notification-content">A profilodat sikeresen frissítettük</p>
+                    </div>
+                    <div class="notification-item">
+                      <div class="notification-header">
+                        <h3>Rendszer értesítés</h3>
+                        <span class="notification-date">2026. január 25.</span>
+                      </div>
+                      <p class="notification-content">Karbantartás során az oldal rövid ideig elérhető nem lesz</p>
+                    </div>
+                  </div>
         </section>
     </div>
+    <script src="../js/LoadSideNavBar.js"></script>
   </body>
 </html>
