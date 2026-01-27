@@ -1,109 +1,178 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MiddleWolf</title>
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../MiddleWolf/css/style.css">
-    <link rel="shortcut icon" href="../assets/Favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../MiddleWolf/css/style.css" />
+    <link
+      rel="shortcut icon"
+      href="../assets/Favicon.png"
+      type="image/x-icon"
+    />
   </head>
   <script src="../js/LoadSideNavBar.js"></script>
 
   <style>
-
-:root {
-  --background-color: #e7ecef;
-  --secondary-color: #333;
-  --text-color: #1e1e1e;
-  --blue-color: #a1c6ea;
-  --white-color: #ffffff;
-}
-
-
-
-
-
-
-
-
-
+    :root {
+      --background-color: #e7ecef;
+      --secondary-color: #333;
+      --text-color: #1e1e1e;
+      --blue-color: #a1c6ea;
+      --white-color: #ffffff;
+    }
   </style>
   <body>
-    <section id="review-container">
-        <div id="review-title">
-            <h1>Vélemény írása a <span id="review-title-companyname">Cégnév</span>-ről</h1>
-            <p>Kérjük a véleményében valós információkat osszon meg</p>
+    <nav>
+      <section class="nav-container">
+        <img
+          id="nav-logo-big"
+          class="nav-img"
+          src="../assets/Logo1.png"
+          alt="MiddleWolf Logo"
+        />
+      </section>
+      <section class="nav-container">
+        <input
+          type="text"
+          name="navsearch"
+          id="search"
+          placeholder="Search..."
+        />
+        <div id="nav-profile">
+          <img
+            id="nav-profile-img"
+            class="nav-img"
+            src="../assets/nav-logo-placeholder.jpg"
+            alt=""
+          />
+          <a href="./login.html">Regisztráció</a>
         </div>
-
-        <div id="review-input">
-
-            <div id="stars">
-                <div class="rating rating2">
-                    <a onclick="SetRateingValue(1)">★</a>
-                    <a onclick="SetRateingValue(2)">★</a>
-                    <a onclick="SetRateingValue(3)">★</a>
-                    <a onclick="SetRateingValue(4)">★</a>
-                    <a onclick="SetRateingValue(5)">★</a>
-                </div>
-                <p id="rating-text">Nincs megadva</p> 
+      </section>
+    </nav>
+    <div id="contentholder">
+      <section class="sidebar-container">
+        <div class="sidebar-item-container">
+          <a href="../html/index.html">
+            <div class="sidebar-item">
+              <img class="sidebar-icon" src="../assets/main.png" alt="" />
+              <h2>Főoldal</h2>
             </div>
-             
+          </a>
+          <a href="../html/about.html">
+            <div class="sidebar-item">
+              <img class="sidebar-icon" src="../assets/about.png" alt="" />
+              <h2>Rólunk</h2>
+            </div>
+          </a>
+          <a href="../html/map.html">
+            <div class="sidebar-item">
+              <img class="sidebar-icon" src="../assets/map.png" alt="" />
+              <h2>Térkép</h2>
+            </div>
+          </a>
+          <a href="../html/contact.html">
+            <div class="sidebar-item">
+              <img class="sidebar-icon" src="../assets/contact.png" alt="" />
+              <h2>Kapcsolat</h2>
+            </div>
+          </a>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="sidebar-item-container">
+            <a href="../html/login.html">
+              <div class="sidebar-item">
+                <p>Regisztrácio/bejelentkezes</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="sidebar-settings">
+            <img id="sidebar-setting" src="../assets/settings.png" alt="" />
+            <div>
+              <label for="dark-mode-toggle">sötét</label>
+              <input type="checkbox" id="dark-mode-toggle" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="content-section">
+        <section id="review-container">
+          <div id="review-title">
+            <h1>
+              Vélemény írása a
+              <span id="review-title-companyname">Cégnév</span>-ről
+            </h1>
+            <p>Kérjük a véleményében valós információkat osszon meg</p>
+          </div>
+
+          <div id="review-input">
+            <div id="stars">
+              <div class="rating rating2">
+                <a onclick="SetRateingValue(1)">★</a>
+                <a onclick="SetRateingValue(2)">★</a>
+                <a onclick="SetRateingValue(3)">★</a>
+                <a onclick="SetRateingValue(4)">★</a>
+                <a onclick="SetRateingValue(5)">★</a>
+              </div>
+              <p id="rating-text">Nincs megadva</p>
+            </div>
+
             <div id="rating-input">
-                <label for="velemeny">Vélemény</label>
-                <textarea name="velemeny" id="velemeny" resize="none"></textarea>
+              <label for="velemeny">Vélemény</label>
+              <textarea name="velemeny" id="velemeny" resize="none"></textarea>
             </div>
             <button onclick="SendReview()">Értékelek</button>
-        </div>
-    </section>
+          </div>
+        </section>
+      </section>
+    </div>
   </body>
   <script src="../js/LoadSideNavBar.js"></script>
   <script src="../js/ShowAlert.js"></script>
   <script>
-        var rateValue = 0;
+    var rateValue = 0;
 
-      SetRateingValue(0)
+    SetRateingValue(0);
 
-function SetRateingValue(value) {
-    rateValue = value || 0;
-    UpdateDisplayValue(rateValue)
-    UpdateStarFill(rateValue)
-}
+    function SetRateingValue(value) {
+      rateValue = value || 0;
+      UpdateDisplayValue(rateValue);
+      UpdateStarFill(rateValue);
+    }
 
-function UpdateDisplayValue(rateValue) {
-    let ratingText = document.getElementById("rating-text")
-    ratingText.textContent = rateValue + "/5"
-}
+    function UpdateDisplayValue(rateValue) {
+      let ratingText = document.getElementById("rating-text");
+      ratingText.textContent = rateValue + "/5";
+    }
 
-function UpdateStarFill(rateValue) {
-    const stars = document.querySelectorAll(".rating a");
-    stars.forEach((star, index) => {
+    function UpdateStarFill(rateValue) {
+      const stars = document.querySelectorAll(".rating a");
+      stars.forEach((star, index) => {
         if (index < rateValue) {
-            star.style.color = "#ffcc00";
+          star.style.color = "#ffcc00";
         } else {
-            star.style.color = "#ccc";
+          star.style.color = "#ccc";
         }
-    });
-}
-
-function  SendReview() {
-    let reviewText = document.getElementById("velemeny").value;
-
-    if(rateValue === 0) {
-   
-        ShowAlert("Kérjük értékelje a szolgáltatást csillagokkal!", "alert")
+      });
     }
 
-    if(reviewText.length < 10) {
+    function SendReview() {
+      let reviewText = document.getElementById("velemeny").value;
 
-        ShowAlert("Kérjük írjon legalább 10 karakter hosszú véleményt!", "alert")
-    } else {
-      ShowAlert("Köszönjük, hogy értékelted a szolgáltatást!", "success")
+      if (rateValue === 0) {
+        ShowAlert("Kérjük értékelje a szolgáltatást csillagokkal!", "alert");
+      }
+
+      if (reviewText.length < 10) {
+        ShowAlert(
+          "Kérjük írjon legalább 10 karakter hosszú véleményt!",
+          "alert",
+        );
+      } else {
+        ShowAlert("Köszönjük, hogy értékelted a szolgáltatást!", "success");
+      }
     }
-    }
-
-    
-
-
   </script>
 </html>

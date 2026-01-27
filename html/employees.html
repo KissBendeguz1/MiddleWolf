@@ -84,72 +84,72 @@
         </section>
         <section class="content-section">
     <!--IDE KELL IORNI MINDEN UJ HTML KODOT KULOMBEN SZAR LESZ-->
-    <section id="docs-container">
-        <div id="docs-top-container">
-            <div id="docs-title">
-                <h1>Dokumentumok</h1>
-                <button id="docs-top-button">+ Új létrehozása</button>
+    <section id="employee-container">
+        <div id="employee-top-container">
+            <div id="employee-title">
+                <h1>Alkalmazottak</h1>
+                <button id="employee-top-button">+ Alkalmazott felvétele</button>
             </div>
-            <p>Itt találhatók a veled megosztott dokumentumok, és itt hozhatsz létre újat.</p>
+            <p>Itt kezelhetőek alkalmazottjai, és itt vehet fel ujakat.</p>
         </div>
     </section>
-    <section id="docs-main-container">
-        <div id="docs-main-top-bar">
-                        <div id="docs-filter-container">
-                <label for="docs-filter-select">Szűrés:</label>
-                <select name="docs-filter-select" id="docs-filter-select">
+    <section id="employee-main-container">
+        <div id="employee-main-top-bar">
+                        <div id="employee-filter-container">
+                <label for="employee-filter-select">Szűrés:</label>
+                <select name="employee-filter-select" id="employee-filter-select">
                     <option value="name-asc">Név szerint (A-Z)</option>
                     <option value="name-desc">Név szerint (Z-A)</option>
-                    <option value="date-newest">Dátum szerint (Legújabb)</option>
-                    <option value="date-oldest">Dátum szerint (Legrégebbi)</option>
+                    <option value="position-asd">Pozíció szerint (novekvo)</option>
+                    <option value="position-desc">Pozíció szerint (Csokkeno)</option>
                 </select>
             </div>
-            <input type="text" id="docs-search-bar" placeholder="Dokumentum keresése..." />
+            <input type="text" id="employee-search-bar" placeholder="Alkalmazott keresése..." />
 
         </div>
-        <div id="docs-list-container">
-            <div class="docs-item">
-                <div class="docs-item-inner">
-                    <img src="../assets/docs-icon.svg" alt="" />
-                    <div class="docs-item-text">
-                        <h2>Dokumentum1.docx</h2>
-                        <p>Megosztva: Kiss Bálint - <span class="doc-date">2026.01.12</span></p>
+        <div id="employee-list-container">
+            <div class="employee-item">
+                <div class="employee-item-inner">
+                    <img src="../assets/people.svg" alt="" />
+                    <div class="employee-item-text">
+                        <h2>Jóska Pista</h2>
+                        <p>Pozíció: - <span class="doc-date">kútfúró</span></p>
                     
                     </div>
                 </div>
-                <div class="docs-item-buttons">
-                    <button class="docs-item-button">Megnyitás</button>
-                    <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="docs-item-button">Szerkesztés</button>
+                <div class="employee-item-buttons">
+                    <button class="employee-item-button">Üzenet</button>
+                    <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="employee-item-button">Kezelés</button>
                 </div>
 
             </div>
-            <div class="docs-item">
-                <div class="docs-item-inner">
-                    <img src="../assets/docs-icon.svg" alt="" />
-                    <div class="docs-item-text">
-                        <h2>Dokumentum1.docx</h2>
-                        <p>Megosztva: Kiss Bálint - <span class="doc-date">2026.01.12</span></p>
+            <div class="employee-item">
+                <div class="employee-item-inner">
+                    <img src="../assets/people.svg" alt="" />
+                    <div class="employee-item-text">
+                        <h2>Jóska Pista</h2>
+                    <p>Pozíció: - <span class="doc-date">kútfúró</span></p>
                     
                     </div>
                 </div>
-                <div class="docs-item-buttons">
-                    <button class="docs-item-button">Megnyitás</button>
-                    <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="docs-item-button">Szerkesztés</button>
+                <div class="employee-item-buttons">
+                    <button class="employee-item-button">Üzenet</button>
+                    <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="employee-item-button">Kezelés</button>
                 </div>
 
             </div>
-            <div class="docs-item">
-                <div class="docs-item-inner">
-                    <img src="../assets/docs-icon.svg" alt="" />
-                    <div class="docs-item-text">
-                        <h2>Dokumentum1.docx</h2>
-                        <p>Megosztva: Kiss Bálint - <span class="doc-date">2026.01.12</span></p>
+            <div class="employee-item">
+                <div class="employee-item-inner">
+                    <img src="../assets/people.svg" alt="" />
+                    <div class="employee-item-text">
+                        <h2>Jóska Pista</h2>
+                        <p>Pozíció: - <span class="doc-date">kútfúró</span></p>
                     
                     </div>
                 </div>
-                <div class="docs-item-buttons">
-                    <button class="docs-item-button">Megnyitás</button>
-                    <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="docs-item-button">Szerkesztés</button>
+                <div class="employee-item-buttons">
+                    <button class="employee-item-button">Üzenet</button>
+                    <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="employee-item-button">Kezelés</button>
                 </div>
 
             </div>
@@ -159,7 +159,7 @@
     </div>
   </body>
   <script src="../js/ShowAlert.js"></script>
-    <script>
+  <script>
     const img = document.querySelectorAll("img");
     img.forEach((item) => {
       item.classList.add("svg-invert");
