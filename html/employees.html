@@ -62,6 +62,7 @@
                   <img class="sidebar-icon" src="../assets/contact.png" alt="" />
                   <h2>Kapcsolat</h2>
                 </div>
+<<<<<<< HEAD
                 
             </a>
             <hr>
@@ -110,6 +111,17 @@
                 <p>Regisztrácio/bejelentkezes</p>
               </div>
 
+=======
+                </div>
+            </a>
+          <div class="sidebar-bottom">
+            <div class="sidebar-item-container">
+              <a href="../html/login.html">
+              <div class="sidebar-item">
+                <p>Regisztrácio/bejelentkezes</p>
+              </div>
+              </a>
+>>>>>>> b283d8f579a81ebe9e5cbc99da03d75e32985aed
             </div>
             
             <div class="sidebar-settings">
@@ -120,6 +132,7 @@
                   </div>
             </div>
             </div>
+<<<<<<< HEAD
         </div>
         </section>
         <section class="content-section">
@@ -127,4 +140,90 @@
         </section>
     </div>
   </body>
+=======
+        </section>
+        <section class="content-section">
+    <!--IDE KELL IORNI MINDEN UJ HTML KODOT KULOMBEN SZAR LESZ-->
+    <section id="employee-container">
+        <div id="employee-top-container">
+            <div id="employee-title">
+                <h1>Alkalmazottak</h1>
+                <button id="employee-top-button">+ Alkalmazott felvétele</button>
+            </div>
+            <p>Itt kezelhetőek alkalmazottjai, és itt vehet fel ujakat.</p>
+        </div>
+    </section>
+    <section id="employee-main-container">
+        <div id="employee-main-top-bar">
+                        <div id="employee-filter-container">
+                <label for="employee-filter-select">Szűrés:</label>
+                <select name="employee-filter-select" id="employee-filter-select">
+                    <option value="name-asc">Név szerint (A-Z)</option>
+                    <option value="name-desc">Név szerint (Z-A)</option>
+                    <option value="position-asd">Pozíció szerint (novekvo)</option>
+                    <option value="position-desc">Pozíció szerint (Csokkeno)</option>
+                </select>
+            </div>
+            <input type="text" id="employee-search-bar" placeholder="Alkalmazott keresése..." />
+
+        </div>
+        <div id="employee-list-container">
+            <div class="employee-item">
+                <div class="employee-item-inner">
+                    <img src="../assets/people.svg" alt="" />
+                    <div class="employee-item-text">
+                        <h2>Jóska Pista</h2>
+                        <p>Pozíció: - <span class="doc-date">kútfúró</span></p>
+                    
+                    </div>
+                </div>
+                <div class="employee-item-buttons">
+                    <button class="employee-item-button">Üzenet</button>
+                    <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="employee-item-button">Kezelés</button>
+                </div>
+
+            </div>
+            <div class="employee-item">
+                <div class="employee-item-inner">
+                    <img src="../assets/people.svg" alt="" />
+                    <div class="employee-item-text">
+                        <h2>Jóska Pista</h2>
+                    <p>Pozíció: - <span class="doc-date">kútfúró</span></p>
+                    
+                    </div>
+                </div>
+                <div class="employee-item-buttons">
+                    <button class="employee-item-button">Üzenet</button>
+                    <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="employee-item-button">Kezelés</button>
+                </div>
+
+            </div>
+            <div class="employee-item">
+                <div class="employee-item-inner">
+                    <img src="../assets/people.svg" alt="" />
+                    <div class="employee-item-text">
+                        <h2>Jóska Pista</h2>
+                        <p>Pozíció: - <span class="doc-date">kútfúró</span></p>
+                    
+                    </div>
+                </div>
+                <div class="employee-item-buttons">
+                    <button class="employee-item-button">Üzenet</button>
+                    <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="employee-item-button">Kezelés</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+        </section>
+    </div>
+  </body>
+  <script src="../js/ShowAlert.js"></script>
+  <script>
+    const img = document.querySelectorAll("img");
+    img.forEach((item) => {
+      item.classList.add("svg-invert");
+    });
+  </script>
+>>>>>>> b283d8f579a81ebe9e5cbc99da03d75e32985aed
 </html>
