@@ -1,68 +1,68 @@
-.tab-btn {
-    flex: 1;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background-color:transparent;
-    color: var(--white-black);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transform: translateX(-6px);
-  }
 
-  .login-tabs {
-    margin-left: auto;
-    margin-right: auto;
+    #Company_message{
+    position: absolute;
+    text-indent: 10px;
+    font-size: large;
+    padding: 20px;
+    text-align: justify;
+    padding: 0;
+    top: 95%;
+    width: 70%;
+    height: 25px;
     display: flex;
-    line-height: 10px;
-    margin-top: -70px;
-    margin-bottom: 25px;
-    gap: 15px;
-    Background: var(--white-color);
-    padding: 8px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    animation: fadeInUp 0.6s ease-out 0.1s both;
-    width: 100%;
-    max-width: 500px;
+    border-radius: 25px;
+    border: none;
+    box-shadow: var(--blue-color) 2px 2px 3px 1px;
   }
 
-.tab-btn.active {
-    box-shadow: var(--blue-color) 0px 4px 15px 0px;
-    transform: translateY(-2px);
-    background-image: linear-gradient(135deg, var(--blue-color), #8bb5d9);
-}
-
-.form-group label {
-    color: var(--text-color);
-    font-weight: bolder;
-    font-size: 0.95em;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-family:system-ui, -apple-system;
+  #Company_message:focus{
+    outline: none;
   }
 
-  .btn-submit,
-.btn-primary {
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  min-width: 500px;
-  padding: 14px 28px;
-  border: none;
-  border-radius: 10px;
-  font-size: 1.05em;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  position: relative;
-  overflow: hidden;
-}
+    .content{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 20px;
+      margin: 10px;
+      position: relative;
+    }
+
+    .content-left{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 20px;
+      margin: 10px;
+      position: relative;
+    }
+
+    #Peoples{
+      background-color: #333;
+    }
+
+    #people{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 10px 20px;
+      text-indent: 10px;
+    }
+
+    .people_hr{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      margin: 10px;
+      position:static;
+    }
+    
+    .out_hr{
+      
+    }
+
+    #people>img{
+      width: 60px;
+      height: 60px;
+      border-radius: 50px;
+    }

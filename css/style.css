@@ -476,21 +476,6 @@ a {
   flex-direction: row;
 }
 
-#Company_message{
-  text-indent: 5px;
-  font-size: large;
-  padding: 20px;
-  text-align: justify;
-  padding: 0;
-  top: 95%;
-  width: 90%;
-  position: absolute;
-  height: 25px;
-  display: flex;
-  border-radius: 25px;
-  border: none;
-}
-
 .main_frame_title{
   width: fit-content;
   height: fit-content;
