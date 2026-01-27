@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MiddleWolf</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="shortcut icon" href="../assets/Favicon.png" type="image/x-icon">
+  </head>
+  <script src="../js/LoadSideNavBar.js"></script>
+  <body>
+<nav>
+      <section class="nav-container">
+        <img
+          id="nav-logo-big"
+          class="nav-img"
+          src="../assets/Logo1.png"
+          alt=""
+        />
+      </section>
+      <section class="nav-container">
+        <input
+          type="text"
+          name="navsearch"
+          id="search"
+          placeholder="Search..."
+        />
+        <div id="nav-profile">
+          <img
+            id="nav-profile-img"
+            class="nav-img"
+            src="../assets/nav-logo-placeholder.jpg"
+            alt=""
+          />
+          <a href="./login.html">Regisztráció</a>
+        </div>
+      </section>
+    </nav>
+    <div id="contentholder">
+        <section class="sidebar-container">
+          <div class="sidebar-item-container">
+            <a href="../html/index.html">
+                <div class="sidebar-item">
+                  <img class="sidebar-icon" src="../assets/main.png" alt="" />
+                  <h2>Főoldal</h2>
+                </div>
+            </a>
+            <a href="../html/about.html">
+                <div class="sidebar-item">
+                  <img class="sidebar-icon" src="../assets/about.png" alt="" />
+                  <h2>Rólunk</h2>
+                </div>
+            </a>
+            <a href="../html/map.html">
+                <div class="sidebar-item">
+                  <img class="sidebar-icon" src="../assets/map.png" alt="" />
+                  <h2>Térkép</h2>
+                </div>
+            </a>
+            <a href="../html/contact.html">
+                <div class="sidebar-item">
+                  <img class="sidebar-icon" src="../assets/contact.png" alt="" />
+                  <h2>Kapcsolat</h2>
+                </div>
+                </div>
+            </a>
+          <div class="sidebar-bottom">
+            <div class="sidebar-item-container">
+              <a href="../html/login.html">
+              <div class="sidebar-item">
+                <p>Regisztrácio/bejelentkezes</p>
+              </div>
+              </a>
+            </div>
+            
+            <div class="sidebar-settings">
+              <img id="sidebar-setting" src="../assets/settings.png" alt="" />
+                  <div>
+                    <label for="dark-mode-toggle">sötét</label>
+                    <input type="checkbox" id="dark-mode-toggle">
+                  </div>
+            </div>
+            </div>
+        </section>
+        <section class="content-section">
+    <!--IDE KELL IORNI MINDEN UJ HTML KODOT KULOMBEN SZAR LESZ-->
+    <section id="employee-container">
+        <div id="employee-top-container">
+            <div id="employee-title">
+                <h1>Alkalmazottak</h1>
+                <button id="employee-top-button">+ Alkalmazott felvétele</button>
+            </div>
+            <p>Itt kezelhetőek alkalmazottjai, és itt vehet fel ujakat.</p>
+        </div>
+    </section>
+    <section id="employee-main-container">
+        <div id="employee-main-top-bar">
+                        <div id="employee-filter-container">
+                <label for="employee-filter-select">Szűrés:</label>
+                <select name="employee-filter-select" id="employee-filter-select">
+                    <option value="name-asc">Név szerint (A-Z)</option>
+                    <option value="name-desc">Név szerint (Z-A)</option>
+                    <option value="position-asd">Pozíció szerint (novekvo)</option>
+                    <option value="position-desc">Pozíció szerint (Csokkeno)</option>
+                </select>
+            </div>
+            <input type="text" id="employee-search-bar" placeholder="Alkalmazott keresése..." />
+
+        </div>
+        <div id="employee-list-container">
+            <div class="employee-item">
+                <div class="employee-item-inner">
+                    <img src="../assets/people.svg" alt="" />
+                    <div class="employee-item-text">
+                        <h2>Jóska Pista</h2>
+                        <p>Pozíció: - <span class="doc-date">kútfúró</span></p>
+                    
+                    </div>
+                </div>
+                <div class="employee-item-buttons">
+                    <button class="employee-item-button">Üzenet</button>
+                    <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="employee-item-button">Kezelés</button>
+                </div>
+
+            </div>
+            <div class="employee-item">
+                <div class="employee-item-inner">
+                    <img src="../assets/people.svg" alt="" />
+                    <div class="employee-item-text">
+                        <h2>Jóska Pista</h2>
+                    <p>Pozíció: - <span class="doc-date">kútfúró</span></p>
+                    
+                    </div>
+                </div>
+                <div class="employee-item-buttons">
+                    <button class="employee-item-button">Üzenet</button>
+                    <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="employee-item-button">Kezelés</button>
+                </div>
+
+            </div>
+            <div class="employee-item">
+                <div class="employee-item-inner">
+                    <img src="../assets/people.svg" alt="" />
+                    <div class="employee-item-text">
+                        <h2>Jóska Pista</h2>
+                        <p>Pozíció: - <span class="doc-date">kútfúró</span></p>
+                    
+                    </div>
+                </div>
+                <div class="employee-item-buttons">
+                    <button class="employee-item-button">Üzenet</button>
+                    <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="employee-item-button">Kezelés</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+        </section>
+    </div>
+  </body>
+  <script src="../js/ShowAlert.js"></script>
+</html>
