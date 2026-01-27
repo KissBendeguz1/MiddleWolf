@@ -1579,7 +1579,7 @@ body.dark-mode iframe {
       background-color: var(--blue-color);
     }
 
-    hr {
+    #logged_in_navbar_hr {
       border: none;
       height: 3px;
       background-color: var(--text-color);
@@ -1601,7 +1601,7 @@ body.dark-mode iframe {
     text-align: justify;
     padding: 0;
     top: 95%;
-    width: 70%;
+    width: 95%;
     height: 25px;
     display: flex;
     border-radius: 25px;
@@ -1613,13 +1613,26 @@ body.dark-mode iframe {
     outline: none;
   }
 
+  .content-all{
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: wrap;
+      width: 78%;
+  }
+
     .content{
+      width: 60%;
+      height: 90%;
+      background-color: var(--white-color);
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       padding: 20px;
-      margin: 10px;
+      margin-top: 30px;
+      gap: 20px;
       position: relative;
+      border-radius: 25px;
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
     }
 
     .content-left{
@@ -1627,12 +1640,14 @@ body.dark-mode iframe {
       flex-direction: row;
       flex-wrap: wrap;
       padding: 20px;
-      margin: 10px;
+      margin-top: 10px;
       position: relative;
     }
 
     #Peoples{
-      background-color: #333;
+      background-color: var(--white-color);
+      border-radius: 25px;
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
     }
 
     #people{
@@ -1649,10 +1664,11 @@ body.dark-mode iframe {
       flex-wrap: wrap;
       margin: 10px;
       position:static;
+      border: 1px solid var(--blue-color);
     }
     
     .out_hr{
-      
+      width: 80%;
     }
 
     #people>img{

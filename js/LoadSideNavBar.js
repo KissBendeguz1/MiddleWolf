@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', (e) =>{
     e.preventDefault()
     if (sessionStorage.getItem("Login") === "true") {
     if (sessionStorage.getItem("Type") === "Ceges" || localStorage.getItem('Load') === true) {
-        const sideNavBarHTML =`<hr>
+        const sideNavBarHTML =`<hr id="logged_in_navbar_hr">
             <a href="../html/logged-in-index.html">
                 <div class="sidebar-item">
                   <img class="sidebar-icon" src="../assets/dashboard.svg" alt="" />
