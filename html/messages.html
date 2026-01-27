@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MiddleWolf</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="shortcut icon" href="../assets/Favicon.png" type="image/x-icon">
-    <script src="../js/message.js"></script>
   </head>
   <script src="../js/LoadSideNavBar.js"></script>
   <body>
@@ -33,7 +32,7 @@
             src="../assets/nav-logo-placeholder.jpg"
             alt=""
           />
-          <a href="./login.html">Regisztráció</a>
+          <h1>Regisztráció</h1>
         </div>
       </section>
     </nav>
@@ -83,30 +82,39 @@
             </div>
             </div>
         </section>
-        <section class="content-section">
-              <div class="dashboard">
-              <div class="left-column">
-                <div class="main-frame">
-                  <div class="small-windows">
-                      <h2>Alkalmazottak</h2>
-                  </div>
-                  <div class="small-windows">
-                        <h2>Dokumentumok</h2>
-                  </div>
-                  <div class="small-windows">
-                      <h2>Értesítések</h2>
-                  </div>
+        <section class="content-all">
+            <div class="content">
+                <img src="../assets/velemeny.svg" alt="" width="50px" height="90px">
+                <h1 class="main_frame_title">Üzenetek</h1>
+                <input type="text" id="Company_message" placeholder="Üzenet......">
+            </div>
+            <div class="content-left">
+                <div id="Peoples">
+                    <div id="people">
+                        <h3>Új csoport +</h3>
+                    </div>
+                    <hr class="out_hr">
+                    <div id="people">
+                        <img src="../assets/bendi.jpg" alt="">
+                        <h3>Bendi</h3>
+                        <hr class="people_hr">
+                    </div>
+                    <div id="people">
+                        <img src="../assets/bendi.jpg" alt="">
+                        <h3>Bendi</h3>
+                        <hr class="people_hr">
+                    </div>
+                    <div id="people">
+                        <img src="../assets/bendi.jpg" alt="">
+                        <h3>Bendi</h3>
+                        <hr class="people_hr">
+                    </div>
+                    <div id="people">
+                        <img src="../assets/bendi.jpg" alt="">
+                        <h3>Bendi</h3>
+                        <hr class="people_hr">
+                    </div>
                 </div>
-                <div class="main-frame-lower"></div>
-              </div>
-
-              <div class="right-column">
-                <a href="./notifications.html"><div class="main-frame-right">
-                  <img src="../assets/velemeny.svg" alt="" width="50px" height="90px">
-                  <h1 class="main_frame_title">Üzenetek</h1>
-                  <input type="text" id="Company_message" placeholder="Üzenet......">
-                </div>
-              </div></a>
             </div>
         </section>
     </div>
