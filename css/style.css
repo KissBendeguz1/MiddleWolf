@@ -118,7 +118,7 @@ body.dark-mode .nav-img {
 
 .sidebar-container {
   min-width: 200px;
-  width: 15%;
+  width: 17%;
   max-width: 300px;
   background: var(--background-color);
   padding-left: 20px;
@@ -132,6 +132,7 @@ body.dark-mode .nav-img {
   overflow-y: auto;
   z-index: 99;
   transition: background-color 0.3s ease, color 0.3s ease;
+
 }
 
 .sidebar-item-container {
@@ -141,7 +142,7 @@ body.dark-mode .nav-img {
 
 .sidebar-item {
   margin-top: 10px;
-  width: 90%;
+  width: 80%;
   padding-left: 10px;
   color: var(--text-color);
   text-decoration: none;
@@ -281,6 +282,7 @@ a {
 .content-section {
   width: 80%;
   margin: 10px;
+  margin-left: 30px                                                                         ;
   background-color: var(--background-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -1590,4 +1592,17 @@ body.dark-mode iframe {
       box-shadow: var(--blue-color) 4px 4px 6px 2px;
       transition: ease-in-out 0.3s;
       background-color: var(--blue-color);
+    }
+
+    hr {
+      border: none;
+      height: 3px;
+      background-color: var(--text-color);
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 80%;
+      display: block;
+      margin: 0 auto;
+      margin-top: 20px;
+      margin-bottom: 0px;
     }
