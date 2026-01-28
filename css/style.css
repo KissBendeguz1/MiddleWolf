@@ -1592,6 +1592,147 @@ p {
   align-items: center;
 }
 
+    #docs-main-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+      background-color: var(--white-color);
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    #docs-main-top-bar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #docs-main-top-bar input{
+            height: 100%;
+      width: 20%;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      filter: drop-shadow(0 0 0 transparent);
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-color), #8bb5d9);
+      color: var(--white-color);
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
+      padding: 10px;
+      border: none;
+            placeholder {
+        color: var(--white-color);
+      }
+
+    }
+
+    #docs-main-top-bar input:hover {
+      transform: scale(1.05);
+      box-shadow: var(--blue-color) 4px 4px 6px 2px;
+      transition: ease-in-out 0.3s;
+      background-color: var(--blue-color);
+      border: none;
+      placeholder {
+        color: var(--white-color);
+      }
+    }
+
+    #docs-main-top-bar select {
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
+      border: none;
+      background-color: var(--blue-color);
+      color: var(--white-color);
+      border: none;
+    }
+
+    .docs-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      box-shadow: var(--shad-color) 2px 2px 3px 1px;
+      border-radius: 10px;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    .docs-item img {
+      width: 15%;
+      height: 15%;
+      border-radius: 5px;
+      align-items: center;
+    }
+
+    .docs-item-inner {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+      width: 70%;
+    }
+
+    .doc-date {
+      color: var(--blue-color);
+    }
+
+        .docs-item-buttons {
+      display: flex;
+      flex-direction: column;
+        }
+
+    .docs-item-button {
+      padding: 8px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
+      border: none;
+      background: linear-gradient(135deg, var(--blue-color), #8bb5d9);
+      color: var(--white-color);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .docs-item-button:hover {
+      transform: scale(1.05);
+      box-shadow: var(--blue-color) 4px 4px 6px 2px;
+      transition: ease-in-out 0.3s;
+      background-color: var(--blue-color);
+    }
+
+    #logged_in_navbar_hr {
+      border: none;
+      height: 3px;
+      background-color: var(--text-color);
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 80%;
+      display: block;
+      margin: 0 auto;
+      margin-top: 20px;
+      margin-bottom: 0px;
+    }
+
+    
+    #Company_message{
+    position: absolute;
+    text-indent: 10px;
+    font-size: large;
+    padding: 20px;
+    text-align: justify;
+    padding: 0;
+    top: 95%;
+    width: 95%;
+    height: 25px;
+    display: flex;
+    border-radius: 25px;
+    border: none;
+    box-shadow: var(--blue-color) 2px 2px 3px 1px;
+    }
+
 #docs-main-top-bar input {
   height: 100%;
   width: 20%;
@@ -1619,6 +1760,43 @@ p {
     color: var(--white-color);
   }
 }
+
+  .content-all{
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: wrap;
+      width: 78%;
+  }
+
+    .content{
+      width: 60%;
+      height: 90%;
+      background-color: var(--white-color);
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 20px;
+      margin-top: 30px;
+      gap: 20px;
+      position: relative;
+      border-radius: 25px;
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
+    }
+
+    .content-left{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 20px;
+      margin-top: 10px;
+      position: relative;
+    }
+
+    #Peoples{
+      background-color: var(--white-color);
+      border-radius: 25px;
+      box-shadow: var(--blue-color) 2px 2px 3px 1px;
+    }
 
 #docs-main-top-bar select {
   padding: 10px;
@@ -1656,6 +1834,32 @@ p {
   gap: 5px;
   width: 70%;
 }
+    #people{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 10px 20px;
+      text-indent: 10px;
+    }
+
+    #people>img{
+      width: 60px;
+      height: 60px;
+      border-radius: 50px;
+    }
+
+    .people_hr{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      margin: 10px;
+      position:static;
+      border: 1px solid var(--blue-color);
+    }
+    
+    .out_hr{
+      width: 80%;
+    }
 
 .doc-date {
   color: var(--blue-color);
@@ -1683,86 +1887,6 @@ p {
   box-shadow: var(--blue-color) 4px 4px 6px 2px;
   transition: ease-in-out 0.3s;
   background-color: var(--blue-color);
-}
-
-hr {
-  border: none;
-  height: 3px;
-  background-color: var(--text-color);
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 80%;
-  display: block;
-  margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 0px;
-}
-
-#Company_message {
-  position: absolute;
-  text-indent: 10px;
-  font-size: large;
-  padding: 20px;
-  text-align: justify;
-  padding: 0;
-  top: 95%;
-  width: 70%;
-  height: 25px;
-  display: flex;
-  border-radius: 25px;
-  border: none;
-  box-shadow: var(--blue-color) 2px 2px 3px 1px;
-}
-
-#Company_message:focus {
-  outline: none;
-}
-
-.content {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 20px;
-  margin: 10px;
-  position: relative;
-}
-
-.content-left {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 20px;
-  margin: 10px;
-  position: relative;
-}
-
-#Peoples {
-  background-color: #333;
-}
-
-#people {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 10px 20px;
-  text-indent: 10px;
-}
-
-.people_hr {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin: 10px;
-  position: static;
-}
-
-.out_hr {
-}
-
-#people > img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50px;
 }
 
 #employee-container {
