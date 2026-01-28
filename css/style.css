@@ -481,7 +481,7 @@ a {
 }
 
 .main-frame {
-  min-height: 500px;
+  min-height: 200px;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -490,7 +490,7 @@ a {
 }
 
 .main-frame-lower {
-  height: 260px;
+  height: 560px;
 }
 
 .main-frame-right {
@@ -515,19 +515,20 @@ a {
 }
 
 .small-windows {
-  margin-left: auto;
-  margin-right: auto;
-  font-size: small;
+  margin: auto;
+  font-size: 15px;
+  height: 160px;
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 10px;
   padding: 10px;
   background-color: var(--background-color);
   width: 27%;
-  text-align: center;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: var(--shad-color) 2px 2px 3px 1px;
 }
+
 
 .member-windows {
   display: flex;
