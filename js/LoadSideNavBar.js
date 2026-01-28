@@ -50,6 +50,10 @@ document.addEventListener('DOMContentLoaded', (e) =>{
     );
     sideBarItemHolder[0].appendChild(document.createRange().createContextualFragment(sideNavBarHTML));
 
+    for (let i of account) {
+      i.innerHTML = "Kijelentkezés";
+      i.href = "#";
+    }
     }
 
     if(localStorage.getItem('Load') === false && sessionStorage.getItem("Login") === "false"){
@@ -63,14 +67,14 @@ document.addEventListener('DOMContentLoaded', (e) =>{
 
 var account = document.getElementsByClassName('account_log_in_out');
 
-for(let i of account){
-  if(i.innerHTML !== "Regisztráció"){
-    for (let i of account) {
-      i.addEventListener('click', (e) =>{
-        e.preventDefault();
-        console.log("asd")
-        sessionStorage.clear();
-      }) 
-    }
+account[0].addEventListener('click', (e) =>{
+  if(account[0].innerHTML == "Regisztráció"){
+    console.log("hehehe");
   }
-}
+  else{
+      e.preventDefault();
+      console.log("asd");
+      sessionStorage.clear();
+      window.location.reload();
+  }
+})
