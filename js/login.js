@@ -128,7 +128,6 @@ window.addEventListener("load", () => {
         Box.style.display = "";
         BoxH1.innerText = "Sikertelen Bejelentkezés!";
         sessionStorage.removeItem("Login");
-        localStorage.setItem('load',true);
 
         setTimeout(() => {
             window.location.href = "./login.html";
@@ -138,6 +137,7 @@ window.addEventListener("load", () => {
     else if (sessionStorage.getItem("Login") === "true") {
         Box.style.display = "";
         BoxH1.innerText = "Sikeres Bejelentkezés!";
+        localStorage.setItem('load',true);
 
         setTimeout(() => {
             if (sessionStorage.getItem("Type") === "Egyeni") {

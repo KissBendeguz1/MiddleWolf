@@ -49,6 +49,28 @@ document.addEventListener('DOMContentLoaded', (e) =>{
       "sidebar-item-container",
     );
     sideBarItemHolder[0].appendChild(document.createRange().createContextualFragment(sideNavBarHTML));
+
+    }
+
+    if(localStorage.getItem('Load') === false && sessionStorage.getItem("Login") === "false"){
+        for(let i in account){
+        account[i].innerHTML = "Bejelentkezés";
+        account[i].href = "../html/login.html";
+      }
     }
 }
-})
+});
+
+var account = document.getElementsByClassName('account_log_in_out');
+
+for(let i of account){
+  if(i.innerHTML !== "Regisztráció"){
+    for (let i of account) {
+      i.addEventListener('click', (e) =>{
+        e.preventDefault();
+        console.log("asd")
+        sessionStorage.clear();
+      }) 
+    }
+  }
+}
