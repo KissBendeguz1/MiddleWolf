@@ -497,7 +497,6 @@ a {
   padding: 20px;
   height: 780px;
   position: relative;
-
   display: flex;
   flex-direction: row;
 }
@@ -1725,7 +1724,7 @@ p {
     text-align: justify;
     padding: 0;
     top: 95%;
-    width: 95%;
+    width: 90%;
     height: 25px;
     display: flex;
     border-radius: 25px;
