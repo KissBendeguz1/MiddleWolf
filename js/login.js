@@ -3,6 +3,7 @@ const Data = [];
 const Name = document.getElementById("Name");
 const Email = document.getElementById("Email");
 const Password = document.getElementById("Password");
+const Password_again = document.getElementById("Password_again");
 const Mobile = document.getElementById("Mobile");
 const CompanyName = document.getElementById("CompanyName");
 const Adomszam = document.getElementById("Adoszam");
@@ -23,6 +24,7 @@ function Login(){
     CompanyName.style.display = "none";
     Adomszam.style.display = "none";
     types.style.display = "none";
+    Password_again.style.display = "none";
 }
 
 function Registration(){
@@ -33,6 +35,7 @@ function Registration(){
     CompanyName.style.display = "";
     Adomszam.style.display = "";
     types.style.display = "";
+    Password_again.style.display = "";
 }
 
 function Eldontes(){
@@ -84,14 +87,29 @@ document.addEventListener('input', function () {
     const con_email = document.getElementById('con_email');
     const con_mobile = document.getElementById('con_mobile');
     const con_Password = document.getElementById('con_Password');
+    const con_Password_again = document.getElementById('con_Password_again')
+    const con_comp_name = document.getElementById('con_comp_name');
+    const adomszam = document.getElementById('adomszam');
     const submitBtn = document.getElementById('con_submit');
 
-    if(submitBtn.innerHTML == "Regisztráció"){
+    if(submitBtn.innerHTML == "Regisztráció" && document.getElementById('Ceges').checked == true){
         submitBtn.disabled =
         !con_name.value ||
         !con_email.value ||
         !con_mobile.value ||
-        !con_Password.value;
+        !con_Password.value||
+        !con_Password_again.value||
+        !adomszam.value||
+        !con_comp_name.value;
+        sessionStorage.setItem("Register", "true");
+    }
+    if(submitBtn.innerHTML == "Regisztráció" && document.getElementById('egyeni').checked == true){
+        submitBtn.disabled =
+        !con_name.value ||
+        !con_email.value ||
+        !con_mobile.value ||
+        !con_Password.value||
+        !con_Password_again.value||
         sessionStorage.setItem("Register", "true");
     }
     if(submitBtn.innerHTML == "Belépés"){
@@ -118,6 +136,7 @@ window.addEventListener("load", () => {
         Box.style.display = "";
         BoxH1.innerText = "Sikeres Regisztráció!";
         sessionStorage.removeItem("Register");
+        sessionStorage.setItem("reged","true");
 
         setTimeout(() => {
             window.location.href = "./index.html";
@@ -130,7 +149,7 @@ window.addEventListener("load", () => {
         sessionStorage.removeItem("Login");
 
         setTimeout(() => {
-            window.location.href = "./login.html";
+            window.location.href = "../html/login.html";
         }, 2000);
     }
 
@@ -150,13 +169,27 @@ window.addEventListener("load", () => {
 });
 
 
-Adomszam.addEventListener('input', (e) =>{
-    e.preventDefault();
+adomszam.addEventListener("input", (e) => {
+    // Csak a számokat hagyjuk meg
+    let value = adomszam.value.replace(/\D/g, ""); 
+    let formatted = "";
 
-    if(document.getElementById(con_ado).innerText.length == 8){
-        document.getElementById(con_ado).innerText.substring("-")
+    if (value.length > 0) {
+        formatted = value.substring(0, 8);
+        if (value.length > 8) {
+            formatted += "-" + value.substring(8, 9);
+        }
+        if (value.length > 9) {
+            formatted += "-" + value.substring(9, 11);
+        }
     }
-    if(document.getElementById(con_ado).innerText.length == 9){
-        document.getElementById(con_ado).innerText.substring("-")
-    }
-})
+
+    adomszam.value = formatted;
+});
+
+const con_mobile = document.getElementById('con_mobile');
+
+con_mobile.addEventListener("input", () => {
+    let value = con_mobile.value.replace(/\D/g, ""); 
+    con_mobile.value = value.substring(0, 11);
+});
