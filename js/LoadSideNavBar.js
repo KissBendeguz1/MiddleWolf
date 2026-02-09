@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', (e) =>{
 
     for (let i of account) {
       i.innerHTML = "Kijelentkezés";
-      i.href = "#";
+      i.href = "../html/index.html";
     }
     }
 
@@ -73,14 +73,19 @@ document.addEventListener('DOMContentLoaded', (e) =>{
 }
 });
 
-account[0].addEventListener('click', (e) =>{
+account[0].addEventListener('click', () =>{
   if(account[0].innerHTML != "Regisztráció"){
-      e.preventDefault();
       console.log("asd");
       sessionStorage.clear();
       window.location.reload();
   }
-  if(account[0].innerHTML != "Bejelentkezés"){
+  if(account[0].innerHTML == "Bejelentkezés"){
     window.location.href = "../html/login.html";
+  }
+  if(account[0].innerHTML == "Kijelentkezés"){
+      window.location.href = "../html/index.html";
+      sessionStorage.clear();
+      localStorage.removeItem("Load");
+      window.location.reload();
   }
 })

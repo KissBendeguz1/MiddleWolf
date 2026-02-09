@@ -156,7 +156,7 @@ window.addEventListener("load", () => {
     else if (sessionStorage.getItem("Login") === "true") {
         Box.style.display = "";
         BoxH1.innerText = "Sikeres Bejelentkezés!";
-        localStorage.setItem('load',true);
+        localStorage.setItem('Load',true);
 
         setTimeout(() => {
             if (sessionStorage.getItem("Type") === "Egyeni") {
