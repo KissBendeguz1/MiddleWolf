@@ -1395,7 +1395,7 @@ iframe {
   transition: filter 0.3s ease;
 }
 
-body.dark-mode iframe {
+body.dark-mode iframe:not(.keep-light) {
   filter: invert(0.93) hue-rotate(180deg);
 }
 
