@@ -159,9 +159,8 @@ body.dark-mode .svg-invert {
 @media screen and (max-width: 1200px) {
   
 .sidebar-container {
-  min-width: fit-content;
-  width: 20%;
-  max-width: 300px;
+  width: 17%;
+  max-width: 200px;
   background: var(--background-color);
   padding-left: 5px;
   padding-top: 50px;
@@ -176,7 +175,8 @@ body.dark-mode .svg-invert {
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
-  padding-right: 10px;
+
+  
 }
 
 .sidebar-item {
@@ -357,8 +357,8 @@ a {
 
 .content-section {
   width: 80%;
-  margin: 10px;
-  margin-left: 30px;
+  margin: 15px;
+  margin-left: 5%;
   background-color: var(--background-color);
   color: var(--text-color);
   transition:
