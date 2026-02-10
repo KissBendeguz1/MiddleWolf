@@ -2,8 +2,16 @@ const darkModeScript = document.createElement('script');
 darkModeScript.src = '../js/DarkMode.js';
 document.head.appendChild(darkModeScript);
 
+var account = document.getElementsByClassName('account_log_in_out');
+
 document.addEventListener('DOMContentLoaded', (e) =>{
     e.preventDefault()
+    if(sessionStorage.getItem("reged") === "true"){
+      for(let i in account){
+        account[i].innerHTML = "Bejelentkezés";
+        account[i].href = "../html/login.html";
+      }
+}
     if (sessionStorage.getItem("Login") === "true") {
     if (sessionStorage.getItem("Type") === "Ceges" || localStorage.getItem('Load') === true) {
         const sideNavBarHTML =`<hr id="logged_in_navbar_hr">
@@ -52,7 +60,7 @@ document.addEventListener('DOMContentLoaded', (e) =>{
 
     for (let i of account) {
       i.innerHTML = "Kijelentkezés";
-      i.href = "#";
+      i.href = "../html/index.html";
     }
     }
 
@@ -65,16 +73,19 @@ document.addEventListener('DOMContentLoaded', (e) =>{
 }
 });
 
-var account = document.getElementsByClassName('account_log_in_out');
-
-account[0].addEventListener('click', (e) =>{
-  if(account[0].innerHTML == "Regisztráció"){
-    console.log("hehehe");
-  }
-  else{
-      e.preventDefault();
+account[0].addEventListener('click', () =>{
+  if(account[0].innerHTML != "Regisztráció"){
       console.log("asd");
       sessionStorage.clear();
+      window.location.reload();
+  }
+  if(account[0].innerHTML == "Bejelentkezés"){
+    window.location.href = "../html/login.html";
+  }
+  if(account[0].innerHTML == "Kijelentkezés"){
+      window.location.href = "../html/index.html";
+      sessionStorage.clear();
+      localStorage.removeItem("Load");
       window.location.reload();
   }
 })
