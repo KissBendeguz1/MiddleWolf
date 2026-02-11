@@ -6,7 +6,6 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   overflow-x: hidden;
-  
 }
 
 body {
@@ -1658,7 +1657,6 @@ p {
   margin-top: 20px;
   width: 100%;
   font-size: small;
-
 }
 
 #docs-main-top-bar {
@@ -2019,6 +2017,102 @@ p {
   background-color: var(--blue-color);
 }
 
+#map-mapsection {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  height: fit-content;
+}
+
+#map-filtersection {
+  background-color: var(--white-color);
+  border-radius: 10px;
+  box-shadow: var(--blue-color) 2px 2px 3px 1px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+#map-filter-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.map-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.map-filter-group label {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 14px;
+}
+
+.map-filter-select,
+.map-filter-input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid var(--blue-color);
+  background-color: var(--white-color);
+  color: var(--text-color);
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: var(--blue-color) 1px 1px 2px 0.5px;
+}
+
+.map-filter-select:hover,
+.map-filter-input:hover {
+  border-color: #5a8fc4;
+  box-shadow: var(--blue-color) 2px 2px 4px 1px;
+}
+
+.map-filter-select:focus,
+.map-filter-input:focus {
+  outline: none;
+  border-color: #3a6ba3;
+  box-shadow: var(--blue-color) 3px 3px 5px 2px;
+  background-color: #f5f9ff;
+}
+
+.map-filter-input::placeholder {
+  color: #999;
+}
+
+.map-search-group {
+  flex: 1.5;
+}
+
+.map-filter-button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, var(--blue-color), #8bb5d9);
+  color: var(--white-color);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: var(--blue-color) 2px 2px 3px 1px;
+  height: fit-content;
+}
+
+.map-filter-button:hover {
+  transform: scale(1.05);
+  box-shadow: var(--blue-color) 4px 4px 6px 2px;
+  background: linear-gradient(135deg, #3a6ba3, #5a8fc4);
+}
+
+.map-filter-button:active {
+  transform: scale(0.98);
+}
+
 @media screen and (max-width: 1400px) {
   /*main page responsive design*/
   #contentholder {
@@ -2027,9 +2121,8 @@ p {
     margin: 0px;
   }
 
-    .content-section-emp {
-
-        display: flex;
+  .content-section-emp {
+    display: flex;
     flex-direction: column;
     margin-top: 80px;
     width: 90%;
@@ -2043,8 +2136,37 @@ p {
     margin-top: 80px;
     width: 100%;
     align-items: flex-start;
-
+    margin-left: 20px;
+    margin-right: 20px;
   }
+
+  #map-filtersection {
+    width: 100%;
+    padding: 0px;
+    
+  }
+
+  #map-filter-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+  }
+
+  .map-filter-group {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .map-filter-button {
+    width: 100%;
+  }
+
+  #map-mapsection {
+  border-radius: 10px;
+  overflow: hidden;
+  height: fit-content;
+  width: 100%;
+}
 
   #index-top {
     display: flex;
@@ -2679,5 +2801,16 @@ p {
     width: 70%;
   }
 
-
+  .nav-container input {
+  font-size: medium;
+  margin: 0;
+  border-radius: 10px;
+  border: 2px solid var(--blue-color);
+  padding: 8px 12px;
+  width: 25%;
+  max-width: 50%;
+  background-color: var(--white-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
 }

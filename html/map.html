@@ -83,7 +83,88 @@
             </div>
         </section>
         <section class="content-section">
-              <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 65%;"><iframe src="https://api.geoapify.com/v1/routing?waypoints=50.67902320667227,4.569876996843732|50.66170571489684,4.578667041603012&mode=drive&apiKey=80592f6b6dba46cd8ea708e9036f6070" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen></iframe></div>
+          <section id="map-filtersection">
+            <div id="map-filter-container">
+              <div class="map-filter-group">
+                <label for="map-country-filter">Megye:</label>
+                <select id="map-country-filter" class="map-filter-select">
+                  <option value="">Összes megye</option>
+                  <option value="budapest">Budapest</option>
+                  <option value="pest">Pest</option>
+                  <option value="fejer">Fejér</option>
+                  <option value="komaron-eszter">Komárom-Esztergom</option>
+                  <option value="gyor-moson">Győr-Moson-Sopron</option>
+                  <option value="vas">Vas</option>
+                  <option value="veszprem">Veszprém</option>
+                  <option value="zala">Zala</option>
+                  <option value="somogy">Somogy</option>
+                  <option value="tolna">Tolna</option>
+                  <option value="baranya">Baranya</option>
+                  <option value="bacs-kis">Bács-Kiskun</option>
+                  <option value="csongr-csan">Csongrád-Csanád</option>
+                  <option value="bekes">Békés</option>
+                  <option value="jasz-nagy">Jász-Nagykun-Szolnok</option>
+                  <option value="hajdu-bihar">Hajdú-Bihar</option>
+                  <option value="szabolcs">Szabolcs-Szatmár-Bereg</option>
+                  <option value="borsod">Borsod-Abaúj-Zemplén</option>
+                  <option value="heves">Heves</option>
+                  <option value="nogr">Nógrád</option>
+                </select>
+              </div>
+
+              <div class="map-filter-group">
+                <label for="map-city-filter">Város:</label>
+                <select id="map-city-filter" class="map-filter-select">
+                  <option value="">Összes város</option>
+                  <option value="budapest">Budapest</option>
+                  <option value="debrecen">Debrecen</option>
+                  <option value="szeged">Szeged</option>
+                  <option value="miskolc">Miskolc</option>
+                  <option value="pecs">Pécs</option>
+                  <option value="gyor">Győr</option>
+                  <option value="nyiregyhaza">Nyíregyháza</option>
+                  <option value="kecskemet">Kecskemét</option>
+                  <option value="szombathely">Szombathely</option>
+                  <option value="szolnok">Szolnok</option>
+                  <option value="tatabanya">Tatabánya</option>
+                  <option value="eger">Eger</option>
+                  <option value="bekescsaba">Békéscsaba</option>
+                  <option value="veszprem">Veszprém</option>
+                  <option value="zalaeg">Zalaegerszeg</option>
+                </select>
+              </div>
+
+              <div class="map-filter-group map-search-group">
+                <label for="map-search">Keresés:</label>
+                <input
+                  type="text"
+                  id="map-search"
+                  class="map-filter-input"
+                  placeholder="Hely, cég, cím, stb. keresése..."
+                />
+              </div>
+
+              <div class="map-filter-group">
+                <label for="map-review-filter">Értékelés:</label>
+                <select id="map-review-filter" class="map-filter-select">
+                  <option value="">Összes értékelés</option>
+                  <option value="5">⭐⭐⭐⭐⭐ 5 csillag</option>
+                  <option value="4">⭐⭐⭐⭐ 4+ csillag</option>
+                  <option value="3">⭐⭐⭐ 3+ csillag</option>
+                  <option value="2">⭐⭐ 2+ csillag</option>
+                  <option value="1">⭐ 1+ csillag</option>
+                </select>
+              </div>
+              <button id="map-filter-reset" class="map-filter-button">Keresés</button>
+              <button id="map-filter-reset" class="map-filter-button">Szűrők törlése</button>
+            </div>
+          </section>
+          <section id="map-mapsection">
+            
+
+            <div style="width: 100%; filter: none !important;"><iframe class="keep-light" width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Budapest%20F%C5%91%20utca%201+(My%20Business%20NamMiddleWolfe)&amp;t=p&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.mapsdirections.info/de/evolkerung-auf-einer-karte-berechnen/">interaktive Bevölkerungskarte</a></iframe></div>
+          </section>
+              
         </section>
     </div>
     <script src="../js/LoadSideNavBar.js"></script>
