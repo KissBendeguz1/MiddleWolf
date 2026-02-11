@@ -143,7 +143,7 @@ window.addEventListener("load", () => {
 
         setTimeout(() => {
             window.location.href = "./index.html";
-        }, 2000);
+        }, 10000);
     }
 
     else if (sessionStorage.getItem("Login") === "false") {
