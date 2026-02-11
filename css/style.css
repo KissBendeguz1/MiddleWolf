@@ -27,6 +27,7 @@ body {
   --text-color: #1e1e1e;
   --blue-color: #a1c6ea;
   --white-color: #ffffff;
+  --bluetext-color: #0b446c;
 }
 
 /* Sötét mód */
@@ -36,6 +37,7 @@ body.dark-mode {
   --text-color: #e0e0e0;
   --blue-color: #0b446c;
   --white-color: #2d2d2d;
+  --bluetext-color: #a1c6ea;
 }
 
 body {
@@ -627,7 +629,11 @@ a {
   width: 50px;
   height: 50px;
   object-fit: contain;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+body.dark-mode .small-windows img {
+  filter: invert(1) brightness(0.9);
 }
 
 .small-windows:hover img {
@@ -646,7 +652,7 @@ a {
   margin: 0;
   font-size: 1.5em;
   font-weight: 700;
-  color: var(--blue-color);
+  color: var(--bluetext-color);
 }
 
 .member-windows {
@@ -1340,7 +1346,6 @@ body.dark-mode .index-middle-item img {
 
 .notification-container {
   background-color: var(--white-color);
-  width: 85%;
   height: 700px;
   margin: 10px;
   border-radius: 10px;
@@ -1352,6 +1357,7 @@ body.dark-mode .index-middle-item img {
   flex-wrap: wrap;
   align-content: flex-start;
   gap: 15px;
+  overflow-y: auto;
 }
 
 .notification-container h1 {
@@ -1375,6 +1381,7 @@ body.dark-mode .index-middle-item img {
   transition: all 0.3s ease;
   transform: translateX(0);
   box-sizing: border-box;
+  min-height: fit-content;
 }
 
 .notification-item:hover {
@@ -1510,6 +1517,14 @@ body.dark-mode .index-middle-item img {
     width: 40px;
     height: 60px;
   }
+
+  .notification-container {
+    height: 90%;
+  }
+
+  .notification-item {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -1544,6 +1559,29 @@ body.dark-mode .index-middle-item img {
   #Company_message {
     font-size: 0.9em;
     padding: 10px 12px;
+  }
+
+  .notification-container {
+    height: 90%;
+    padding: 15px;
+    margin: 15px auto;
+  }
+
+  .notification-item {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .notification-header h3 {
+    font-size: 1em;
+  }
+
+  .notification-date {
+    font-size: 0.8em;
+  }
+
+  .notification-content {
+    font-size: 0.9em;
   }
 }
 
@@ -1621,6 +1659,36 @@ body.dark-mode .index-middle-item img {
   .small-windows h1 {
     font-size: 1.2em;
     font-weight: bolder;
+  }
+
+  .notification-container {
+    height: 90%;
+    padding: 12px;
+  }
+
+  .notification-item {
+    width: 100%;
+    padding: 10px;
+    border-left: 3px solid var(--blue-color);
+  }
+
+  .notification-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .notification-header h3 {
+    font-size: 0.95em;
+    margin-bottom: 5px;
+  }
+
+  .notification-date {
+    font-size: 0.75em;
+    align-self: flex-start;
+  }
+
+  .notification-content {
+    font-size: 0.85em;
   }
 }
 
