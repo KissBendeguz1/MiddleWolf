@@ -8,6 +8,7 @@ const Mobile = document.getElementById("Mobile");
 const CompanyName = document.getElementById("CompanyName");
 const Adomszam = document.getElementById("Adoszam");
 const types = document.getElementById('Type_ceges');
+const BoxP = document.getElementById('BoxP');
 document.getElementById('con_submit').textContent = "Regisztráció";
 document.getElementById('Ceges').checked = true;
 document.getElementById('con_submit').disabled = true;
@@ -65,7 +66,8 @@ function Submit(){
             Email: document.getElementById('con_email').value,
             Password: document.getElementById('con_Password').value,
             Mobile: document.getElementById('con_mobile').value,
-            Profile: Eldontes()
+            Profile: Eldontes(),
+            Id: Date.now()
         }
 
         Data.push(NewProfile);
@@ -135,6 +137,7 @@ window.addEventListener("load", () => {
     if (sessionStorage.getItem("Register") === "true") {
         Box.style.display = "";
         BoxH1.innerText = "Sikeres Regisztráció!";
+        BoxP.innerHTML = "Sikeresen megkaptuk regisztrációs kérését, ha jóváhagytuk kérését akkor a megadott Email cimen fogjuk értesiteni."
         sessionStorage.removeItem("Register");
         sessionStorage.setItem("reged","true");
 
