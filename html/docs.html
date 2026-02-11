@@ -157,7 +157,47 @@
     </section>
         </section>
     </div>
+
+    <div id="Box">
+        <div class="Box-content" id="Box-content-id">
+          <h1>Új dokumentum</h1>
+          <div id="Type_ceges" class="form-group">
+              <div class="radio-group">
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    name="file-type"
+                    id="upload"
+                    onclick="File_type()"
+                  />
+                  <label for="upload">Feltöltés</label>
+                </div>
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    name="file-type"
+                    id="write"
+                    onclick="File_type()"
+                  />
+                  <label for="write">Létrehozás</label>
+                </div>
+              </div>
+          </div>
+            <form action="" id="box-form">
+              <input type="file" name="" id="file_upload" accept=".doc,.docx">
+
+              <label for="" id="File_name_label">Dokumentum neve</label>
+              <input type="text" name="" id="File_name"><br>
+
+              <label id="file_text_label">Dokumentum tartalma</label>
+              <textarea id="file_text" rows="15" cols="50"></textarea>
+            </form>
+            <button type="button" onclick="Close()">Bezárás</button>
+            <button type="button" onclick="Send()">Feltöltés</button>
+        </div>
+      </div>
   </body>
+  <script src="../js/Document.js"></script>
   <script src="../js/ShowAlert.js"></script>
       <script src="../js/manageNav.js"></script>
     <script>
