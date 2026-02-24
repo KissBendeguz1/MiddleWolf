@@ -76,13 +76,17 @@
 
       <div class="login-wrapper">
         <div class="login-header">
-          <h1 id="title">Bejelentkezés</h1>
+          <h1 id="title">Regisztráció</h1>
           <p id="subtitle">Kérjük, jelentkezzen be vagy regisztráljon</p>
         </div>
         <div class="login-form-container">
           <form id="logReg_form">
             <div class="login-tabs">
-              <button class="tab-btn" id="log" type="button" onclick="Login()">
+              <button 
+              class="tab-btn" 
+              id="log" type="button" 
+              onclick="Login()"
+              >
                 Bejelentkezés
               </button>
               <button
@@ -93,30 +97,6 @@
               >
                 Regisztráció
               </button>
-            </div>
-
-            <div id="Type_ceges" class="form-group">
-              <label>Fiók típusa</label>
-              <div class="radio-group">
-                <div class="radio-item">
-                  <input
-                    type="radio"
-                    name="fiok"
-                    id="Ceges"
-                    onclick="Types()"
-                  />
-                  <label for="Ceges">Céges fiók</label>
-                </div>
-                <div class="radio-item">
-                  <input
-                    type="radio"
-                    name="fiok"
-                    id="egyeni"
-                    onclick="Types()"
-                  />
-                  <label for="egyeni">Egyéni fiók</label>
-                </div>
-              </div>
             </div>
 
             <div id="Name" class="form-group">
@@ -141,17 +121,7 @@
 
             <div id="Mobile" class="form-group">
               <label>Telefonszám</label>
-              <input type="tel" id="con_mobile" inputmode="numeric" placeholder="06308769567" />
-            </div>
-
-            <div id="CompanyName" class="form-group">
-              <label>Cég neve</label>
-              <input type="text" id="con_comp_name" placeholder="Gipsz KFT." />
-            </div>
-
-            <div id="Adoszam" class="form-group">
-              <label>Adószám</label>
-              <input type="text" id="adomszam" inputmode="numeric" placeholder="12345678-1-12">
+              <input type="tel" id="con_mobile" inputmode="numeric" placeholder="06308769567" maxlength="11"/>
             </div>
 
             <div class="login-buttons">
@@ -159,7 +129,6 @@
                 type="submit"
                 id="con_submit"
                 class="btn-submit"
-                onclick="Submit()"
               >
                 Küldés
               </button>
@@ -167,12 +136,13 @@
           </form>
         </div>
 
-        <div id="Box">
+    <!--    <div id="Box">
           <div class="Box-content">
             <h1 id="BoxH1"></h1>
             <p id="BoxP"></p>
           </div>
         </div>
+      -->
 
         <div class="form-toggle">
           <p id="toggle-text">
