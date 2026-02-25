@@ -32,12 +32,14 @@ function Registration(){
     document.getElementById('Profile_type').style.display = "";
     submitBtn.innerHTML = "Regisztráció";
 }
+let allFilled = "";
+let loginFilled = "";
 
 function validate() {
     const mode = submitBtn.innerHTML.trim();
 
     if (mode === "Regisztráció") {
-        const allFilled = con_name.value.trim() !== "" && 
+        allFilled = con_name.value.trim() !== "" && 
                           con_email.value.trim() !== "" && 
                           con_mobile.value.trim() !== "" && 
                           con_Password.value.trim() !== "" && 
@@ -50,22 +52,16 @@ function validate() {
 
     } 
     else if (mode === "Belépés") {
-        const loginFilled = con_email.value.trim() !== "" && 
+        loginFilled = con_email.value.trim() !== "" && 
                             con_Password.value.trim() !== "";
         
         submitBtn.disabled = !loginFilled;
     }
 }
 
-const inputs = [con_name, con_email, con_mobile, con_Password, con_Password_again];
-inputs.forEach(input => {
-    if(input) {
-        input.addEventListener('input', validate);
-    }
-});
-
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    validate();
     const userData = {
         "username": con_name.value,    
         "email": con_email.value,      
@@ -73,6 +69,8 @@ submitBtn.addEventListener('click', (e) => {
         "password": con_Password.value,
         "type": profile_type.value
     };
+
+
 
     if (submitBtn.innerHTML.trim() === "Regisztráció") {
         var xhr = new XMLHttpRequest();
@@ -86,8 +84,12 @@ submitBtn.addEventListener('click', (e) => {
                     sessionStorage.setItem("Register", "true");
                     alert("Sikeres regisztráció!");
                 } else {
-                    console.error("Server error:", xhr.responseText);
-                    alert("Hiba történt: " + xhr.status);
+                    if(!allFilled){
+                        ShowAlert("Valamelyik mező üresen maradt!",'alert');
+                    }
+                    else{
+                        ShowAlert("Hibás Név, Email vagy jelszó!",'alert');
+                    }
                 }
             }
         };
@@ -95,15 +97,6 @@ submitBtn.addEventListener('click', (e) => {
         xhr.send(JSON.stringify(userData));
 
     } else {
-    var nevVal = con_name.value;
-    var emailVal = con_email.value;
-    var passVal = con_Password.value;
-
-    if (!nevVal ||!emailVal || !passVal) {
-        alert("Kérlek töltsd ki mindkét mezőt!");
-        return;
-    }
-
     var xhr = new XMLHttpRequest();
     xhr.open('POST', "http://78.92.114.56:6969/api/login", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -117,7 +110,12 @@ submitBtn.addEventListener('click', (e) => {
                 window.location.href = "../html/index.html";
                 console.log(User)
             } else if (xhr.status === 401) {
-                alert(xhr.responseText);
+                    if(!loginFilled){
+                        ShowAlert("Valamelyik mező üresen maradt!",'alert');
+                    }
+                    else{
+                        ShowAlert("Hibás Név, Email vagy jelszó!",'alert');
+                    }
             } else {
                 alert("Szerver hiba történt: " + xhr.status);
             }
@@ -131,5 +129,3 @@ submitBtn.addEventListener('click', (e) => {
     }));
 }
 });
-
-validate();
