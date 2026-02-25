@@ -11,6 +11,7 @@ const con_email = document.getElementById('con_email');
 const con_mobile = document.getElementById('con_mobile');
 const con_Password = document.getElementById('con_Password');
 const con_Password_again = document.getElementById('con_Password_again');
+const profile_type = document.getElementById('profile_type');
 
 function Login(){
     title.innerHTML = "Bejelentkezés";
@@ -18,6 +19,7 @@ function Login(){
     Mobile.style.display = "none";
     document.getElementById('reg').classList.remove('active');
     document.getElementById('log').classList.add('active');
+    document.getElementById('Profile_type').style.display = "none";
     submitBtn.innerHTML = "Belépés";
 }
 
@@ -27,6 +29,7 @@ function Registration(){
     Mobile.style.display = "";
     document.getElementById('log').classList.remove('active');
     document.getElementById('reg').classList.add('active');
+    document.getElementById('Profile_type').style.display = "";
     submitBtn.innerHTML = "Regisztráció";
 }
 
@@ -38,11 +41,13 @@ function validate() {
                           con_email.value.trim() !== "" && 
                           con_mobile.value.trim() !== "" && 
                           con_Password.value.trim() !== "" && 
-                          con_Password_again.value.trim() !== "";
+            con_Password_again.value.trim() !== "" && 
+            profile_type.value.trim() !== "";
 
         const passwordsMatch = con_Password.value === con_Password_again.value;
 
         submitBtn.disabled = !(allFilled && passwordsMatch);
+
     } 
     else if (mode === "Belépés") {
         const loginFilled = con_email.value.trim() !== "" && 
@@ -66,7 +71,7 @@ submitBtn.addEventListener('click', (e) => {
         "email": con_email.value,      
         "mobile": con_mobile.value,    
         "password": con_Password.value,
-        "type": 0
+        "type": profile_type.value
     };
 
     if (submitBtn.innerHTML.trim() === "Regisztráció") {

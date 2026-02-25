@@ -5,15 +5,28 @@ document.head.appendChild(darkModeScript);
 var account = document.getElementsByClassName('account_log_in_out');
 
 document.addEventListener('DOMContentLoaded', (e) =>{
-    e.preventDefault()
-    if(sessionStorage.getItem("reged") === "true"){
-      for(let i in account){
-        account[i].innerHTML = "Bejelentkezés";
-        account[i].href = "../html/login.html";
-      }
-}
-    if (sessionStorage.getItem("Login") === "true") {
-    if (sessionStorage.getItem("Type") === "Ceges" || localStorage.getItem('Load') === true) {
+  e.preventDefault()
+  if(sessionStorage.getItem)
+    
+
+
+
+
+
+
+
+   /*
+   `<hr id="logged_in_navbar_hr">
+    <a href="../html/compamy-register.html">
+                <div class="sidebar-item">
+                  <img class="sidebar-icon" src="../assets/dashboard.svg" alt="" />
+                  <h2>Cégek</h2>
+                </div>
+                
+            </a>`
+   
+   
+   if (sessionStorage.getItem("Type") === "Ceges" || localStorage.getItem('Load') === true) {
         const sideNavBarHTML =`<hr id="logged_in_navbar_hr">
             <a href="../html/logged-in-index.html">
                 <div class="sidebar-item">
@@ -51,41 +64,5 @@ document.addEventListener('DOMContentLoaded', (e) =>{
                   <h2>Értesítések</h2>
                 </div>
                 
-            </a>`
+            </a>`*/
 
-    const sideBarItemHolder = document.getElementsByClassName(
-      "sidebar-item-container",
-    );
-    sideBarItemHolder[0].appendChild(document.createRange().createContextualFragment(sideNavBarHTML));
-
-    for (let i of account) {
-      i.innerHTML = "Kijelentkezés";
-      i.href = "../html/index.html";
-    }
-    }
-
-    if(localStorage.getItem('Load') === false && sessionStorage.getItem("Login") === "false"){
-        for(let i in account){
-        account[i].innerHTML = "Bejelentkezés";
-        account[i].href = "../html/login.html";
-      }
-    }
-}
-});
-
-account[0].addEventListener('click', () =>{
-  if(account[0].innerHTML != "Regisztráció"){
-      console.log("asd");
-      sessionStorage.clear();
-      window.location.reload();
-  }
-  if(account[0].innerHTML == "Bejelentkezés"){
-    window.location.href = "../html/login.html";
-  }
-  if(account[0].innerHTML == "Kijelentkezés"){
-      window.location.href = "../html/index.html";
-      sessionStorage.clear();
-      localStorage.removeItem("Load");
-      window.location.reload();
-  }
-})
