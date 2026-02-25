@@ -1,12 +1,69 @@
 const darkModeScript = document.createElement('script');
 darkModeScript.src = '../js/DarkMode.js';
 document.head.appendChild(darkModeScript);
+const sidebar = document.getElementsByClassName("sidebar-item-container")[0];
 
 var account = document.getElementsByClassName('account_log_in_out');
 
-document.addEventListener('DOMContentLoaded', (e) =>{
+function checkUserType() { 
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://78.92.114.56:6969/api/profiles/id/", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        console.log(response.user.Type)
+        console.log(response)
+        if (response.Type === "company" && sessionStorage.getItem("ActiveCompanyID").length >= 0) {
+          LoadNavCeges();
+
+        } else if (response.user.Type === "company") {
+          LoadNavCegRegisztralo();
+        } else {
+          LoadNavPrivate();
+        };
+      } else {
+        console.error("Hiba a profil lekérése során: " + xhr.status);
+      }
+    }
+  }
+
+
+  xhr.send(
+    JSON.stringify({
+      id: localStorage.getItem("Profile"),
+    }),
+  );
+}
+
+function LoadNavCegRegisztralo() { 
+  const sideNavBarHTML = `<hr id="logged_in_navbar_hr">
+    <a href="../html/ceges/company-register.html">
+                <div class="sidebar-item">
+                  <img class="sidebar-icon" src="../assets/dashboard.svg" alt="" />
+                  <h2>Cégek</h2>
+                </div>
+                
+            </a>`
+  sidebar.innerHTML += sideNavBarHTML;
+}
+
+document.addEventListener('DOMContentLoaded', (e) => {
   e.preventDefault()
-  if(sessionStorage.getItem)
+  checkUserType();
+}
+  /*if (sessionStorage.getItem("Type") === "Ceges") { */
+   /* const sideNavBarHTML = `<hr id="logged_in_navbar_hr">
+    <a href="../html/compamy-register.html">
+                <div class="sidebar-item">
+                  <img class="sidebar-icon" src="../assets/dashboard.svg" alt="" />
+                  <h2>Cégek</h2>
+                </div>
+                
+            </a>
+    `*/
+  
     
 
 
@@ -65,4 +122,4 @@ document.addEventListener('DOMContentLoaded', (e) =>{
                 </div>
                 
             </a>`*/
-
+);
