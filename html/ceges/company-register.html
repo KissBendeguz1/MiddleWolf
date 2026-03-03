@@ -1,59 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MiddleWolf</title>
-</head>
-<body>
+  </head>
+  <body>
     <section id="company-register-existing-companys">
-        <h2>Itt jelennek meg a már létrehozott cégei</h2>
+      <h2>Itt jelennek meg a már létrehozott cégei</h2>
     </section>
     <section id="company-register-section">
-        <h2>Cég regisztráció</h2>
+      <h2>Cég regisztráció</h2>
     </section>
-</body>
-<script>
+  </body>
+  <script>
     function LoadCompanyRegister() {
-        const existingCompanysSection = document.getElementById("company-register-existing-companys");
-        const companyRegisterSection = document.getElementById("company-register-section");
+      const existingCompanysSection = document.getElementById(
+        "company-register-existing-companys",
+      );
+      const companyRegisterSection = document.getElementById(
+        "company-register-section",
+      );
 
-        // Itt lehetne egy API hívást tenni, hogy lekérjük a már létrehozott cégeket
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://78.92.114.56:6969/api/company/owner/", true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                const companys = JSON.parse(xhr.responseText);
-                console.log(JSON.parse(xhr.responseText))
-                console.log(companys)
-                // Itt lehetne egy ciklussal végigmenni a companys tömbön és megjeleníteni az adatokat
-                if(companys.companies.length > 0) {
-                    companys.companies.forEach(company => {
-                        const companyElement = document.createElement("div");
-                        companyElement.innerHTML = `<h3>${company.CompanyName}</h3><p>${company.Address}</p>`;
-                        existingCompanysSection.appendChild(companyElement);
-                    });
-                } else {
-                    existingCompanysSection.innerHTML = "<p>Nincsenek létrehozott cégek ezzel a profillal.</p>";
-                }
-            } else if (xhr.readyState === 4) {
-                console.error("Hiba a cégek lekérése során: " + xhr.status);
-                existingCompanysSection.innerHTML = "<p>Hiba a cégek lekérése során. Kérem próbálja újra később.</p>";
-            }
-        };
-        xhr.send(JSON.stringify({
-            "ownerId": JSON.parse(localStorage.getItem("Profile")) // Example ownerId value - in a real app, this would be dynamically set
-        }));
+      // Itt lehetne egy API hívást tenni, hogy lekérjük a már létrehozott cégeket
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://78.92.125.103:6969/api/company/owner/", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          const companys = JSON.parse(xhr.responseText);
+          console.log(JSON.parse(xhr.responseText));
+          console.log(companys);
+          // Itt lehetne egy ciklussal végigmenni a companys tömbön és megjeleníteni az adatokat
+          if (companys.companies.length > 0) {
+            companys.companies.forEach((company) => {
+              const companyElement = document.createElement("div");
+              companyElement.innerHTML = `<h3>${company.CompanyName}</h3><p>${company.Address}</p>`;
+              existingCompanysSection.appendChild(companyElement);
+              companyElement.addEventListener("click", function () {
+                // Itt lehetne egy API hívást tenni, hogy lekérjük a cég részletes adatait és megjelenítsük azokat egy új oldalon vagy egy modális ablakban
+                alert(`Cég neve: ${company.CompanyName}\nCég címe: ${company.Address}`);
+                sessionStorage.setItem("SelectedCompany", JSON.stringify(company.Company_ID));
+              });
+            });
+          } else {
+            existingCompanysSection.innerHTML =
+              "<p>Nincsenek létrehozott cégek ezzel a profillal.</p>";
+          }
+        } else if (xhr.readyState === 4) {
+          console.error("Hiba a cégek lekérése során: " + xhr.status);
+          existingCompanysSection.innerHTML =
+            "<p>Hiba a cégek lekérése során. Kérem próbálja újra később.</p>";
+        }
+      };
+      xhr.send(
+        JSON.stringify({
+          ownerId: JSON.parse(localStorage.getItem("Profile")), // Example ownerId value - in a real app, this would be dynamically set
+        }),
+      );
 
-        // és megjelenítsük őket az existingCompanysSection-ben
+      // és megjelenítsük őket az existingCompanysSection-ben
 
-        // Itt lehetne egy űrlapot létrehozni a companyRegisterSection-ben, ahol a felhasználó megadhatja a cég adatait és regisztrálhatja azt
+      // Itt lehetne egy űrlapot létrehozni a companyRegisterSection-ben, ahol a felhasználó megadhatja a cég adatait és regisztrálhatja azt
     }
 
     function CreateCompanyRegisterForm() {
-        const companyRegisterSection = document.getElementById("company-register-section");
-        const formHTML = `
+      const companyRegisterSection = document.getElementById(
+        "company-register-section",
+      );
+      const formHTML = `
             <form id="company-register-form">
                 <label for="company-name">Cég neve:</label>
                 <input type="text" id="company-name" name="company-name" required>
@@ -70,37 +85,37 @@
                 <button type="submit">Regisztráció</button>
             </form>
         `;
-        companyRegisterSection.innerHTML += formHTML;
+      companyRegisterSection.innerHTML += formHTML;
 
-        const form = document.getElementById("company-register-form");
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
-            // Itt lehetne egy API hívást tenni, hogy regisztráljuk a céget a megadott adatokkal
+      const form = document.getElementById("company-register-form");
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        // Itt lehetne egy API hívást tenni, hogy regisztráljuk a céget a megadott adatokkal
 
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "http://78.92.114.56:6969/api/createCompany", true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    alert("Cég sikeresen regisztrálva!");
-                    LoadCompanyRegister(); // Frissítjük a listát
-                } else if (xhr.readyState === 4) {
-                    alert("Hiba a cég regisztrálása során!");
-                }
-            };
-            xhr.send(JSON.stringify({
-                "taxnumber": document.getElementById("company-tax").value,
-                "address": document.getElementById("company-address").value,
-                "mobile": document.getElementById("company-phone").value,
-                "owner": JSON.parse(localStorage.getItem("Profile")),
-                "name": document.getElementById("company-name").value,
-            }));
-        });
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://78.92.125.103:6969/api/createCompany", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            alert("Cég sikeresen regisztrálva!");
+            LoadCompanyRegister(); // Frissítjük a listát
+          } else if (xhr.readyState === 4) {
+            alert("Hiba a cég regisztrálása során!");
+          }
+        };
+        xhr.send(
+          JSON.stringify({
+            taxnumber: document.getElementById("company-tax").value,
+            address: document.getElementById("company-address").value,
+            mobile: document.getElementById("company-phone").value,
+            owner: JSON.parse(localStorage.getItem("Profile")),
+            name: document.getElementById("company-name").value,
+          }),
+        );
+      });
     }
 
     LoadCompanyRegister();
     CreateCompanyRegisterForm();
-    
-</script>
+  </script>
 </html>

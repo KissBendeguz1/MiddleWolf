@@ -75,7 +75,7 @@ submitBtn.addEventListener('click', (e) => {
     if (submitBtn.innerHTML.trim() === "Regisztráció") {
         var xhr = new XMLHttpRequest();
         
-        xhr.open("POST", "http://78.92.114.56:6969/api/createUser", true);
+        xhr.open("POST", "http://78.92.125.103:6969/api/createUser", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.onreadystatechange = function () {
@@ -98,7 +98,7 @@ submitBtn.addEventListener('click', (e) => {
 
     } else {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', "http://78.92.114.56:6969/api/login", true);
+    xhr.open("POST", "http://78.92.125.103:6969/api/login", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.onreadystatechange = function () {
@@ -106,7 +106,8 @@ submitBtn.addEventListener('click', (e) => {
             if (xhr.status === 200 || xhr.status === 201) {
                 sessionStorage.setItem('Login', "true");
                 const User = parseInt(JSON.parse(xhr.responseText).user.ID);
-                localStorage.setItem('Profile',User);
+                localStorage.setItem('Profile', User);
+                sessionStorage.setItem("SelectedCompany", "");
                 window.location.href = "../html/index.html";
                 console.log(User)
             } else if (xhr.status === 401) {
