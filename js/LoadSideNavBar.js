@@ -61,6 +61,7 @@ function LoadNavPrivate() {
         console.log(response);
         if ((response != "Az alkalmazott nem található")&&(response.employees.Comp_ID > 0)) {
           console.log("Alkalmazott, aki egy céghez tartozik");
+          sessionStorage.setItem("SelectedCompany", response.employees.Comp_ID);
           const sideNavBarHTML = `<hr id="logged_in_navbar_hr">
 
             <a href="../html/docs.html">
@@ -91,7 +92,7 @@ function LoadNavPrivate() {
         } else {
           console.log("Alkalmazott, aki nem tartozik egy céghez sem");
           const sideNavBarHTML = `<hr id="logged_in_navbar_hr"> 
-            <a href="../html/ceges/review.html">
+            <a href="../html/review.html">
                 <div class="sidebar-item">
                   <img class="sidebar-icon" src="../assets/message.svg" alt="" />
                   <h2>Értékelések</h2>
@@ -158,7 +159,7 @@ function LoadNavCeges() {
 
 function LoadNavCegRegisztralo() {
   const sideNavBarHTML = `<hr id="logged_in_navbar_hr">
-    <a href="../html/ceges/company-register.html">
+    <a href="../html/company-register.html">
                 <div class="sidebar-item">
                   <img class="sidebar-icon" src="../assets/dashboard.svg" alt="" />
                   <h2>Cégek</h2>
