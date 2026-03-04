@@ -91,13 +91,13 @@
                   <div>
                     <img src="../assets/alkalmazott.svg" alt="">
                       <h2>Alkalmazottak</h2>
-                      <h1>3db</h1>
+                      <h1 id="employee-count">3db</h1>
                   </div></a>
                   <a href="./docs.html" class="small-windows">
                   <div>
                     <img src="../assets/dokumentum.svg" alt="">
                         <h2>Dokumentumok</h2>
-                        <h1>5db</h1>
+                        <h1 id="document-count">5db</h1>
                   </div>
                   <a class="small-windows" href="./notifications.html">
                   <div>
@@ -125,5 +125,51 @@
   </body>
             <script src="../js/LoadSideNavBar.js"></script>
       <script src="../js/manageNav.js"></script>
+
+      <script>
+        function getEmployeeNumber() {
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", "http://78.92.125.103:6969/api/employee/cegId", true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                console.log(response);
+                const employeeCount = response.employees.length;
+                document.getElementById("employee-count").textContent = employeeCount + "db";
+              } else {
+                console.error("Hiba a lekérdezés során: " + xhr.status);
+              }
+            }
+          };
+          xhr.send(JSON.stringify({ companyId: sessionStorage.getItem("SelectedCompany") }));
+        }
+
+        getEmployeeNumber();
+
+
+                function getDocumentCount() {
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", "http://78.92.125.103:6969/api/docs/count/cegId", true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                console.log(response);
+                const documentCount = response.count;
+                document.getElementById("document-count").textContent = documentCount + "db";
+              } else {
+                console.error("Hiba a lekérdezés során: " + xhr.status);
+              }
+            }
+          };
+          xhr.send(JSON.stringify({ companyId: sessionStorage.getItem("SelectedCompany") }));
+        }
+
+        getEmployeeNumber();
+        getDocumentCount();
+      </script>
 
 </html>
