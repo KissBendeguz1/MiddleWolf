@@ -150,11 +150,11 @@
       // Itt lehetne egy űrlapot létrehozni a companyRegisterSection-ben, ahol a felhasználó megadhatja a cég adatait és regisztrálhatja azt
     }
 
-    function CreateCompanyRegisterForm() {
-      const companyRegisterSection = document.getElementById(
+function CreateCompanyRegisterForm() {
+    const companyRegisterSection = document.getElementById(
         "company-register-section",
-      );
-      const formHTML = `
+    );
+    const formHTML = `
             <form id="company-register-form">
                 <label for="company-name">Cég neve:</label>
                 <input type="text" id="company-name" name="company-name" required>
@@ -163,43 +163,66 @@
                 <textarea id="company-address" name="company-address" required></textarea>
 
                 <label for="company-phone">Cég telefonszáma:</label>
-                <input type="text" id="company-phone" name="company-phone" required>
+                <input type="text" id="company-phone" name="company-phone" maxlength="9" required>
 
-                <label for="company-tax">Cég adószáma:</label>
-                <textarea id="company-tax" name="company-tax" required></textarea>
+                <label for="company-tax">Cég adószáma (88888888-1-11):</label>
+                <input type="text" id="company-tax" name="company-tax" maxlength="13" placeholder="________-_-__" required>
                 
                 <button type="submit">Regisztráció</button>
             </form>
         `;
-      companyRegisterSection.innerHTML += formHTML;
+    companyRegisterSection.innerHTML += formHTML;
 
-      const form = document.getElementById("company-register-form");
-      form.addEventListener("submit", function (event) {
+    // --- ADÓSZÁM FORMÁZÓ LOGIKA START ---
+    const companyTax = document.getElementById('company-tax');
+    companyTax.addEventListener("input", () => {
+        // Csak számokat engedünk meg
+        let value = companyTax.value.replace(/\D/g, ""); 
+        let formatted = "";
+
+        if (value.length > 0) {
+            // Első 8 számjegy
+            formatted = value.substring(0, 8);
+            if (value.length > 8) {
+                // Kötőjel + 9. számjegy (ÁFA kód)
+                formatted += "-" + value.substring(8, 9);
+            }
+            if (value.length > 9) {
+                // Kötőjel + utolsó 2 számjegy (Megye kód)
+                formatted += "-" + value.substring(9, 11);
+            }
+        }
+        // Visszaírjuk a formázott értéket az inputba
+        companyTax.value = formatted;
+    });
+    // --- ADÓSZÁM FORMÁZÓ LOGIKA END ---
+
+    const form = document.getElementById("company-register-form");
+    form.addEventListener("submit", function (event) {
         event.preventDefault();
-        // Itt lehetne egy API hívást tenni, hogy regisztráljuk a céget a megadott adatokkal
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", `${API_BASE_URL}/createCompany`, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            alert("Cég sikeresen regisztrálva!");
-            LoadCompanyRegister(); // Frissítjük a listát
-          } else if (xhr.readyState === 4) {
-            alert("Hiba a cég regisztrálása során!");
-          }
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                alert("Cég sikeresen regisztrálva!");
+                LoadCompanyRegister(); 
+            } else if (xhr.readyState === 4) {
+                alert("Hiba a cég regisztrálása során!");
+            }
         };
         xhr.send(
-          JSON.stringify({
-            taxnumber: document.getElementById("company-tax").value,
-            address: document.getElementById("company-address").value,
-            mobile: document.getElementById("company-phone").value,
-            owner: JSON.parse(localStorage.getItem("Profile")),
-            name: document.getElementById("company-name").value,
-          }),
+            JSON.stringify({
+                taxnumber: document.getElementById("company-tax").value,
+                address: document.getElementById("company-address").value,
+                mobile: document.getElementById("company-phone").value,
+                owner: JSON.parse(localStorage.getItem("Profile")),
+                name: document.getElementById("company-name").value,
+            }),
         );
-      });
-    }
+    });
+}
 
     LoadCompanyRegister();
     CreateCompanyRegisterForm();
