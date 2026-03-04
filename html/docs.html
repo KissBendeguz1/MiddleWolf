@@ -165,79 +165,57 @@
           <button class="employee-modal-close" onclick="closeRecruitmentModal()">&times;</button>
         </div>
         <div class="employee-modal-body">
-          <form id="recruitment-form">
-            <div class="employee-form-group">
-              <label for="available-employees">Dokumentum tipusának kiválasztása:</label>
-              <select
-                id="available-employees"
-                class="employee-form-input"
-                required
-              >
-                <option value="">-- Válasszon tipust --</option>
-                <option value="public">Publikus</option>
-                <option value="private">Céges</option>
-              </select>
+          <div class="employee-modal-body">
+            <form id="recruitment-form">
+              <div class="employee-form-group">
+                <label for="available-employees">Dokumentum típusának kiválasztása:</label>
+                <select id="available-employees" class="employee-form-input" required>
+                  <option value="">-- Válasszon típust --</option>
+                  <option value="public">Publikus</option>
+                  <option value="private">Céges</option>
+                </select>
+              </div>
 
-              <select
-                id="available-employees"
-                class="employee-form-input"
-                required
-              >
-                <option value="">-- Válasszon tipust --</option>
-                <option value="">Privát</option>
-                <option value="">Publikus</option>
-              </select>
-            </div>
+              <div class="employee-form-group">
+                <label for="recruitment-position-title">Dokumentum címe:</label>
+                <input
+                  type="text"
+                  id="recruitment-position-title"
+                  class="employee-form-input"
+                  placeholder="pl. Ügyfél lista"
+                  required
+                />
+              </div>
 
-            <div class="employee-form-group">
-              <label for="recruitment-position">Munkakör:</label>
-              <input
-                type="text"
-                id="recruitment-position-title"
-                class="employee-form-input"
-                placeholder="pl. ügyefelek"
-                required
-              />
-            </div>
+              <div class="employee-form-group">
+                <label for="recruitment-position-content">Tartalom:</label>
+                <textarea
+                  id="recruitment-position-content"
+                  class="employee-form-input"
+                  rows="5"
+                  required
+                ></textarea>
+              </div>
 
-            <div class="employee-form-group">
-              <label for="recruitment-position">Munkakör:</label>
-              <textarea                 
-              type=""
-                id="recruitment-position-content"
-                class="employee-form-input"
-                required
+              <div class="employee-modal-buttons">
+                <button
+                  type="button"
+                  class="employee-modal-btn employee-modal-btn-submit"
+                  onclick="submitRecruitment()"
                 >
-
-              </textarea>
-            </div>
-
-            <div class="employee-modal-buttons">
-              <button
-                type="button"
-                class="employee-modal-btn employee-modal-btn-submit"
-                onclick="submitRecruitment()"
-              >
-                Alkalmazott felvétele
-              </button>
-              <button
-                type="button"
-                class="employee-modal-btn employee-modal-btn-cancel"
-                onclick="closeRecruitmentModal()"
-              >
-                Mégse
-              </button>
-            </div>
-          </form>
-        </div>
+                  Létrehozás
+                </button>
+                </div>
+            </form>
+          </div>
       </div>
     </div>
 
 
   </body>
   <script src="../js/Document.js"></script>
+  <script src="../js/DocumentModal.js"></script>
   <script src="../js/ShowAlert.js"></script>
   <script src="../js/LoadSideNavBar.js"></script>
   <script src="../js/manageNav.js"></script>
-  <script src="../js/DocumentModal.js"></script>
 </html>
