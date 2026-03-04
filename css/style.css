@@ -2551,6 +2551,13 @@ p {
   transform: scale(0.98);
 }
 
+.employee-modal-btn-fire {
+  background-color: #ff3333;
+  color: var(--text-color);
+  box-shadow: #ff3333 2px 2px 3px 1px;
+  color: var(--white-color);
+}
+
 #map-mapsection {
   width: 100%;
   border-radius: 10px;
@@ -3477,5 +3484,11 @@ p {
   .employee-modal-btn-delete {
     order: 0;
     margin-right: 0;
+  }
+
+  .employee-modal-btn-fire {
+    order: 1;
+      margin-top: 10px;
+
   }
 }
