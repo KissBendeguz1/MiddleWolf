@@ -177,12 +177,37 @@ function LoadNavCegRegisztralo() {
   sidebar.innerHTML += sideNavBarHTML;
 }
 
+const account_log_in_out = document.getElementsByClassName('account_log_in_out');
+
 document.addEventListener(
   "DOMContentLoaded",
   (e) => {
     e.preventDefault();
     checkUserType();
-  },
+    console.log("betölt" + account_log_in_out);
+    if(sessionStorage.getItem('Login') === "true"){
+      account_log_in_out[0].innerHTML = "Kijelentkezés";
+      account_log_in_out[0].href = "";
+    }
+    else{
+      account_log_in_out[0].innerHTML = "Bejelentkezés";
+    }
+})
+
+account_log_in_out[0].addEventListener('click', (e) =>{
+  if(sessionStorage.getItem('Login') === "true"){
+    e.preventDefault();
+    if(localStorage.getItem('darkMode') === "true"){
+      localStorage.removeItem('Profile');
+    }
+    else{
+      localStorage.clear();
+    }
+    sessionStorage.clear();
+    window.location.href = "../html/index.html";
+  }
+})
+
 
 
   /*if (sessionStorage.getItem("Type") === "Ceges") { */
@@ -246,7 +271,6 @@ document.addEventListener(
                 </div>
                 
             </a>`*/
-);
 
 function ManageNav() {
   const sidebar = document.getElementsByClassName("sidebar-container")[0];
