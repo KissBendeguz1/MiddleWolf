@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="shortcut icon" href="../assets/Favicon.png" type="image/x-icon">
   </head>
-  
+  <script src="../js/config.js"></script>
   <body>
     <nav>
       <section class="nav-container">
@@ -110,7 +110,7 @@
 
       // Itt lehetne egy API hívást tenni, hogy lekérjük a már létrehozott cégeket
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://78.92.125.103:6969/api/company/owner/", true);
+      xhr.open("POST", `${API_BASE_URL}/company/owner/`, true);
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -179,7 +179,7 @@
         // Itt lehetne egy API hívást tenni, hogy regisztráljuk a céget a megadott adatokkal
 
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://78.92.125.103:6969/api/createCompany", true);
+        xhr.open("POST", `${API_BASE_URL}/createCompany`, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4 && xhr.status === 200) {

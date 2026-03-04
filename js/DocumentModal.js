@@ -1,61 +1,61 @@
 function submitRecruitment() {
-    // 1. Adatok begyűjtése
-    const rawProfileId = localStorage.getItem('Profile');
-    const rawCompanyId = sessionStorage.getItem('SelectedCompany');
-    
-    // Debug: Nézzük meg a konzolban, mit lát a JS (F12-nél látható)
-    console.log("Tárolt Profil ID:", rawProfileId);
-    console.log("Tárolt Cég ID:", rawCompanyId);
+  // 1. Adatok begyűjtése
+  const rawProfileId = localStorage.getItem("Profile");
+  const rawCompanyId = sessionStorage.getItem("SelectedCompany");
 
-    const title = document.getElementById('recruitment-position-title').value;
-    const content = document.getElementById('recruitment-position-content').value;
-    const type = document.getElementById('available-employees').value;
+  // Debug: Nézzük meg a konzolban, mit lát a JS (F12-nél látható)
+  console.log("Tárolt Profil ID:", rawProfileId);
+  console.log("Tárolt Cég ID:", rawCompanyId);
 
-    if (!rawProfileId || !rawCompanyId || rawProfileId === "undefined") {
-        alert("Hiba: Nincs bejelentkezett profil vagy kiválasztott cég!");
-        return;
+  const title = document.getElementById("recruitment-position-title").value;
+  const content = document.getElementById("recruitment-position-content").value;
+  const type = document.getElementById("available-employees").value;
+
+  if (!rawProfileId || !rawCompanyId || rawProfileId === "undefined") {
+    alert("Hiba: Nincs bejelentkezett profil vagy kiválasztott cég!");
+    return;
+  }
+
+  const d = new Date();
+  const datum = `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+
+  // 2. Az adatobjektum pontosan az API által elvárt kulcsokkal
+  const docData = {
+    title: title,
+    content: content,
+    types: type,
+    creationdate: datum,
+    companyid: parseInt(rawCompanyId),
+    profileid: parseInt(rawProfileId),
+  };
+
+  // 3. Közvetlen küldés az API-nak (kihagyva az extra ellenőrzést)
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", `${API_BASE_URL}/createDocs`, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        alert("Sikeres mentés!");
+        addDocumentToUI(title, datum);
+        closeRecruitmentModal();
+      } else {
+        // Ha itt kapsz ER_NO_REFERENCED_ROW hibát, akkor az ID tényleg nincs az adatbázisban
+        console.error("Szerver hiba:", xhr.responseText);
+        alert("Szerver hiba: " + xhr.responseText);
+      }
     }
+  };
 
-    const d = new Date();
-    const datum = `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
-
-    // 2. Az adatobjektum pontosan az API által elvárt kulcsokkal
-    const docData = {
-        "title": title,
-        "content": content,
-        "types": type,
-        "creationdate": datum,
-        "companyid": parseInt(rawCompanyId),
-        "profileid": parseInt(rawProfileId) 
-    };
-
-    // 3. Közvetlen küldés az API-nak (kihagyva az extra ellenőrzést)
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://78.92.125.103:6969/api/createDocs", true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                alert("Sikeres mentés!");
-                addDocumentToUI(title, datum);
-                closeRecruitmentModal();
-            } else {
-                // Ha itt kapsz ER_NO_REFERENCED_ROW hibát, akkor az ID tényleg nincs az adatbázisban
-                console.error("Szerver hiba:", xhr.responseText);
-                alert("Szerver hiba: " + xhr.responseText);
-            }
-        }
-    };
-
-    console.log("Küldés folyamatban...", docData);
-    xhr.send(JSON.stringify(docData));
+  console.log("Küldés folyamatban...", docData);
+  xhr.send(JSON.stringify(docData));
 }
 
 function addDocumentToUI(title, date) {
-    const container = document.getElementById('docs-list-container');
-    
-    const docHTML = `
+  const container = document.getElementById("docs-list-container");
+
+  const docHTML = `
         <div class="docs-item">
             <div class="docs-item-inner">
                 <img src="../assets/docs-icon.svg" alt="" />
@@ -70,32 +70,32 @@ function addDocumentToUI(title, date) {
             </div>
         </div>
     `;
-    
-    // Az elejére szúrjuk be
-    container.insertAdjacentHTML('afterbegin', docHTML);
+
+  // Az elejére szúrjuk be
+  container.insertAdjacentHTML("afterbegin", docHTML);
 }
 
 // DocumentModal.js
 
 function openRecruitmentModal() {
-    const modal = document.getElementById("recruitment-modal");
-    if (modal) {
-        modal.style.display = "flex";
-        const form = document.getElementById("recruitment-form");
-        if (form) form.reset();
-        
-        // Ha van ilyen függvényed az alkalmazottak betöltéséhez:
-        if (typeof loadAvailableEmployees === "function") {
-            loadAvailableEmployees();
-        }
-    } else {
-        console.error("Nem található a 'recruitment-modal' ID-jú elem!");
+  const modal = document.getElementById("recruitment-modal");
+  if (modal) {
+    modal.style.display = "flex";
+    const form = document.getElementById("recruitment-form");
+    if (form) form.reset();
+
+    // Ha van ilyen függvényed az alkalmazottak betöltéséhez:
+    if (typeof loadAvailableEmployees === "function") {
+      loadAvailableEmployees();
     }
+  } else {
+    console.error("Nem található a 'recruitment-modal' ID-jú elem!");
+  }
 }
 
 function closeRecruitmentModal() {
-    const modal = document.getElementById("recruitment-modal");
-    if (modal) {
-        modal.style.display = "none";
-    }
+  const modal = document.getElementById("recruitment-modal");
+  if (modal) {
+    modal.style.display = "none";
+  }
 }

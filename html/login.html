@@ -12,6 +12,7 @@
     />
     <title>Bejelentkezés - MiddleWolf</title>
   </head>
+  <script src="../js/config.js"></script>
   <body>
     <nav>
       <section class="nav-container">
@@ -82,11 +83,7 @@
         <div class="login-form-container">
           <form id="logReg_form">
             <div class="login-tabs">
-              <button 
-              class="tab-btn" 
-              id="log" type="button" 
-              onclick="Login()"
-              >
+              <button class="tab-btn" id="log" type="button" onclick="Login()">
                 Bejelentkezés
               </button>
               <button
@@ -116,35 +113,43 @@
 
             <div id="Password_again" class="form-group">
               <label>Jelszó Újra</label>
-              <input type="password" id="con_Password_again" placeholder="••••••••" />
+              <input
+                type="password"
+                id="con_Password_again"
+                placeholder="••••••••"
+              />
             </div>
 
             <div id="Mobile" class="form-group">
               <label>Telefonszám</label>
-              <input type="tel" id="con_mobile" inputmode="numeric" placeholder="06308769567" maxlength="11"/>
+              <input
+                type="tel"
+                id="con_mobile"
+                inputmode="numeric"
+                placeholder="06308769567"
+                maxlength="11"
+              />
             </div>
 
             <div id="Profile_type" class="form-group">
               <label for="profile_type">Profil típusa</label>
               <select id="profile_type">
-                <option value="private">Személyes vagy alkalmazotti fiók</option>
+                <option value="private">
+                  Személyes vagy alkalmazotti fiók
+                </option>
                 <option value="company">Cégtulajdonos fiók</option>
               </select>
             </div>
 
             <div class="login-buttons">
-              <button
-                type="submit"
-                id="con_submit"
-                class="btn-submit"
-              >
+              <button type="submit" id="con_submit" class="btn-submit">
                 Küldés
               </button>
             </div>
           </form>
         </div>
 
-    <!--    <div id="Box">
+        <!--    <div id="Box">
           <div class="Box-content">
             <h1 id="BoxH1"></h1>
             <p id="BoxP"></p>
@@ -159,9 +164,9 @@
         </div>
       </div>
     </div>
-      <script src="../js/login.js"></script>
-    <script src="../js/LoadSideNavBar.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/LoadSideNavBar.js\"></script>
     <script src="../js/ShowAlert.js"></script>
   </body>
-      <script src="../js/manageNav.js"></script>
+  <script src="../js/manageNav.js"></script>
 </html>

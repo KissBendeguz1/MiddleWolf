@@ -7,7 +7,7 @@ var account = document.getElementsByClassName("account_log_in_out");
 
 function checkUserType() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://78.92.125.103:6969/api/profiles/id/", true);
+  xhr.open("POST", `${API_BASE_URL}/profiles/id/`, true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
@@ -39,7 +39,7 @@ function checkUserType() {
       } else {
         console.error("Hiba a profil lekérése során: " + xhr.status);
       }
-      ManageNav()
+      ManageNav();
     }
   };
 
@@ -53,14 +53,17 @@ function checkUserType() {
 function LoadNavPrivate() {
   console.log("LoadNavPrivate futtatva");
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://78.92.125.103:6969/api/employee/profileId/", true);
+  xhr.open("POST", `${API_BASE_URL}/employee/profileId/`, true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         const response = JSON.parse(xhr.responseText);
         console.log(response);
-        if ((response != "Az alkalmazott nem található")&&(response.employees.Comp_ID > 0)) {
+        if (
+          response != "Az alkalmazott nem található" &&
+          response.employees.Comp_ID > 0
+        ) {
           console.log("Alkalmazott, aki egy céghez tartozik");
           sessionStorage.setItem("SelectedCompany", response.employees.Comp_ID);
           const sideNavBarHTML = `<hr id="logged_in_navbar_hr">
@@ -177,41 +180,36 @@ function LoadNavCegRegisztralo() {
   sidebar.innerHTML += sideNavBarHTML;
 }
 
-const account_log_in_out = document.getElementsByClassName('account_log_in_out');
+const account_log_in_out =
+  document.getElementsByClassName("account_log_in_out");
 
-document.addEventListener(
-  "DOMContentLoaded",
-  (e) => {
-    e.preventDefault();
-    checkUserType();
-    console.log("betölt" + account_log_in_out);
-    if(sessionStorage.getItem('Login') === "true"){
-      account_log_in_out[0].innerHTML = "Kijelentkezés";
-      account_log_in_out[0].href = "";
-    }
-    else{
-      account_log_in_out[0].innerHTML = "Bejelentkezés";
-    }
-})
+document.addEventListener("DOMContentLoaded", (e) => {
+  e.preventDefault();
+  checkUserType();
+  console.log("betölt" + account_log_in_out);
+  if (sessionStorage.getItem("Login") === "true") {
+    account_log_in_out[0].innerHTML = "Kijelentkezés";
+    account_log_in_out[0].href = "";
+  } else {
+    account_log_in_out[0].innerHTML = "Bejelentkezés";
+  }
+});
 
-account_log_in_out[0].addEventListener('click', (e) =>{
-  if(sessionStorage.getItem('Login') === "true"){
+account_log_in_out[0].addEventListener("click", (e) => {
+  if (sessionStorage.getItem("Login") === "true") {
     e.preventDefault();
-    if(localStorage.getItem('darkMode') === "true"){
-      localStorage.removeItem('Profile');
-    }
-    else{
+    if (localStorage.getItem("darkMode") === "true") {
+      localStorage.removeItem("Profile");
+    } else {
       localStorage.clear();
     }
     sessionStorage.clear();
     window.location.href = "../html/index.html";
   }
-})
+});
 
-
-
-  /*if (sessionStorage.getItem("Type") === "Ceges") { */
-  /* const sideNavBarHTML = `<hr id="logged_in_navbar_hr">
+/*if (sessionStorage.getItem("Type") === "Ceges") { */
+/* const sideNavBarHTML = `<hr id="logged_in_navbar_hr">
     <a href="../html/compamy-register.html">
                 <div class="sidebar-item">
                   <img class="sidebar-icon" src="../assets/dashboard.svg" alt="" />
@@ -221,7 +219,7 @@ account_log_in_out[0].addEventListener('click', (e) =>{
             </a>
     `*/
 
-  /*
+/*
    `<hr id="logged_in_navbar_hr">
     <a href="../html/compamy-register.html">
                 <div class="sidebar-item">
@@ -281,14 +279,12 @@ function ManageNav() {
   menudiv.id = "sidemenuopen";
   menudiv.innerHTML += `
 <svg class="svg-invert" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M4 12H20M4 18H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>`;
-  menudiv.addEventListener("click", () => { 
+  menudiv.addEventListener("click", () => {
     sidebar.classList.toggle("hidden");
   });
   menudiv.setAttribute("onload", "LoadNavMenu()");
   nav.prepend(menudiv);
-    function toggleNav() {
-      
-    }
+  function toggleNav() {}
 
   function LoadNavMenu() {
     screenwidth = window.innerWidth;
@@ -320,7 +316,5 @@ function ManageNav() {
     sidebar.classList.remove("hidden");
   }
 
-
-
-  LoadNavMenu()
-};
+  LoadNavMenu();
+}

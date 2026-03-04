@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="shortcut icon" href="../assets/Favicon.png" type="image/x-icon">
     <script src="../js/message.js"></script>
+    <script src="../js/config.js"></script>
   </head>
 
   <body>
@@ -123,13 +124,13 @@
         </section>
     </div>
   </body>
-            <script src="../js/LoadSideNavBar.js"></script>
+  <script src="../js/LoadSideNavBar.js"></script>
       <script src="../js/manageNav.js"></script>
 
       <script>
         function getEmployeeNumber() {
           const xhr = new XMLHttpRequest();
-          xhr.open("POST", "http://78.92.125.103:6969/api/employee/cegId", true);
+          xhr.open("POST", `${API_BASE_URL}/employee/cegId`, true);
           xhr.setRequestHeader("Content-Type", "application/json");
           xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {
@@ -151,7 +152,7 @@
 
                 function getDocumentCount() {
           const xhr = new XMLHttpRequest();
-          xhr.open("POST", "http://78.92.125.103:6969/api/docs/count/cegId", true);
+          xhr.open("POST", `${API_BASE_URL}/docs/count/cegId`, true);
           xhr.setRequestHeader("Content-Type", "application/json");
           xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {

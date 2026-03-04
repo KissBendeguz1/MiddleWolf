@@ -4,11 +4,7 @@
  */
 function loadAvailableEmployees() {
   var xhr = new XMLHttpRequest();
-  xhr.open(
-    "POST",
-    "http://78.92.125.103:6969/api/availableEmployees/private",
-    true,
-  );
+  xhr.open("POST", `${API_BASE_URL}/availableEmployees/private`, true);
   xhr.setRequestHeader("Content-Type", "application/json");
 
   xhr.onreadystatechange = function () {

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="shortcut icon" href="../assets/Favicon.png" type="image/x-icon">
   </head>
-
+  <script src="../js/config.js"></script>
   <body>
 <nav>
       <section class="nav-container">
@@ -229,7 +229,7 @@ function refreshPage() {
 const employeeListContainer = document.getElementById("employee-list-container");
     function loadEmployees() {
       var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://78.92.125.103:6969/api/employee/cegId/", true);
+  xhr.open("POST", `${API_BASE_URL}/employee/cegId/`, true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
@@ -262,7 +262,7 @@ const employeeListContainer = document.getElementById("employee-list-container")
     console.log(profileid);
     var xhr = new XMLHttpRequest();
     const container = document.getElementById("employee-list-container");
-  xhr.open("POST", "http://78.92.125.103:6969/api/profiles/id/", true);
+  xhr.open("POST", `${API_BASE_URL}/profiles/id/`, true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
@@ -310,7 +310,7 @@ const employeeListContainer = document.getElementById("employee-list-container")
       // Load available employees when modal opens
       const select = document.getElementById("available-employees");
       const xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://78.92.125.103:6969/api/availableEmployees/private/", true);
+      xhr.open("POST", `${API_BASE_URL}/availableEmployees/private/`, true);
       xhr.setRequestHeader("Content-Type", "application/json");
 
       xhr.onreadystatechange = function () {
@@ -356,7 +356,7 @@ const employeeListContainer = document.getElementById("employee-list-container")
   function fireEmployee() {
     const employeeId = sessionStorage.getItem("SelectedEmployeeForRoleChange");
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://78.92.125.103:6969/api/deleteEmployee", true);
+    xhr.open("POST", `${API_BASE_URL}/deleteEmployee`, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
@@ -412,7 +412,7 @@ const employeeListContainer = document.getElementById("employee-list-container")
       const employeeId = document.getElementById("available-employees").value;
       const position = document.getElementById("recruitment-position").value;
       const xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://78.92.125.103:6969/api/addEmployee", true);
+      xhr.open("POST", `${API_BASE_URL}/addEmployee`, true);
       // Implement this function to get the employee ID for whom the position is being changed
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.onreadystatechange = function () {
@@ -465,7 +465,7 @@ const employeeListContainer = document.getElementById("employee-list-container")
     console.log("Position change submitted:", { newPosition });
     
     xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://78.92.125.103:6969/api/employee/modifyrole", true);
+      xhr.open("POST", `${API_BASE_URL}/employee/modifyrole`, true);
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
