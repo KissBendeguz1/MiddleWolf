@@ -1,198 +1,132 @@
 const Data = [];
 
-const Name = document.getElementById("Name");
-const Email = document.getElementById("Email");
-const Password = document.getElementById("Password");
 const Password_again = document.getElementById("Password_again");
 const Mobile = document.getElementById("Mobile");
-const CompanyName = document.getElementById("CompanyName");
-const Adomszam = document.getElementById("Adoszam");
-const types = document.getElementById('Type_ceges');
-const BoxP = document.getElementById('BoxP');
-document.getElementById('con_submit').textContent = "Regisztráció";
-document.getElementById('Ceges').checked = true;
-document.getElementById('con_submit').disabled = true;
+const title = document.getElementById('title');
+const submitBtn = document.getElementById('con_submit');
+submitBtn.innerHTML = "Regisztráció";
 
-const loginBTN = document.getElementsByClassName('login-buttons');
-const Box = document.getElementById('Box');
-Box.style.display = "none"
+const con_name = document.getElementById('con_name');
+const con_email = document.getElementById('con_email');
+const con_mobile = document.getElementById('con_mobile');
+const con_Password = document.getElementById('con_Password');
+const con_Password_again = document.getElementById('con_Password_again');
+const profile_type = document.getElementById('profile_type');
 
 function Login(){
-    document.getElementById('con_submit').textContent = "Belépés";
-    document.getElementById('log').classList.add('active');
-    document.getElementById('reg').classList.remove('active');
-    Mobile.style.display = "none";
-    CompanyName.style.display = "none";
-    Adomszam.style.display = "none";
-    types.style.display = "none";
+    title.innerHTML = "Bejelentkezés";
     Password_again.style.display = "none";
+    Mobile.style.display = "none";
+    document.getElementById('reg').classList.remove('active');
+    document.getElementById('log').classList.add('active');
+    document.getElementById('Profile_type').style.display = "none";
+    submitBtn.innerHTML = "Belépés";
 }
 
 function Registration(){
-    document.getElementById('reg').classList.add('active');
-    document.getElementById('log').classList.remove('active');
-    document.getElementById('con_submit').textContent = "Regisztráció";
-    Mobile.style.display = "";
-    CompanyName.style.display = "";
-    Adomszam.style.display = "";
-    types.style.display = "";
+    title.innerHTML = "Regisztráció";
     Password_again.style.display = "";
+    Mobile.style.display = "";
+    document.getElementById('log').classList.remove('active');
+    document.getElementById('reg').classList.add('active');
+    document.getElementById('Profile_type').style.display = "";
+    submitBtn.innerHTML = "Regisztráció";
+}
+let allFilled = "";
+let loginFilled = "";
+
+function validate() {
+    const mode = submitBtn.innerHTML.trim();
+
+    if (mode === "Regisztráció") {
+        allFilled = con_name.value.trim() !== "" && 
+                          con_email.value.trim() !== "" && 
+                          con_mobile.value.trim() !== "" && 
+                          con_Password.value.trim() !== "" && 
+            con_Password_again.value.trim() !== "" && 
+            profile_type.value.trim() !== "";
+
+        const passwordsMatch = con_Password.value === con_Password_again.value;
+
+        submitBtn.disabled = !(allFilled && passwordsMatch);
+
+    } 
+    else if (mode === "Belépés") {
+        loginFilled = con_email.value.trim() !== "" && 
+                            con_Password.value.trim() !== "";
+        
+        submitBtn.disabled = !loginFilled;
+    }
 }
 
-function Eldontes(){
-    if(document.getElementById('Ceges').checked == true){
-        return "Ceges";
-    }
-    if(document.getElementById('egyeni').checked == true){
-        return "Egyeni";
-    }
-}
+submitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    validate();
+    const userData = {
+        "username": con_name.value,    
+        "email": con_email.value,      
+        "mobile": con_mobile.value,    
+        "password": con_Password.value,
+        "type": profile_type.value
+    };
 
-function Types(){
-    if(document.getElementById('Ceges').checked == true){
-        CompanyName.style.display = "";
-        Adomszam.style.display = "";
-    }
-    if(document.getElementById('egyeni').checked == true){
-        CompanyName.style.display = "none";
-        Adomszam.style.display = "none";
-    }
-};
 
-function Submit(){
-    if(document.getElementById('reg').classList.contains('active') && !document.getElementById('log').classList.contains('active')){
-        const NewProfile = {
-            Name: document.getElementById('con_name').value,
-            Email: document.getElementById('con_email').value,
-            Password: document.getElementById('con_Password').value,
-            Mobile: document.getElementById('con_mobile').value,
-            Profile: Eldontes(),
-            Id: Date.now()
-        }
 
-        Data.push(NewProfile);
-        localStorage.setItem('Profiles',JSON.stringify(Data))
-    }
-    if(document.getElementById('log').classList.contains('active') && !document.getElementById('reg').classList.contains('active')){
-        const fiokok = JSON.parse(localStorage.getItem('Profiles'));
-        for(let keys of fiokok){
-            if(keys.Name == document.getElementById('con_name').value && keys.Email == document.getElementById('con_email').value && keys.Password == document.getElementById('con_Password').value){
-                sessionStorage.setItem("Login", "true");
-                sessionStorage.setItem("Type",keys.Profile);
+    if (submitBtn.innerHTML.trim() === "Regisztráció") {
+        var xhr = new XMLHttpRequest();
+        
+        xhr.open("POST", "http://78.92.125.103:6969/api/createUser", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200 || xhr.status === 201) {
+                    sessionStorage.setItem("Register", "true");
+                    alert("Sikeres regisztráció!");
+                } else {
+                    if(!allFilled){
+                        ShowAlert("Valamelyik mező üresen maradt!",'alert');
+                    }
+                    else{
+                        ShowAlert("Hibás Név, Email vagy jelszó!",'alert');
+                    }
+                }
             }
-        }
-    }
-};
+        };
 
-document.addEventListener('input', function () {
-    const con_name = document.getElementById('con_name');
-    const con_email = document.getElementById('con_email');
-    const con_mobile = document.getElementById('con_mobile');
-    const con_Password = document.getElementById('con_Password');
-    const con_Password_again = document.getElementById('con_Password_again')
-    const con_comp_name = document.getElementById('con_comp_name');
-    const adomszam = document.getElementById('adomszam');
-    const submitBtn = document.getElementById('con_submit');
+        xhr.send(JSON.stringify(userData));
 
-    if(submitBtn.innerHTML == "Regisztráció" && document.getElementById('Ceges').checked == true){
-        submitBtn.disabled =
-        !con_name.value ||
-        !con_email.value ||
-        !con_mobile.value ||
-        !con_Password.value||
-        !con_Password_again.value||
-        !adomszam.value||
-        !con_comp_name.value;
-        sessionStorage.setItem("Register", "true");
-    }
-    if(submitBtn.innerHTML == "Regisztráció" && document.getElementById('egyeni').checked == true){
-        submitBtn.disabled =
-        !con_name.value ||
-        !con_email.value ||
-        !con_mobile.value ||
-        !con_Password.value||
-        !con_Password_again.value||
-        sessionStorage.setItem("Register", "true");
-    }
-    if(submitBtn.innerHTML == "Belépés"){
-        if(submitBtn.innerHTML == "Belépés"){
-            submitBtn.disabled =
-            !con_name.value ||
-            !con_email.value ||
-            !con_Password.value;
-            sessionStorage.setItem("Login", "false");
-        }
-    }
-});
+    } else {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://78.92.125.103:6969/api/login", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
 
-document.getElementById('con_submit').addEventListener("click", () => {
-    sessionStorage.setItem("fromRegister", "true");
-});
-
-window.addEventListener("load", () => {
-
-    if (sessionStorage.getItem("fromRegister") !== "true") return;
-    sessionStorage.removeItem("fromRegister");
-
-    if (sessionStorage.getItem("Register") === "true") {
-        Box.style.display = "";
-        BoxH1.innerText = "Sikeres Regisztráció!";
-        BoxP.innerHTML = "Sikeresen megkaptuk regisztrációs kérését, ha jóváhagytuk kérését akkor a megadott Email cimen fogjuk értesiteni."
-        sessionStorage.removeItem("Register");
-        sessionStorage.setItem("reged","true");
-
-        setTimeout(() => {
-            window.location.href = "./index.html";
-        }, 2000);
-    }
-
-    else if (sessionStorage.getItem("Login") === "false") {
-        Box.style.display = "";
-        BoxH1.innerText = "Sikertelen Bejelentkezés!";
-        sessionStorage.removeItem("Login");
-
-        setTimeout(() => {
-            window.location.href = "../html/login.html";
-        }, 2000);
-    }
-
-    else if (sessionStorage.getItem("Login") === "true") {
-        Box.style.display = "";
-        BoxH1.innerText = "Sikeres Bejelentkezés!";
-        localStorage.setItem('Load',true);
-
-        setTimeout(() => {
-            if (sessionStorage.getItem("Type") === "Egyeni") {
-                window.location.href = "./index.html";
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) { 
+            if (xhr.status === 200 || xhr.status === 201) {
+                sessionStorage.setItem('Login', "true");
+                const User = parseInt(JSON.parse(xhr.responseText).user.ID);
+                localStorage.setItem('Profile', User);
+                sessionStorage.setItem("SelectedCompany", "");
+                window.location.href = "../html/index.html";
+                console.log(User)
+            } else if (xhr.status === 401) {
+                    if(!loginFilled){
+                        ShowAlert("Valamelyik mező üresen maradt!",'alert');
+                    }
+                    else{
+                        ShowAlert("Hibás Név, Email vagy jelszó!",'alert');
+                    }
             } else {
-                window.location.href = "./logged-in-index.html";
+                alert("Szerver hiba történt: " + xhr.status);
             }
-        }, 2000);
-    }
-});
-
-
-adomszam.addEventListener("input", (e) => {
-    // Csak a számokat hagyjuk meg
-    let value = adomszam.value.replace(/\D/g, ""); 
-    let formatted = "";
-
-    if (value.length > 0) {
-        formatted = value.substring(0, 8);
-        if (value.length > 8) {
-            formatted += "-" + value.substring(8, 9);
         }
-        if (value.length > 9) {
-            formatted += "-" + value.substring(9, 11);
-        }
-    }
+    };
 
-    adomszam.value = formatted;
-});
-
-const con_mobile = document.getElementById('con_mobile');
-
-con_mobile.addEventListener("input", () => {
-    let value = con_mobile.value.replace(/\D/g, ""); 
-    con_mobile.value = value.substring(0, 11);
+    xhr.send(JSON.stringify({
+        "username":con_name.value,
+        "email": con_email.value,
+        "password": con_Password.value
+    }));
+}
 });
