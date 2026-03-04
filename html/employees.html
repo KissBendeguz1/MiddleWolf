@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="shortcut icon" href="../assets/Favicon.png" type="image/x-icon">
   </head>
-  <script src="../js/LoadSideNavBar.js"></script>
+
   <body>
 <nav>
       <section class="nav-container">
@@ -88,7 +88,7 @@
         <div id="employee-top-container">
             <div id="employee-title">
                 <h1>Alkalmazottak</h1>
-                <button id="employee-top-button">+ Alkalmazott felvétele</button>
+                <button id="employee-top-button" onclick="openRecruitmentModal()">+ Alkalmazott felvétele</button>
             </div>
             <p>Itt kezelhetőek alkalmazottjai, és itt vehet fel ujakat.</p>
         </div>
@@ -117,30 +117,30 @@
     </div>
 
     <!-- Employee Recruitment Modal -->
-    <div id="employee-modal" class="employee-modal">
+    <div id="recruitment-modal" class="employee-modal">
       <div class="employee-modal-content">
         <div class="employee-modal-header">
           <h2>Alkalmazott felvétele</h2>
-          <button class="employee-modal-close" onclick="closeEmployeeModal()">&times;</button>
+          <button class="employee-modal-close" onclick="closeRecruitmentModal()">&times;</button>
         </div>
         <div class="employee-modal-body">
-          <form id="employee-form">
+          <form id="recruitment-form">
             <div class="employee-form-group">
-              <label for="employee-name">Alkalmazott neve:</label>
-              <input
-                type="text"
-                id="employee-name"
+              <label for="available-employees">Alkalmazott kiválasztása:</label>
+              <select
+                id="available-employees"
                 class="employee-form-input"
-                placeholder="pl. Kiss János"
                 required
-              />
+              >
+                <option value="">-- Válasszon alkalmazottat --</option>
+              </select>
             </div>
 
             <div class="employee-form-group">
-              <label for="employee-position">Munkakör:</label>
+              <label for="recruitment-position">Munkakör:</label>
               <input
                 type="text"
-                id="employee-position"
+                id="recruitment-position"
                 class="employee-form-input"
                 placeholder="pl. kútfúró"
                 required
@@ -151,25 +151,57 @@
               <button
                 type="button"
                 class="employee-modal-btn employee-modal-btn-submit"
-                onclick="addEmployee()"
+                onclick="submitRecruitment()"
               >
-                Alkalmazott hozzáadása
+                Alkalmazott felvétele
               </button>
               <button
                 type="button"
                 class="employee-modal-btn employee-modal-btn-cancel"
-                onclick="closeEmployeeModal()"
+                onclick="closeRecruitmentModal()"
               >
                 Mégse
               </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Change Position Modal -->
+    <div id="position-modal" class="employee-modal">
+      <div class="employee-modal-content">
+        <div class="employee-modal-header">
+          <h2>Pozíció módosítása</h2>
+          <button class="employee-modal-close" onclick="closePositionModal()">&times;</button>
+        </div>
+        <div class="employee-modal-body">
+          <form id="position-form">
+            <div class="employee-form-group">
+              <label for="new-position">Új munkakör:</label>
+              <input
+                type="text"
+                id="new-position"
+                class="employee-form-input"
+                placeholder="pl. kútfúró"
+                required
+              />
+            </div>
+
+            <div class="employee-modal-buttons">
               <button
                 type="button"
-                class="employee-modal-btn employee-modal-btn-delete"
-                id="employee-delete-btn"
-                onclick="deleteEmployee()"
-                style="display: none;"
+                class="employee-modal-btn employee-modal-btn-submit"
+                onclick="submitPositionChange()"
               >
-                Törlés
+                Pozíció mentése
+              </button>
+              <button
+                type="button"
+                class="employee-modal-btn employee-modal-btn-cancel"
+                onclick="closePositionModal()"
+              >
+                Mégse
               </button>
             </div>
           </form>
@@ -178,194 +210,258 @@
     </div>
   </body>
   <script src="../js/ShowAlert.js"></script>
+    <script src="../js/LoadSideNavBar.js"></script>
       <script src="../js/manageNav.js"></script>
       <script src="../js/addUser.js"></script>
+      <script src="../js/employeeModal.js"></script>
   <script>
-    const img = document.querySelectorAll("img");
-    img.forEach((item) => {
-      item.classList.add("svg-invert");
-    });
 
-    // Employee Modal Functions
-    const employeeModal = document.getElementById("employee-modal");
-    const employeeTopButton = document.getElementById("employee-top-button");
-
-    // Open modal
-    employeeTopButton.addEventListener("click", function () {
-      employeeModal.style.display = "flex";
-      document.getElementById("employee-name").focus();
-    });
-
-    // Close modal
-    function closeEmployeeModal() {
-      employeeModal.style.display = "none";
-      document.getElementById("employee-form").reset();
-      
-      // Reset modal to default (add new employee) mode
-      const modalHeader = document.querySelector(".employee-modal-header h2");
-      modalHeader.textContent = "Alkalmazott felvétele";
-      
-      const submitBtn = document.querySelector(".employee-modal-btn-submit");
-      submitBtn.textContent = "Alkalmazott hozzáadása";
-      submitBtn.dataset.isModifying = "false";
-      delete submitBtn.dataset.employeeId;
-      
-      // Hide delete button
-      const deleteBtn = document.getElementById("employee-delete-btn");
-      deleteBtn.style.display = "none";
-    }
-
-    // Close modal when clicking outside
-    employeeModal.addEventListener("click", function (event) {
-      if (event.target === employeeModal) {
-        closeEmployeeModal();
-      }
-    });
-
-    // Add employee
-    function addEmployee() {
-      const nameInput = document.getElementById("employee-name");
-      const positionInput = document.getElementById("employee-position");
-      const submitBtn = document.querySelector(".employee-modal-btn-submit");
-
-      // Trim whitespace
-      const name = nameInput.value.trim();
-      const position = positionInput.value.trim();
-
-      // Validate fields
-      if (!name || !position) {
-        ShowAlert("Kerjük töltsön ki minden mezőt", "alert")
-        return;
-      }
-
-      // Check if we're modifying or adding
-      const isModifying = submitBtn.dataset.isModifying === "true";
-      
-      if (isModifying) {
-        // Modify existing employee
-        const employeeId = parseInt(submitBtn.dataset.employeeId);
-        let UsersList = JSON.parse(localStorage.getItem("Users"));
-        
-        for (let user of UsersList) {
-          if (user.id === employeeId) {
-            user.name = name;
-            user.role = position;
-            break;
-          }
+const employeeListContainer = document.getElementById("employee-list-container");
+    function loadEmployees() {
+      var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://78.92.125.103:6969/api/employee/cegId/", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        if (!response.employees) {
+          employeeListContainer.innerHTML = `<p style="text-align: center">Nincsenek felvett alkalmazottak</p>`;
+          return;
+        } else {
+          var employees = response.employees; // Feltételezve, hogy a válaszban van egy "employees" mező
+          employeeListContainer.innerHTML = "";
+          employees.forEach(function (employee) {
+            loadEmployee(employee.Profile_ID, employee.position);
+          });
         }
         
-        localStorage.setItem("Users", JSON.stringify(UsersList));
-        ShowAlert("Alkalmazott sikeresen módosítva", "success");
-        window.location.reload();
-      } else {
-        // Create new employee
-        CreateUser(name, position)
-        ShowAlert("Sikeres alkalmazottfelvétel", "success")
-        window.location.reload()
-      }
 
-      // Clear form and close modal
-      closeEmployeeModal();
     }
+  };
+}
 
-    // Delete employee function
-    function deleteEmployee() {
-      const deleteBtn = document.getElementById("employee-delete-btn");
-      const employeeId = parseInt(deleteBtn.dataset.employeeId);
-      
-      // Confirm deletion
-      const confirmDelete = confirm("Biztosan szeretne törölni ezt az alkalmazottat?");
-      
-      if (!confirmDelete) {
-        return;
-      }
-      
-      // Get users from localStorage
-      let UsersList = JSON.parse(localStorage.getItem("Users"));
-      
-      // Filter out the employee to delete
-      UsersList = UsersList.filter(user => user.id !== employeeId);
-      
-      // Update localStorage
-      localStorage.setItem("Users", JSON.stringify(UsersList));
-      
-      ShowAlert("Alkalmazott sikeresen törölve", "success");
-      window.location.reload();
-    }
+  xhr.send(
+    JSON.stringify({
+      companyId: sessionStorage.getItem("SelectedCompany"),
+    }),
+  );
+  }
 
-
-
-
-    function LoadEmployees() {
-      console.log("Load employee fut")
-      const Emloyees = JSON.parse(localStorage.getItem("Users"))
-      const container = document.getElementById("employee-list-container");
-      if(Emloyees == null || Emloyees.length <=0) {
-        container.innerHTML = `<p style="text-align: center">Nincsenek felvett alkalmazottak</p>`
-        console.log("Load employee fut ---- nincs alaklmazott")
-      } else {
-        for(const element of Emloyees) {
-          console.log("Load employee fut -- vav alkalmazott, betoltesi genyo")
-          div = document.createElement("div")
+  function loadEmployee(profileid, position) {
+    console.log(profileid);
+    var xhr = new XMLHttpRequest();
+    const container = document.getElementById("employee-list-container");
+  xhr.open("POST", "http://78.92.125.103:6969/api/profiles/id/", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        console.log(response);
+        var employee = response.user; // Feltételezve, hogy a válaszban van egy "profile" mező
+        div = document.createElement("div")
           div.classList.add("employee-item")
           div.innerHTML += `<div class="employee-item-inner">
                     <img src="../assets/people.svg" alt="" />
                     <div class="employee-item-text">
-                        <h2>${element.name}</h2>
-                        <p>Pozíció: - <span class="doc-date">${element.role}</span></p>
+                        <h2>${employee.Name || employee.name}</h2>
+                        <p>Pozíció: - <span class="doc-date">${position || employee.position || employee.role || "N/A"}</span></p>
                     
                     </div>
                 </div>
                 <div class="employee-item-buttons">
                     <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="employee-item-button">Üzenet</button>
-                    <button onclick="ModifyEmployee(${element.id})" class="employee-item-button">Kezelés</button>
+                    <button onclick="ModifyEmployee(${profileid|| employee.ID})" class="employee-item-button">Kezelés</button>
+                </div>`
+
+                container.appendChild(div)
+
+
+      }
+    }
+  };
+  console.log(profileid);
+  xhr.send(
+    JSON.stringify({
+      "id": profileid,
+    }),
+  );
+}
+
+  loadEmployees();
+
+
+  function openRecruitmentModal() {
+    const modal = document.getElementById("recruitment-modal");
+    if (modal) {
+      modal.style.display = "flex";
+      document.getElementById("recruitment-form").reset();
+      // Load available employees when modal opens
+      const select = document.getElementById("available-employees");
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://78.92.125.103:6969/api/availableEmployees/private/", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.success && response.users && response.users.length > 0) {
+              populateEmployeesDropdown(response.users);
+            }
+          }
+        } else {
+          console.error("Hiba történt az elérhető alkalmazottak lekérésekor:", xhr.statusText);
+        }
+      };
+
+      xhr.send(JSON.stringify({}));
+    }
+  }
+
+  function closeRecruitmentModal() {
+    const modal = document.getElementById("recruitment-modal");
+    if (modal) {
+      modal.style.display = "none";
+      document.getElementById("recruitment-form").reset();
+    }
+  }
+
+  function openPositionModal() {
+    const modal = document.getElementById("position-modal");
+    if (modal) {
+      modal.style.display = "flex";
+      document.getElementById("position-form").reset();
+      
+
+    }
+  }
+
+  function populateEmployeesDropdown(employees) {
+    const select = document.getElementById("available-employees");
+    select.innerHTML = '<option value="">-- Válasszon --</option>';
+    employees.forEach(employee => {
+      const option = document.createElement("option");
+      option.value = employee.ID; // Feltételezve, hogy az ID mező "id" néven van
+      option.textContent = employee.name; // Feltételezve, hogy a név mező "name" néven van
+      select.appendChild(option);
+    });
+  }
+
+  function closePositionModal() {
+    const modal = document.getElementById("position-modal");
+    if (modal) {
+      modal.style.display = "none";
+      document.getElementById("position-form").reset();
+    }
+  }
+
+  function submitRecruitment() {
+    // Validate the form
+    const validation = validateRecruitmentForm();
+
+    if (!validation.isValid) {
+      ShowAlert(validation.errorMessage, "alert");
+      return;
+    } else {
+
+
+      const employeeId = document.getElementById("available-employees").value;
+      const position = document.getElementById("recruitment-position").value;
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://78.92.125.103:6969/api/addEmployee", true);
+      // Implement this function to get the employee ID for whom the position is being changed
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+        console.log("Adatok a felvetelhez: " + employeeId + " " + position);
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.success) {
+              ShowAlert("Alkalmazott felvéve", "success");
+              closeRecruitmentModal();
+              loadEmployees(); // Refresh the employee list to show updated position
+            } else {
+              ShowAlert("Hiba történt a alkalmazott felvételekor: " + response.message, "alert");
+            }
+          } else {
+            ShowAlert("Hiba történt az alkalmazott felvételkor: " + xhr.statusText, "alert");
+          }
+        }
+      };
+          xhr.send(JSON.stringify({
+      "profileid": employeeId,
+      "companyid": sessionStorage.getItem("SelectedCompany"),
+      "position": position
+    }));
+    }
+
+
+    // Get form values
+    const employeeId = getSelectedEmployeeId();
+    const position = getRecruitmentPosition();
+
+    console.log("Recruitment submitted:", { employeeId, position });
+    
+    // TODO: Implement API call to add employee to company
+    // Example:
+    // addEmployeeToCompany(employeeId, position);
+  }
+
+  function submitPositionChange() {
+    // Validate the form
+    const validation = validatePositionForm();
+
+
+
+    // Get form values
+    const newPosition = getNewPosition();
+
+    console.log("Position change submitted:", { newPosition });
+    
+    // TODO: Implement API call to update employee position
+    // Example:
+    // updateEmployeePosition(employeeId, newPosition);
+  }
+
+  function ModifyEmployee(employeeId) {
+    // Open the position change modal and store the employee ID for later use
+    openPositionModal(employeeId);
+    // You can store the employeeId in a global variable or in a hidden input field in the modal for later use when submitting the position change
+  }
+
+/*
+    function LoadEmployees() {
+      console.log("Load employee fut")
+      const container = document.getElementById("employee-list-container");
+      
+      if (allEmployees == null || allEmployees.length <= 0) {
+        container.innerHTML = `<p style="text-align: center">Nincsenek felvett alkalmazottak</p>`
+        console.log("Load employee fut ---- nincs alkalmazott")
+      } else {
+        container.innerHTML = "";
+        for(const element of allEmployees) {
+          console.log("Load employee fut -- van alkalmazott, betöltési genyo")
+          div = document.createElement("div")
+          div.classList.add("employee-item")
+          div.innerHTML += `<div class="employee-item-inner">
+                    <img src="../assets/people.svg" alt="" />
+                    <div class="employee-item-text">
+                        <h2>${element.Name || element.name}</h2>
+                        <p>Pozíció: - <span class="doc-date">${element.Position || element.role || "N/A"}</span></p>
+                    
+                    </div>
+                </div>
+                <div class="employee-item-buttons">
+                    <button onclick="ShowAlert('Még nem elkészült funkcio', 'alert')" class="employee-item-button">Üzenet</button>
+                    <button onclick="ModifyEmployee(${element.Employee_ID || element.id})" class="employee-item-button">Kezelés</button>
                 </div>`
 
                 container.appendChild(div)
         }
       }
-    }
+    }*/
 
-    function ModifyEmployee(EmployeeId) {
-      UsersList = JSON.parse(localStorage.getItem("Users"))
-      ModifUser = UsersList[0]
-      for(let User of UsersList) {
-        if(User.id == EmployeeId) {
-          ModifUser = User
-          console.log(User)
-          
-          // Open modal
-          employeeModal.style.display = "flex";
-          
-          // Fill input fields with employee data
-          document.getElementById("employee-name").value = User.name;
-          document.getElementById("employee-position").value = User.role;
-          
-          // Change modal header title
-          const modalHeader = document.querySelector(".employee-modal-header h2");
-          modalHeader.textContent = "Alkalmazott módosítása";
-          
-          // Change submit button text
-          const submitBtn = document.querySelector(".employee-modal-btn-submit");
-          submitBtn.textContent = "Módosítás";
-          
-          // Store employee ID for modification
-          submitBtn.dataset.employeeId = EmployeeId;
-          submitBtn.dataset.isModifying = "true";
-          
-          // Show delete button
-          const deleteBtn = document.getElementById("employee-delete-btn");
-          deleteBtn.style.display = "block";
-          deleteBtn.dataset.employeeId = EmployeeId;
-          
-          // Focus on name field
-          document.getElementById("employee-name").focus();
-          
-          break;
-        }
-      }
-    }
-
-    LoadEmployees()
   </script>
 </html>
