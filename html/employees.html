@@ -189,6 +189,9 @@
             </div>
 
             <div class="employee-modal-buttons">
+              <button type="button" class="employee-modal-btn employee-modal-btn-fire" onclick="fireEmployee()">
+                Kirúgás
+              </button>
               <button
                 type="button"
                 class="employee-modal-btn employee-modal-btn-submit"
@@ -215,6 +218,13 @@
       <script src="../js/addUser.js"></script>
       <script src="../js/employeeModal.js"></script>
   <script>
+
+function refreshPage() {
+  window.location.reload();
+  console.log("Page refreshed");
+  closePositionModal();
+  closeRecruitmentModal();
+}
 
 const employeeListContainer = document.getElementById("employee-list-container");
     function loadEmployees() {
@@ -328,14 +338,46 @@ const employeeListContainer = document.getElementById("employee-list-container")
     }
   }
 
-  function openPositionModal() {
+  function openPositionModal(id) {
     const modal = document.getElementById("position-modal");
     if (modal) {
       modal.style.display = "flex";
       document.getElementById("position-form").reset();
+      saveId(id)
       
 
     }
+  }
+
+  function saveId(id) {
+    sessionStorage.setItem("SelectedEmployeeForRoleChange", id);
+  }
+
+  function fireEmployee() {
+    const employeeId = sessionStorage.getItem("SelectedEmployeeForRoleChange");
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://78.92.125.103:6969/api/deleteEmployee", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          if (response.success) {
+            ShowAlert("Alkalmazott kirúgva", "success");
+            closePositionModal();
+            refreshPage(); // Refresh the page after successful operation
+          } else {
+            ShowAlert(": " + response.message, "success");
+            refreshPage();
+          }
+        } else {
+          ShowAlert("Hiba történt az alkalmazott kirúgásakor: " + xhr.statusText, "alert");
+        }
+      }
+    };
+    xhr.send(JSON.stringify({
+      "employeeid": employeeId
+    }));
   }
 
   function populateEmployeesDropdown(employees) {
@@ -381,9 +423,10 @@ const employeeListContainer = document.getElementById("employee-list-container")
             if (response.success) {
               ShowAlert("Alkalmazott felvéve", "success");
               closeRecruitmentModal();
-              loadEmployees(); // Refresh the employee list to show updated position
+              refreshPage(); // Refresh the page after successful operation
             } else {
-              ShowAlert("Hiba történt a alkalmazott felvételekor: " + response.message, "alert");
+              ShowAlert("" + response.message, "success");
+              refreshPage();
             }
           } else {
             ShowAlert("Hiba történt az alkalmazott felvételkor: " + xhr.statusText, "alert");
@@ -403,13 +446,14 @@ const employeeListContainer = document.getElementById("employee-list-container")
     const position = getRecruitmentPosition();
 
     console.log("Recruitment submitted:", { employeeId, position });
+
     
     // TODO: Implement API call to add employee to company
     // Example:
     // addEmployeeToCompany(employeeId, position);
   }
 
-  function submitPositionChange() {
+  function submitPositionChange(selectedEmployeeId) {
     // Validate the form
     const validation = validatePositionForm();
 
@@ -420,10 +464,38 @@ const employeeListContainer = document.getElementById("employee-list-container")
 
     console.log("Position change submitted:", { newPosition });
     
+    xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://78.92.125.103:6969/api/employee/modifyrole", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.success) {
+              ShowAlert("Pozíció módosítva", "success");
+              closePositionModal();
+              refreshPage(); // Refresh the page after successful operation
+            } else {
+              ShowAlert("" + response.message, "success");
+              refreshPage();
+            }
+          } else {
+            ShowAlert("Hiba történt a pozíció módosításakor: " + xhr.statusText, "alert");
+          }
+        }
+      };
+          xhr.send(JSON.stringify({
+      "userId": sessionStorage.getItem("SelectedEmployeeForRoleChange"),
+      "newPosition": newPosition
+          }));
+      };
+      
+
+
     // TODO: Implement API call to update employee position
     // Example:
     // updateEmployeePosition(employeeId, newPosition);
-  }
+  
 
   function ModifyEmployee(employeeId) {
     // Open the position change modal and store the employee ID for later use

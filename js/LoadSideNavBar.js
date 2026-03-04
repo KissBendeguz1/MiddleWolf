@@ -116,6 +116,13 @@ function LoadNavPrivate() {
 function LoadNavCeges() {
   console.log("LoadNavCeges futtatva");
   const sideNavBarHTML = `<hr id="logged_in_navbar_hr">
+      <a href="../html/company-register.html">
+                <div class="sidebar-item">
+                  <img class="sidebar-icon" src="../assets/dashboard.svg" alt="" />
+                  <h2>Cégek</h2>
+                </div>
+                
+            </a>
             <a href="../html/logged-in-index.html">
                 <div class="sidebar-item">
                   <img class="sidebar-icon" src="../assets/dashboard.svg" alt="" />

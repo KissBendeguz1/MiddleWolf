@@ -98,6 +98,7 @@
       </div>
     </div>
   </body>
+  <script src="../js/ShowAlert.js"></script>
   <script>
     function LoadCompanyRegister() {
       const existingCompanysSection = document.getElementById(
@@ -124,7 +125,7 @@
               existingCompanysSection.appendChild(companyElement);
               companyElement.addEventListener("click", function () {
                 // Itt lehetne egy API hívást tenni, hogy lekérjük a cég részletes adatait és megjelenítsük azokat egy új oldalon vagy egy modális ablakban
-                alert(`Cég neve: ${company.CompanyName}\nCég címe: ${company.Address}`);
+                ShowAlert(`Cég kiválasztva: ${company.CompanyName}`, "success");
                 sessionStorage.setItem("SelectedCompany", JSON.stringify(company.Company_ID));
               });
             });
