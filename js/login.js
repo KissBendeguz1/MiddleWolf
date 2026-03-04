@@ -79,7 +79,7 @@ submitBtn.addEventListener("click", (e) => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200 || xhr.status === 201) {
           sessionStorage.setItem("Register", "true");
-          alert("Sikeres regisztráció!");
+          ShowAlert("Sikeres regisztráció!", "success");
         } else {
           if (!allFilled) {
             ShowAlert("Valamelyik mező üresen maradt!", "alert");
@@ -112,7 +112,7 @@ submitBtn.addEventListener("click", (e) => {
             ShowAlert("Hibás Név, Email vagy jelszó!", "alert");
           }
         } else {
-          alert("Szerver hiba történt: " + xhr.status);
+          ShowAlert("Szerver hiba történt: " + xhr.status, "alert");
         }
       }
     };
