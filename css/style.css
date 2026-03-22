@@ -1143,8 +1143,7 @@ body.dark-mode .index-middle-item img {
 .form-group input[type="email"],
 .form-group input[type="password"],
 .form-group input[type="number"],
-.form-group input[type="tel"],
-.form-group select {
+.form-group input[type="tel"] {
   padding: 14px 16px;
   border: 2px solid var(--blue-color);
   border-radius: 10px;
@@ -1161,8 +1160,7 @@ body.dark-mode .index-middle-item img {
 .form-group input[type="email"]:focus,
 .form-group input[type="password"]:focus,
 .form-group input[type="number"]:focus,
-.form-group input[type="tel"]:focus,
-.form-group select:focus {
+.form-group input[type="tel"]:focus {
   outline: none;
   border-color: var(--blue-color);
   background-color: var(--white-color);
