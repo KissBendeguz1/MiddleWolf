@@ -234,25 +234,36 @@ function LoadDocumentToUI(id, title, date, content) {
     container.insertAdjacentElement("beforeend", docElement);
 }
 
-function torles(id){
-  var xhrDelete = new XMLHttpRequest();
-xhrDelete.open('POST', `${API_BASE_URL}/docs/delete/`,true);
-xhrDelete.setRequestHeader("Content-Type", "application/json");
+function torles(docid) {
+    console.log("Törlés indítása, ID:", docid);
 
-xhrDelete.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        alert("Sikeres törlés!");
-      } else {
-        console.error("Szerver hiba:", xhr.responseText);
-        alert("Szerver hiba: " + xhr.responseText);
-      }
+    // Megerősítés a felhasználótól (biztonsági lépés)
+    if (!confirm("Biztosan törölni szeretnéd ezt a dokumentumot?")) {
+        return;
     }
 
+    var xhrDelete = new XMLHttpRequest();
+    xhrDelete.open('POST', `${API_BASE_URL}/docs/delete/`, true);
+    xhrDelete.setRequestHeader("Content-Type", "application/json");
+
+    xhrDelete.onreadystatechange = function () {
+        // Figyelem: Itt xhrDelete-et kell használni, nem xhr-t!
+        if (xhrDelete.readyState === 4) {
+            if (xhrDelete.status === 200) {
+                alert("Sikeres törlés!");
+                // Frissítsük az oldalt, hogy eltűnjön a törölt elem
+                location.reload(); 
+            } else {
+                console.error("Szerver hiba:", xhrDelete.responseText);
+                alert("Hiba történt a törlés során!");
+            }
+        }
+    };
+
+    // A .send()-nek a függvényen KÍVÜL kell lennie!
     xhrDelete.send(JSON.stringify({
-      id: id
+        id: docid
     }));
-  };
 }
 
 function OpenDocument(title, content) {
