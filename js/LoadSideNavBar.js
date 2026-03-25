@@ -198,18 +198,71 @@ document.addEventListener("DOMContentLoaded", (e) => {
   }
 });
 
+// Global logout action handler
+let logoutConfirmed = false;
+
+function openLogoutConfirmModal() {
+  // Create modal if it doesn't exist
+  if (!document.getElementById("logout-confirm-modal")) {
+    const modalHTML = `
+      <div id="logout-confirm-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Kijelentkezés</h2>
+            <span class="close-modal" onclick="closeLogoutConfirmModal()">&times;</span>
+          </div>
+          <div class="modal-body">
+            <p>Biztos, hogy ki szeretnél jelentkezni?</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn-cancel" onclick="closeLogoutConfirmModal()">Mégsem</button>
+            <button class="employee-modal-btn employee-modal-btn-submit" onclick="confirmLogout()">Igen, kijelentkezem</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML("beforeend", modalHTML);
+  }
+
+  const modal = document.getElementById("logout-confirm-modal");
+  if (modal) {
+    modal.style.display = "flex";
+  }
+}
+
+function closeLogoutConfirmModal() {
+  const modal = document.getElementById("logout-confirm-modal");
+  if (modal) {
+    modal.style.display = "none";
+  }
+}
+
+function confirmLogout() {
+  if (localStorage.getItem("darkMode") === "true") {
+    localStorage.removeItem("Profile");
+  } else {
+    localStorage.clear();
+  }
+  sessionStorage.clear();
+  window.location.href = "../html/index.html";
+}
+
 account_log_in_out[0].addEventListener("click", (e) => {
   if (sessionStorage.getItem("Login") === "true") {
     e.preventDefault();
-    if (localStorage.getItem("darkMode") === "true") {
-      localStorage.removeItem("Profile");
-    } else {
-      localStorage.clear();
-    }
-    sessionStorage.clear();
-    window.location.href = "../html/index.html";
+    openLogoutConfirmModal();
   }
 });
+
+// Close modal when clicking backdrop
+if (document.body) {
+  document.body.addEventListener("click", function (e) {
+    const logoutModal = document.getElementById("logout-confirm-modal");
+    if (logoutModal && e.target === logoutModal) {
+      closeLogoutConfirmModal();
+    }
+  });
+}
 
 /*if (sessionStorage.getItem("Type") === "Ceges") { */
 /* const sideNavBarHTML = `<hr id="logged_in_navbar_hr">
