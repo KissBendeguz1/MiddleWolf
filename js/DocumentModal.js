@@ -389,6 +389,7 @@ function addDocumentToUI(title, date) {
 
   // Az elejére szúrjuk be
   container.insertAdjacentHTML("afterbegin", docHTML);
+  window.location.reload();
 }
 
 // DocumentModal.js
