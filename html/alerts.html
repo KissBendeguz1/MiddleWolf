@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="../assets/Favicon.png" type="image/x-icon">
   </head>
   <script src="../js/config.js"></script>
+    <script src="../js/ShowAlert.js"></script>
   <body>
 <nav>
       <section class="nav-container">
@@ -302,7 +303,7 @@
             if (xhrCreate.readyState === 4) {
               if (xhrCreate.status === 200 || xhrCreate.status === 201) {
                 console.log("Alert sikeresen létrehozva!");
-                alert("Értesítés sikeresen elküldve!");
+                ShowAlert("Értesítés sikeresen elküldve!", "success");
                 closeAlertModal();
                 // Opcional: Újra betöltjük az értesítéseket
                 LoadNotifications();
@@ -314,7 +315,7 @@
           };
           xhrCreate.onerror = function() {
             console.error("Alert creation XHR error!");
-            alert("Hálózati hiba az értesítés küldésekor!");
+            ShowAlert("Hálózati hiba az értesítés küldésekor!", "success");
           };
           xhrCreate.send(JSON.stringify({
             title: title,

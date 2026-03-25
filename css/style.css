@@ -1946,28 +1946,27 @@ body.dark-mode .index-middle-item img {
   }
 }
 
-  .login-form-container {
-    padding: 30px;
-  }
+.login-form-container {
+  padding: 30px;
+}
 
-  .login-header h1 {
-    font-size: 2em;
-  }
+.login-header h1 {
+  font-size: 2em;
+}
 
-  .radio-group {
-    flex-direction: column;
-    gap: 15px;
-  }
+.radio-group {
+  flex-direction: column;
+  gap: 15px;
+}
 
-  .login-buttons {
-    flex-direction: column;
-  }
+.login-buttons {
+  flex-direction: column;
+}
 
-  .btn-submit,
-  .btn-primary {
-    width: 100%;
-  }
-
+.btn-submit,
+.btn-primary {
+  width: 100%;
+}
 
 /* Dark mode for iframe (maps) */
 iframe {
@@ -3819,6 +3818,13 @@ p {
   flex: 1;
 }
 
+.modal-body p {
+  margin: 0;
+  color: var(--text-color);
+  line-height: 1.5;
+  font-size: 15px;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -3887,7 +3893,7 @@ p {
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-
+  box-sizing: border-box;
 }
 
 .btn-submit {
@@ -3934,13 +3940,13 @@ p {
   font-weight: 600;
   margin-top: 20px;
   transition: all 0.3s ease-in-out;
-  box-shadow: #A1C6EA 2px 2px 3px 1px;
+  box-shadow: #a1c6ea 2px 2px 3px 1px;
 }
 
 #create-alert-btn:hover {
   background-color: #45a049;
   transform: scale(1.05);
-  box-shadow: #A1C6EA 4px 4px 6px 2px;
+  box-shadow: #a1c6ea 4px 4px 6px 2px;
 }
 
 #create-alert-btn:active {

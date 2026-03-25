@@ -211,6 +211,23 @@
         </div>
       </div>
     </div>
+
+    <!-- Confirm Modal -->
+    <div id="confirm-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="confirm-title">Megerősítés szükséges</h2>
+          <span class="close-modal" onclick="closeConfirmModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+          <p id="confirm-message">Biztos, hogy ezt a műveletet szeretnéd végrehajtani?</p>
+        </div>
+        <div class="modal-footer">
+          <button id="confirm-cancel" class="btn-cancel" onclick="closeConfirmModal()">Mégsem</button>
+          <button id="confirm-accept" class="employee-modal-btn employee-modal-btn-submit" onclick="executeConfirmedAction()">Igen, biztosan</button>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="../js/ShowAlert.js"></script>
     <script src="../js/LoadSideNavBar.js"></script>
@@ -353,7 +370,42 @@ const employeeListContainer = document.getElementById("employee-list-container")
     sessionStorage.setItem("SelectedEmployeeForRoleChange", id);
   }
 
+  let pendingAction = null;
+
+  function openConfirmModal(title, message, action) {
+    const modal = document.getElementById("confirm-modal");
+    document.getElementById("confirm-title").textContent = title;
+    document.getElementById("confirm-message").textContent = message;
+    pendingAction = action;
+    if (modal) {
+      modal.style.display = "flex";
+    }
+  }
+
+  function closeConfirmModal() {
+    const modal = document.getElementById("confirm-modal");
+    pendingAction = null;
+    if (modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  function executeConfirmedAction() {
+    if (pendingAction === "fire") {
+      executeFireEmployee();
+    }
+    closeConfirmModal();
+  }
+
   function fireEmployee() {
+    openConfirmModal(
+      "Alkalmazott kirúgása",
+      "Biztos, hogy ki szeretnéd rugni ezt az alkalmazottat? Ez a művelet nem visszavonható!",
+      "fire"
+    );
+  }
+
+  function executeFireEmployee() {
     const employeeId = sessionStorage.getItem("SelectedEmployeeForRoleChange");
     const xhr = new XMLHttpRequest();
     xhr.open("POST", `${API_BASE_URL}/deleteEmployee`, true);
