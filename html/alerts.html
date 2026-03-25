@@ -196,7 +196,7 @@
                     <div class="notification-item">
                       <div class="notification-header">
                         <h3>${alert.alert_Title}</h3>
-                        <span class="notification-date">${new Date(alert.date).toLocaleDateString()}</span>
+
                       </div>
                       <p class="notification-content">${alert.alert_Body}</p>
                     </div>
@@ -232,7 +232,7 @@
                       <div class="notification-item">
                         <div class="notification-header">
                           <h3>${alert.alert_Title}</h3>
-                          <span class="notification-date">${new Date(alert.date).toLocaleDateString()}</span>
+
                         </div>
                         <p class="notification-content">${alert.alert_Body}</p>
                       </div>
@@ -254,7 +254,6 @@
         function LoadOwnerAlerts() {
           console.log("LoadOwnerAlerts futtatva");
           LoadEmployeeAlerts()
-          AddCreateButton()
         }
 
         function AddCreateButton() {
@@ -263,7 +262,7 @@
             const createBtn = document.createElement("button");
             createBtn.id = "create-alert-btn";
             createBtn.textContent = "Új Értesítés Létrehozása";
-            createBtn.style.cssText = "padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 20px;";
+            createBtn.style.cssText = "padding: 10px 20px; background-color: #A1C6EA; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 20px;";
             createBtn.addEventListener("click", openAlertModal);
             container.appendChild(createBtn);
           }
@@ -348,6 +347,11 @@
                 closeAlertModal();
               }
             });
+          }
+
+          // Létrehozás gomb csak az oldal betöltésekor (Owner típus esetén)
+          if (sessionStorage.getItem("Profile_Type") === "Owner") {
+            AddCreateButton();
           }
         });
 

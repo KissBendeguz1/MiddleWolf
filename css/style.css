@@ -3934,13 +3934,13 @@ p {
   font-weight: 600;
   margin-top: 20px;
   transition: all 0.3s ease-in-out;
-  box-shadow: #4caf50 2px 2px 3px 1px;
+  box-shadow: #A1C6EA 2px 2px 3px 1px;
 }
 
 #create-alert-btn:hover {
   background-color: #45a049;
   transform: scale(1.05);
-  box-shadow: #4caf50 4px 4px 6px 2px;
+  box-shadow: #A1C6EA 4px 4px 6px 2px;
 }
 
 #create-alert-btn:active {
