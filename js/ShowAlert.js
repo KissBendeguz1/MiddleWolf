@@ -1,4 +1,4 @@
-function ShowAlert(message, type) {
+export function ShowAlert(message, type) {
   // Store alert in sessionStorage for persistence after reload
   sessionStorage.setItem(
     "pendingAlert",
