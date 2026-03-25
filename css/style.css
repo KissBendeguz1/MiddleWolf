@@ -1358,6 +1358,7 @@ body.dark-mode .index-middle-item img {
   align-content: flex-start;
   gap: 15px;
   overflow-y: auto;
+  flex-direction: column;
 }
 
 .notification-container h1 {
@@ -1372,6 +1373,7 @@ body.dark-mode .index-middle-item img {
 }
 
 .notification-item {
+  
   background-color: var(--background-color);
   width: 48%;
   padding: 15px;

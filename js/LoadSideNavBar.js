@@ -66,6 +66,7 @@ function LoadNavPrivate() {
         ) {
           console.log("Alkalmazott, aki egy céghez tartozik");
           sessionStorage.setItem("SelectedCompany", response.employees.Comp_ID);
+          sessionStorage.setItem("Profile_Type", "Employee");
           const sideNavBarHTML = `<hr id="logged_in_navbar_hr">
 
             <a href="../html/docs.html">
@@ -95,6 +96,7 @@ function LoadNavPrivate() {
           sidebar.innerHTML += sideNavBarHTML;
         } else {
           console.log("Alkalmazott, aki nem tartozik egy céghez sem");
+          sessionStorage.setItem("Profile_Type", "Private");
           const sideNavBarHTML = `<hr id="logged_in_navbar_hr"> 
             <a href="../html/review.html">
                 <div class="sidebar-item">
@@ -119,6 +121,7 @@ function LoadNavPrivate() {
 
 function LoadNavCeges() {
   console.log("LoadNavCeges futtatva");
+  sessionStorage.setItem("Profile_Type", "Owner");
   const sideNavBarHTML = `<hr id="logged_in_navbar_hr">
       <a href="../html/company-register.html">
                 <div class="sidebar-item">

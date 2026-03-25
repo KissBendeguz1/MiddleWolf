@@ -83,9 +83,19 @@
             </div>
         </section>
         <section class="content-section">
-              <div class="notification-container">
-                    <h1 style="text-align: center;">Értesítések</h1>
-                    <div class="notification-item">
+             <div class="notification-container">
+                   <h1 style="text-align: center;">Személyes Értesítések</h1>
+
+                   <div id="notification-container-personal" class="notification-container-inner">
+                    <p>nincsenek értesítések</p>
+                   </div>
+                   <hr id="logged_in_navbar_hr">
+                   <h1 style="text-align: center;">Rendszer Értesítések</h1>
+                   <div id="notification-container-global" class="notification-container-inner">
+                    <p>nincsenek értesítések</p>
+                   </div>
+                   
+                  <!--    <div class="notification-item">
                       <div class="notification-header">
                         <h3>Új üzenet</h3>
                         <span class="notification-date">2026. január 27.</span>
@@ -105,11 +115,77 @@
                         <span class="notification-date">2026. január 25.</span>
                       </div>
                       <p class="notification-content">Karbantartás során az oldal rövid ideig elérhető nem lesz</p>
-                    </div>
+                    </div> -->
                   </div>
         </section>
     </div>
     <script src="../js/LoadSideNavBar.js"></script>
         <script src="../js/manageNav.js"></script>
+        <script>
+                  function ProfileType() {
+          if (sessionStorage.getItem("Profile_Type")) {
+            return sessionStorage.getItem("Profile_Type");
+          } else {
+            return null;
+          }
+        }
+
+        function LoadNotifications() {
+          const profileType = ProfileType();
+          if (profileType === "Employee") {
+            LoadEmployeeAlerts();
+            LoadGlobalAlerts();
+          } else if (profileType === "Owner") {
+            LoadOwnerAlerts();
+          } else {
+            LoadGlobalAlerts();
+          }
+        }
+
+        function LoadGlobalAlerts() {
+          xhr = new XMLHttpRequest();
+          console.log("LoadGlobalAlerts futtatva");
+          xhr.open("POST", `${API_BASE_URL}/alerts/global`, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.onreadystatechange = function () {
+            
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                console.log("Global alerts loaded successfully");
+                const response = JSON.parse(xhr.responseText);
+                console.log("Global alerts response:", response);
+                console.log("Global alerts response length:", response.length);
+                const alerts = response.alerts
+                const globalcontainer = document.getElementById("notification-container-global");
+                document.getElementById("notification-container-global").innerHTML = "";
+                for (let i = 0; i < alerts.length; i++) {
+                  const alert = alerts[i];
+                  const alertHTML = `
+                    <div class="notification-item">
+                      <div class="notification-header">
+                        <h3>${alert.alert_Title}</h3>
+                        <span class="notification-date">${new Date(alert.date).toLocaleDateString()}</span>
+                      </div>
+                      <p class="notification-content">${alert.alert_Body}</p>
+                    </div>
+                  `;
+                  document.getElementById("notification-container-global").innerHTML += alertHTML;
+                }
+              }
+            }
+          };
+          xhr.send(JSON.stringify({}));
+        }
+
+        function LoadEmployeeAlerts() {
+          console.log("LoadEmployeeAlerts futtatva");
+        }
+
+        function LoadOwnerAlerts() {
+          console.log("LoadOwnerAlerts futtatva");
+        }
+
+        LoadNotifications();
+        </script>
   </body>
 </html>
