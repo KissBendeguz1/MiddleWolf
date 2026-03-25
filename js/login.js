@@ -2,6 +2,7 @@ const Data = [];
 
 const Password_again = document.getElementById("Password_again");
 const Mobile = document.getElementById("Mobile");
+const Name = document.getElementById("Name");
 const title = document.getElementById("title");
 const submitBtn = document.getElementById("con_submit");
 submitBtn.innerHTML = "Regisztráció";
@@ -15,8 +16,10 @@ const profile_type = document.getElementById("profile_type");
 
 function Login() {
   title.innerHTML = "Bejelentkezés";
+  Name.style.display = "none";
   Password_again.style.display = "none";
   Mobile.style.display = "none";
+  con_email.placeholder = "Név/Email";
   document.getElementById("reg").classList.remove("active");
   document.getElementById("log").classList.add("active");
   document.getElementById("Profile_type").style.display = "none";
@@ -25,8 +28,10 @@ function Login() {
 
 function Registration() {
   title.innerHTML = "Regisztráció";
+  Name.style.display = "";
   Password_again.style.display = "";
   Mobile.style.display = "";
+  con_email.placeholder = "Email";
   document.getElementById("log").classList.remove("active");
   document.getElementById("reg").classList.add("active");
   document.getElementById("Profile_type").style.display = "";
