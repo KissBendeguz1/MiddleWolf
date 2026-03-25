@@ -211,7 +211,14 @@
       </div>
     </div>
 
-
+<div id="Box" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.9); z-index: 99999; justify-content: center; align-items: center;">
+    <div class="Box-content" style="background-color: #0b446c; padding: 40px; border-radius: 20px; width: 80%; max-width: 600px; color: white; text-align: center; box-shadow: 0 0 20px black;">
+        <h1 id="BoxH1" style="color: white; font-size: 24px;">Cím</h1>
+        <hr style="margin: 20px 0;">
+        <p id="BoxP" style="font-size: 18px; line-height: 1.5; max-height: 50vh; overflow-y: auto;">Tartalom...</p>
+        <button onclick="document.getElementById('Box').style.display='none'" style="margin-top: 30px; padding: 10px 20px; cursor: pointer; background: white; border: none; border-radius: 5px; font-weight: bold;">Bezárás</button>
+    </div>
+</div>
   </body>
   <script src="../js/Document.js"></script>
   <script src="../js/DocumentModal.js"></script>

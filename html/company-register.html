@@ -127,6 +127,7 @@
                 // Itt lehetne egy API hívást tenni, hogy lekérjük a cég részletes adatait és megjelenítsük azokat egy új oldalon vagy egy modális ablakban
                 ShowAlert(`Cég kiválasztva: ${company.CompanyName}`, "success");
                 sessionStorage.setItem("SelectedCompany", JSON.stringify(company.Company_ID));
+                window.location.reload();
               });
             });
           } else {
