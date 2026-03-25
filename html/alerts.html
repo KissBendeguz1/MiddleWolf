@@ -84,6 +84,7 @@
         </section>
         <section class="content-section">
              <div class="notification-container">
+              <div id="alert-create-button-container"></div>
                    <h1 style="text-align: center;">Személyes Értesítések</h1>
 
                    <div id="notification-container-personal" class="notification-container-inner">
@@ -94,6 +95,7 @@
                    <div id="notification-container-global" class="notification-container-inner">
                     <p>nincsenek értesítések</p>
                    </div>
+                   
                    
                   <!--    <div class="notification-item">
                       <div class="notification-header">
@@ -119,6 +121,35 @@
                   </div>
         </section>
     </div>
+
+    <!-- Modal az alert létrehozásához -->
+    <div id="alertModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Új Értesítés Létrehozása</h2>
+          <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+          <form id="alertForm">
+            <div class="form-group">
+              <label for="alertTitle">Cím:</label>
+              <input type="text" id="alertTitle" placeholder="Add meg az értesítés címét" required />
+            </div>
+            <div class="form-group">
+              <label for="alertBody">Szöveg:</label>
+              <textarea id="alertBody" placeholder="Add meg az értesítés szövegét" rows="5" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button id="alertFormCancel" class="btn-cancel">Mégse</button>
+          <button id="alertFormSubmit" type="button" class="employee-modal-btn employee-modal-btn-submit">
+                Alert közzététele
+              </button>
+        </div>
+      </div>
+    </div>
+
     <script src="../js/LoadSideNavBar.js"></script>
         <script src="../js/manageNav.js"></script>
         <script>
@@ -137,6 +168,7 @@
             LoadGlobalAlerts();
           } else if (profileType === "Owner") {
             LoadOwnerAlerts();
+            LoadGlobalAlerts();
           } else {
             LoadGlobalAlerts();
           }
@@ -179,11 +211,145 @@
 
         function LoadEmployeeAlerts() {
           console.log("LoadEmployeeAlerts futtatva");
+          const xhrEmployee = new XMLHttpRequest();
+          console.log("LoadEmployeeAlerts lekeres futtatva");
+          xhrEmployee.open("POST", `${API_BASE_URL}/alerts/company`, true);
+          xhrEmployee.setRequestHeader("Content-Type", "application/json");
+          xhrEmployee.onreadystatechange = function () {
+            if (xhrEmployee.readyState === 4) {
+              if (xhrEmployee.status === 200) {
+                console.log("EmployeeAlerts loaded successfully");
+                const response = JSON.parse(xhrEmployee.responseText);
+                console.log("EmployeeAlerts response:", response);
+                const alerts = response.alerts || response.data || response;
+                console.log("Alerts:", alerts);
+                const globalcontainer = document.getElementById("notification-container-personal");
+                globalcontainer.innerHTML = "";
+                if (Array.isArray(alerts) && alerts.length > 0) {
+                  for (let i = 0; i < alerts.length; i++) {
+                    const alert = alerts[i];
+                    const alertHTML = `
+                      <div class="notification-item">
+                        <div class="notification-header">
+                          <h3>${alert.alert_Title}</h3>
+                          <span class="notification-date">${new Date(alert.date).toLocaleDateString()}</span>
+                        </div>
+                        <p class="notification-content">${alert.alert_Body}</p>
+                      </div>
+                    `;
+                    globalcontainer.innerHTML += alertHTML;
+                  }
+                }
+              } else {
+                console.error("EmployeeAlerts error:", xhrEmployee.status, xhrEmployee.statusText);
+              }
+            }
+          };
+          xhrEmployee.onerror = function() {
+            console.error("EmployeeAlerts XHR error!");
+          };
+          xhrEmployee.send(JSON.stringify({"companyId": sessionStorage.getItem("SelectedCompany")}));
         }
 
         function LoadOwnerAlerts() {
           console.log("LoadOwnerAlerts futtatva");
+          LoadEmployeeAlerts()
+          AddCreateButton()
         }
+
+        function AddCreateButton() {
+          const container = document.getElementById("alert-create-button-container");
+          if (container) {
+            const createBtn = document.createElement("button");
+            createBtn.id = "create-alert-btn";
+            createBtn.textContent = "Új Értesítés Létrehozása";
+            createBtn.style.cssText = "padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 20px;";
+            createBtn.addEventListener("click", openAlertModal);
+            container.appendChild(createBtn);
+          }
+        }
+
+        // Modal kezelés
+        function openAlertModal() {
+          const modal = document.getElementById("alertModal");
+          if (modal) {
+            modal.style.display = "flex";
+            document.getElementById("alertTitle").value = "";
+            document.getElementById("alertBody").value = "";
+          }
+        }
+
+        function closeAlertModal() {
+          const modal = document.getElementById("alertModal");
+          if (modal) {
+            modal.style.display = "none";
+          }
+        }
+
+        function submitAlert() {
+          const title = document.getElementById("alertTitle").value.trim();
+          const body = document.getElementById("alertBody").value.trim();
+          const companyId = sessionStorage.getItem("SelectedCompany");
+
+          if (!title || !body) {
+            alert("Kérem töltsön ki mindkét mezőt!");
+            return;
+          }
+
+          const xhrCreate = new XMLHttpRequest();
+          xhrCreate.open("POST", `${API_BASE_URL}/alerts/create`, true);
+          xhrCreate.setRequestHeader("Content-Type", "application/json");
+          xhrCreate.onreadystatechange = function () {
+            if (xhrCreate.readyState === 4) {
+              if (xhrCreate.status === 200 || xhrCreate.status === 201) {
+                console.log("Alert sikeresen létrehozva!");
+                alert("Értesítés sikeresen elküldve!");
+                closeAlertModal();
+                // Opcional: Újra betöltjük az értesítéseket
+                LoadNotifications();
+              } else {
+                console.error("Alert creation error:", xhrCreate.status, xhrCreate.statusText);
+                alert("Hiba az értesítés küldésekor: " + xhrCreate.statusText);
+              }
+            }
+          };
+          xhrCreate.onerror = function() {
+            console.error("Alert creation XHR error!");
+            alert("Hálózati hiba az értesítés küldésekor!");
+          };
+          xhrCreate.send(JSON.stringify({
+            title: title,
+            body: body,
+            companyId: sessionStorage.getItem("SelectedCompany")
+          }));
+        }
+
+        // Modal event listener-ek
+        document.addEventListener("DOMContentLoaded", function() {
+          const modal = document.getElementById("alertModal");
+          const closeBtn = document.querySelector(".close-modal");
+          const cancelBtn = document.getElementById("alertFormCancel");
+          const submitBtn = document.getElementById("alertFormSubmit");
+
+          if (closeBtn) {
+            closeBtn.addEventListener("click", closeAlertModal);
+          }
+          if (cancelBtn) {
+            cancelBtn.addEventListener("click", closeAlertModal);
+          }
+          if (submitBtn) {
+            submitBtn.addEventListener("click", submitAlert);
+          }
+
+          // Modal bezárása, ha a háttérre kattintunk
+          if (modal) {
+            modal.addEventListener("click", function(event) {
+              if (event.target === modal) {
+                closeAlertModal();
+              }
+            });
+          }
+        });
 
         LoadNotifications();
         </script>
