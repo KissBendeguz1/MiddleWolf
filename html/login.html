@@ -169,4 +169,110 @@
     <script src="../js/ShowAlert.js"></script>
   </body>
   <script src="../js/manageNav.js"></script>
+  <script>
+    /**
+ * LoadSideNavBar.js - Csak a megjelenítésért és resizolásért felel.
+ * Minden API hívás és profil-alapú navigáció-módosítás eltávolítva.
+ */
+
+const darkModeScript = document.createElement("script");
+darkModeScript.src = "../js/DarkMode.js";
+document.head.appendChild(darkModeScript);
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Navigációs elemek kezelése (Be/Kijelentkezés szöveg)
+    const account_log_in_out = document.getElementsByClassName("account_log_in_out");
+    if (account_log_in_out.length > 0) {
+        if (sessionStorage.getItem("Login") === "true") {
+            account_log_in_out[0].innerHTML = "Kijelentkezés";
+            account_log_in_out[0].href = "#";
+            
+            // Logout esemény figyelő
+            account_log_in_out[0].addEventListener("click", (e) => {
+                e.preventDefault();
+                openLogoutConfirmModal();
+            });
+        } else {
+            account_log_in_out[0].innerHTML = "Bejelentkezés";
+        }
+    }
+
+    // Sidebar méretezés és hamburger menü indítása
+    ManageNavResize();
+});
+
+function ManageNavResize() {
+    const sidebar = document.querySelector(".sidebar-container");
+    const nav = document.querySelector(".nav-container");
+    
+    if (!sidebar || !nav) return;
+
+    // Hamburger menü gomb létrehozása
+    const menudiv = document.createElement("div");
+    menudiv.id = "sidemenuopen";
+    menudiv.classList.add("hidden");
+    menudiv.innerHTML = `
+        <svg class="svg-invert" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6H20M4 12H20M4 18H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>`;
+    
+    menudiv.addEventListener("click", () => {
+        sidebar.classList.toggle("hidden");
+    });
+
+    nav.prepend(menudiv);
+
+    // Képernyőméret figyelése
+    function checkLayout() {
+        const screenwidth = window.innerWidth;
+        if (screenwidth <= 1400) {
+            menudiv.classList.remove("hidden");
+            sidebar.classList.add("hidden");
+        } else {
+            menudiv.classList.add("hidden");
+            sidebar.classList.remove("hidden");
+        }
+    }
+
+    window.addEventListener("resize", checkLayout);
+    checkLayout(); // Első futtatás betöltéskor
+}
+
+// Logout Modul (Megmaradt a működéshez)
+function openLogoutConfirmModal() {
+    if (!document.getElementById("logout-confirm-modal")) {
+        const modalHTML = `
+          <div id="logout-confirm-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2>Kijelentkezés</h2>
+                <span class="close-modal" onclick="closeLogoutConfirmModal()">&times;</span>
+              </div>
+              <div class="modal-body"><p>Biztos, hogy ki szeretnél jelentkezni?</p></div>
+              <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeLogoutConfirmModal()">Mégsem</button>
+                <button class="employee-modal-btn employee-modal-btn-submit" onclick="confirmLogout()">Igen</button>
+              </div>
+            </div>
+          </div>`;
+        document.body.insertAdjacentHTML("beforeend", modalHTML);
+    }
+    document.getElementById("logout-confirm-modal").style.display = "flex";
+}
+
+function closeLogoutConfirmModal() {
+    const modal = document.getElementById("logout-confirm-modal");
+    if (modal) modal.style.display = "none";
+}
+
+function confirmLogout() {
+    if (localStorage.getItem("darkMode") === "true") {
+        localStorage.removeItem("Profile");
+    } else {
+        localStorage.clear();
+    }
+    sessionStorage.clear();
+    window.location.href = "../html/index.html";
+}
+  </script>
 </html>
