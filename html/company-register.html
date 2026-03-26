@@ -65,14 +65,6 @@
                 </div>
             </a>
           <div class="sidebar-bottom">
-            <div class="sidebar-item-container">
-              <a href="../html/login.html">
-              <div class="sidebar-item">
-
-              </div>
-              </a>
-            </div>
-            
             <div class="sidebar-settings">
               <img id="sidebar-setting" src="../assets/settings.png" alt="" />
                   <div>
@@ -80,7 +72,7 @@
                     <input type="checkbox" id="dark-mode-toggle">
                   </div>
             </div>
-        </div>
+          </div>
       </section>
     <div class="login-wrapper">
       <div class="login-header">
@@ -229,7 +221,7 @@ window.addEventListener("load", function () {
                 <label for="company-tax">Cég adószáma:</label>
                 <textarea id="company-tax" name="company-tax" required></textarea>
                 
-                <button type="submit">Regisztráció</button>
+                <button type="submit" style="color: var(--text-color)">Regisztráció</button>
             </form>
         `;
       companyRegisterSection.innerHTML += formHTML;
