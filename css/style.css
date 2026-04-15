@@ -1152,7 +1152,7 @@ body.dark-mode .index-middle-item img {
   font-size: 1em;
   font-family: inherit;
   transition: all 0.3s ease;
-  background-color: rgba(245, 245, 245, 0.5);
+  background-color: var(--white-color);
   box-shadow: var(--blue-color) 2px 2px 3px 1px;
   width: 100%;
   box-sizing: border-box;
@@ -3959,21 +3959,22 @@ p {
     margin-bottom: 5px;
     font-weight: 500;
     font-size: 14px;
-    color: #333;
+    color: var(--text-color);
 }
 
 /* A Select mező - ez felel a teljes kitöltésért */
 #Profile_type select {
-    width: 100%; /* Teljes szélesség, mint az inputnál */
-    height: 42px; /* Általános beviteli mező magasság */
-    padding: 8px 12px;
-    font-size: 14px;
-    font-family: inherit; /* Átveszi az oldal betűtípusát */
-    color: #333;
-    background-color: #fff;
-    border: 1px solid #ccc; /* Alapértelmezett vékony keret */
-    border-radius: 4px; /* Enyhe kerekítés, mint a képen */
-    box-sizing: border-box; /* Ez biztosítja, hogy a padding ne tolja szét */
+    padding: 14px 16px;
+    border: 2px solid var(--blue-color);
+    border-radius: 10px;
+    font-size: 1em;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background-color: var(--white-color);
+    box-shadow: var(--blue-color) 2px 2px 3px 1px;
+    width: 100%;
+    box-sizing: border-box;
+    color: var(--text-color);
     outline: none;
     cursor: pointer;
     
@@ -3985,22 +3986,24 @@ p {
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 16px;
-    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 /* Hover és Focus állapot a modern hatásért */
 #Profile_type select:hover {
-    border-color: #3498db;
+    border-color: var(--blue-color);
+    background-color: var(--white-color);
 }
 
 #Profile_type select:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2); /* Finom kék izzás */
+    border-color: var(--blue-color);
+    background-color: var(--white-color);
+    box-shadow: var(--blue-color) 4px 4px 6px 2px;
+    transform: translateY(-2px);
 }
 
 /* Az opciók listája */
 #Profile_type select option {
-    background-color: #fff;
-    color: #333;
+    background-color: var(--white-color);
+    color: var(--text-color);
     padding: 10px;
 }
