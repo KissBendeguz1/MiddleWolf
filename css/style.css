@@ -1149,6 +1149,7 @@ body.dark-mode .index-middle-item img {
   padding: 14px 16px;
   border: 2px solid var(--blue-color);
   border-radius: 10px;
+  color: var(--text-color);
   font-size: 1em;
   font-family: inherit;
   transition: all 0.3s ease;
@@ -1172,6 +1173,82 @@ body.dark-mode .index-middle-item img {
 
 .form-group input::placeholder {
   color: #999;
+}
+
+/* Password strength meter */
+.password-strength {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.strength-bar {
+  flex: 1;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.strength-bar::before {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 0%;
+  background-color: #ff4d4d;
+  transition: all 0.3s ease;
+}
+
+.strength-text {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Strength levels */
+.password-strength.weak .strength-bar::before {
+  width: 25%;
+  background-color: #ff4d4d;
+}
+
+.password-strength.medium .strength-bar::before {
+  width: 50%;
+  background-color: #ffa500;
+}
+
+.password-strength.strong .strength-bar::before {
+  width: 75%;
+  background-color: #4caf50;
+}
+
+.password-strength.very-strong .strength-bar::before {
+  width: 100%;
+  background-color: #2e7d32;
+}
+
+/* Password input container */
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-container input {
+  flex: 1;
+}
+
+.password-toggle {
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 1.2em;
+  user-select: none;
+  transition: opacity 0.3s ease;
+}
+
+.password-toggle:hover {
+  opacity: 0.7;
 }
 
 /* Radio buttons styling */

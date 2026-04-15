@@ -190,3 +190,77 @@ submitBtn.addEventListener("click", (e) => {
     );
   }
 });
+
+// Password strength meter
+function checkPasswordStrength(password) {
+  let score = 0;
+  const checks = {
+    length: password.length >= 8,
+    lower: /[a-z]/.test(password),
+    upper: /[A-Z]/.test(password),
+    number: /\d/.test(password),
+    special: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
+  };
+
+  if (checks.length) score++;
+  if (checks.lower) score++;
+  if (checks.upper) score++;
+  if (checks.number) score++;
+  if (checks.special) score++;
+
+  return score;
+}
+
+function updatePasswordStrength() {
+  const password = con_Password.value;
+  const strengthDiv = document.querySelector('.password-strength');
+  const strengthBar = strengthDiv.querySelector('.strength-bar');
+  const strengthText = strengthDiv.querySelector('.strength-text');
+
+  const score = checkPasswordStrength(password);
+
+  strengthDiv.className = 'password-strength';
+
+  if (score === 0) {
+    strengthText.textContent = '';
+  } else if (score <= 2) {
+    strengthDiv.classList.add('weak');
+    strengthText.textContent = 'Gyenge';
+  } else if (score === 3) {
+    strengthDiv.classList.add('medium');
+    strengthText.textContent = 'Közepes';
+  } else if (score === 4) {
+    strengthDiv.classList.add('strong');
+    strengthText.textContent = 'Erős';
+  } else {
+    strengthDiv.classList.add('very-strong');
+    strengthText.textContent = 'Nagyon erős';
+  }
+}
+
+// Add event listener to password input
+con_Password.addEventListener('input', updatePasswordStrength);
+
+// Password visibility toggle
+function togglePasswordVisibility(targetId) {
+  const input = document.getElementById(targetId);
+  const toggle = document.querySelector(`[data-target="${targetId}"]`);
+  
+  if (input.type === 'password') {
+    input.type = 'text';
+    toggle.textContent = '🤐';
+    toggle.title = 'Jelszó elrejtése';
+  } else {
+    input.type = 'password';
+    toggle.textContent = '😀';
+    toggle.title = 'Jelszó megjelenítése';
+  }
+}
+
+// Add event listeners to password toggles
+document.querySelectorAll('.password-toggle').forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    const targetId = toggle.getAttribute('data-target');
+    togglePasswordVisibility(targetId);
+  });
+});
