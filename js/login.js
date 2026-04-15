@@ -82,6 +82,7 @@ function Login() {
   document.getElementById("reg").classList.remove("active");
   document.getElementById("log").classList.add("active");
   document.getElementById("Profile_type").style.display = "none";
+  document.querySelector('.password-strength').style.display = "none";
   submitBtn.innerHTML = "Belépés";
 }
 
@@ -94,6 +95,7 @@ function Registration() {
   document.getElementById("log").classList.remove("active");
   document.getElementById("reg").classList.add("active");
   document.getElementById("Profile_type").style.display = "";
+  document.querySelector('.password-strength').style.display = "";
   submitBtn.innerHTML = "Regisztráció";
 }
 let allFilled = "";
@@ -252,7 +254,7 @@ function togglePasswordVisibility(targetId) {
     toggle.title = 'Jelszó elrejtése';
   } else {
     input.type = 'password';
-    toggle.textContent = '😀';
+    toggle.textContent = '👁️';
     toggle.title = 'Jelszó megjelenítése';
   }
 }
