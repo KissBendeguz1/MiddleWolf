@@ -3814,6 +3814,19 @@ p {
   }
 }
 
+/* Dark-mode tweaks for map filters */
+body.dark-mode .map-filter-select,
+body.dark-mode .map-filter-input {
+  background-color: var(--white-color);
+  color: var(--text-color);
+  border-color: #555;
+}
+
+body.dark-mode .map-filter-select:focus,
+body.dark-mode .map-filter-input:focus {
+  background-color: var(--white-color);
+}
+
 .modal {
   display: none;
   position: fixed;
