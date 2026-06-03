@@ -92,11 +92,11 @@
                         <h2>Dokumentumok</h2>
                         <h1 id="document-count">5db</h1>
                   </div>
-                  <a class="small-windows" href="./notifications.html">
+                  <a class="small-windows" href="./alerts.html">
                   <div>
                     <img src="../assets/alert.svg" alt="">
                       <h2>Értesítések</h2>
-                      <h1>3db</h1>
+                      <h1 id="alert-count">3db</h1>
                   </div></a>
                 </div>
                 <div class="main-frame-lower">
@@ -161,6 +161,31 @@
           xhr.send(JSON.stringify({ companyId: sessionStorage.getItem("SelectedCompany") }));
         }
 
+        function getAlertCount() {
+          console.log("getAlertCount futtatva");
+          const xhrEmployee = new XMLHttpRequest();
+          console.log("getAlertCount lekeres futtatva");
+          xhrEmployee.open("POST", `${API_BASE_URL}/alerts/company/count`, true);
+          xhrEmployee.setRequestHeader("Content-Type", "application/json");
+          xhrEmployee.onreadystatechange = function () {
+            if (xhrEmployee.readyState === 4) {
+              if (xhrEmployee.status === 200) {
+                alertcount = document.getElementById("alert-count");
+                const response = JSON.parse(xhrEmployee.responseText);
+                alertcount.textContent = response.alerts + " db";
+                console.log("Alert count:", response.alerts);
+                
+              } else {
+                console.error("EmployeeAlerts error:", xhrEmployee.status, xhrEmployee.statusText);
+              }
+            }
+          };
+          xhrEmployee.onerror = function() {
+            console.error("EmployeeAlerts XHR error!");
+          };
+          xhrEmployee.send(JSON.stringify({"companyId": sessionStorage.getItem("SelectedCompany")}));
+        }
+        getAlertCount();
         getEmployeeNumber();
         getDocumentCount();
       </script>
