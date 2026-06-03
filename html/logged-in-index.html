@@ -172,7 +172,7 @@
               if (xhrEmployee.status === 200) {
                 alertcount = document.getElementById("alert-count");
                 const response = JSON.parse(xhrEmployee.responseText);
-                alertcount.textContent = response.alerts + " db";
+                alertcount.textContent = response.alerts + "db";
                 console.log("Alert count:", response.alerts);
                 
               } else {

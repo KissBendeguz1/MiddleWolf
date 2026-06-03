@@ -2824,11 +2824,12 @@ p {
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  color: var(--text-color);
 }
 
 .employee-modal-btn-submit {
   background: linear-gradient(135deg, var(--blue-color), #8bb5d9);
-  color: var(--white-color);
+  color: var(--text-color);
   box-shadow: var(--blue-color) 2px 2px 3px 1px;
 }
 
@@ -2843,7 +2844,7 @@ p {
 }
 
 .employee-modal-btn-cancel {
-  background-color: #e0e0e0;
+  background-color: #b2b2b2;
   color: var(--text-color);
   box-shadow: #999 1px 1px 2px 0.5px;
 }
@@ -2860,7 +2861,7 @@ p {
 
 .employee-modal-btn-delete {
   background-color: #dc3545;
-  color: var(--white-color);
+  color: var(--text-color);
   box-shadow: #dc3545 2px 2px 3px 1px;
   order: -1;
   margin-right: auto;
@@ -2880,7 +2881,7 @@ p {
   background-color: #ff3333;
   color: var(--text-color);
   box-shadow: #ff3333 2px 2px 3px 1px;
-  color: var(--white-color);
+  color: var(--text-color);
 }
 
 #map-mapsection {
@@ -3992,6 +3993,7 @@ body.dark-mode .map-filter-input:focus {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   box-sizing: border-box;
+  color: var(--text-color);
 }
 
 .btn-submit {
@@ -4011,7 +4013,7 @@ body.dark-mode .map-filter-input:focus {
 }
 
 .btn-cancel {
-  background-color: #e0e0e0;
+  background-color: #a1a1a1;
   color: var(--text-color);
   box-shadow: #999 1px 1px 2px 0.5px;
 }
