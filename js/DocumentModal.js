@@ -1,4 +1,3 @@
-
 function ShowAlert(message, type) {
   // Store alert in sessionStorage for persistence after reload
   sessionStorage.setItem(
@@ -58,8 +57,6 @@ window.addEventListener("load", function () {
   }
 });
 
-
-
 function submitRecruitment() {
   // 1. Adatok begyűjtése
   const rawProfileId = localStorage.getItem("Profile");
@@ -114,6 +111,30 @@ function submitRecruitment() {
 }
 
 let UserP = "";
+
+// Adatok tárolása a megjelenítésig
+let docsData = {
+  private: [],
+  public: [],
+  privateLoaded: false,
+  publicLoaded: false,
+};
+
+function renderAllDocuments() {
+  const container = document.getElementById("docs-list-container");
+  container.innerHTML = "";
+
+  // Kombináljuk a privát és publikus dokumentumokat
+  const allDocs = [...docsData.private, ...docsData.public];
+  allDocs.forEach((doc) => {
+    LoadDocumentToUI(
+      doc.Document_ID,
+      doc.Document_Title,
+      formatDate(doc.CreationDate),
+      doc.Document_Content,
+    );
+  });
+}
 
 function getProfileData() {
   const API_URL = `${API_BASE_URL}/profiles/id/`;
@@ -191,33 +212,38 @@ xhrPrivateDocsAlkID.onreadystatechange = function () {
         const response = JSON.parse(xhrPrivateDocsAlkID.responseText);
         console.log("Privát adatok beérkeztek:", response);
 
-        // A válaszban a 'documents' kulcsot keressük, ahogy a publikusnál is
-
         if (response.documents && Array.isArray(response.documents)) {
-          const container = document.getElementById("docs-list-container");
-          container.innerHTML = "";
+          // Tároljuk az adatokat, de nem rajzoljuk ki
+          docsData.private = response.documents;
+          docsData.privateLoaded = true;
 
-          response.documents.forEach((doc) => {
-            // Átadjuk az ID-t, a Címet, a Dátumot és a Tartalmat
-            LoadDocumentToUI(
-              doc.Document_ID,
-              doc.Document_Title,
-              formatDate(doc.CreationDate),
-              doc.Document_Content, // Ez a szöveg kerül majd a BoxP-be
-            );
-          });
+          // Csak akkor rajzolunk, ha mindkettő megérkezett
+          if (docsData.privateLoaded && docsData.publicLoaded) {
+            renderAllDocuments();
+          }
         } else {
           console.warn(
             "Nincsenek privát dokumentumok vagy rossz a válasz formátuma.",
           );
+          docsData.privateLoaded = true;
+          if (docsData.publicLoaded) {
+            renderAllDocuments();
+          }
         }
       } catch (e) {
         console.error("Hiba a privát JSON feldolgozásakor:", e);
+        docsData.privateLoaded = true;
+        if (docsData.publicLoaded) {
+          renderAllDocuments();
+        }
       }
     } else {
-      // Itt látod majd az 500-as hiba részleteit a konzolban
       console.error("Szerver hiba (Privát):", xhrPrivateDocsAlkID.status);
       console.log("Szerver válaszüzenete:", xhrPrivateDocsAlkID.responseText);
+      docsData.privateLoaded = true;
+      if (docsData.publicLoaded) {
+        renderAllDocuments();
+      }
     }
   }
 };
@@ -244,26 +270,36 @@ xhrPublicDocs.onreadystatechange = function () {
     if (xhrPublicDocs.status === 200) {
       try {
         const response = JSON.parse(xhrPublicDocs.responseText);
-        console.log("Adatok beérkeztek:", response);
+        console.log("Publikus adatok beérkeztek:", response);
 
         if (response.documents && Array.isArray(response.documents)) {
-          const container = document.getElementById("docs-list-container");
-          container.innerHTML = "";
+          // Tároljuk az adatokat, de nem rajzoljuk ki
+          docsData.public = response.documents;
+          docsData.publicLoaded = true;
 
-          response.documents.forEach((doc) => {
-            // Átadjuk az ID-t, a Címet, a Dátumot és a Tartalmat
-            LoadDocumentToUI(
-              doc.Document_ID,
-              doc.Document_Title,
-              formatDate(doc.CreationDate),
-              doc.Document_Content, // Ez a szöveg kerül majd a BoxP-be
-            );
-          });
+          // Csak akkor rajzolunk, ha mindkettő megérkezett
+          if (docsData.privateLoaded && docsData.publicLoaded) {
+            renderAllDocuments();
+          }
         } else {
           console.error("A 'documents' mező nem található vagy nem lista!");
+          docsData.publicLoaded = true;
+          if (docsData.privateLoaded) {
+            renderAllDocuments();
+          }
         }
       } catch (e) {
         console.error("JSON hiba:", e);
+        docsData.publicLoaded = true;
+        if (docsData.privateLoaded) {
+          renderAllDocuments();
+        }
+      }
+    } else {
+      console.error("Szerver hiba (Publikus):", xhrPublicDocs.status);
+      docsData.publicLoaded = true;
+      if (docsData.privateLoaded) {
+        renderAllDocuments();
       }
     }
   }
@@ -304,7 +340,6 @@ function LoadDocumentToUI(id, title, date, content) {
 
   container.appendChild(docElement);
 }
-
 
 function torles(docid) {
   console.log("Törlés indítása, ID:", docid);
