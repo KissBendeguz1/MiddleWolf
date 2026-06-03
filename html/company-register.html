@@ -156,6 +156,8 @@ window.addEventListener("load", function () {
       const existingCompanysSection = document.getElementById(
         "company-register-existing-companys",
       );
+
+      existingCompanysSection.innerHTML = "<h2>Itt jelennek meg a már létrehozott cégei</h2>"; // Alaphelyzetbe állítjuk a szekciót, hogy ne duplikálódjanak az elemek minden újratöltéskor
       const companyRegisterSection = document.getElementById(
         "company-register-section",
       );
@@ -239,7 +241,7 @@ window.addEventListener("load", function () {
             ShowAlert("Cég sikeresen regisztrálva!", "success");
             LoadCompanyRegister(); // Frissítjük a listát
           } else if (xhr.readyState === 4) {
-            alert("Hiba a cég regisztrálása során!");
+            ShowAlert("Hiba a cég regisztrálása során! Ellenőrizze a megadott adatokat.", "alert");
           }
         };
         xhr.send(

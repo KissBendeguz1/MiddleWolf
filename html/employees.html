@@ -282,7 +282,7 @@ const employeeListContainer = document.getElementById("employee-list-container")
         div = document.createElement("div")
           div.classList.add("employee-item")
           div.innerHTML += `<div class="employee-item-inner">
-                    <img src="../assets/people.svg" alt="" />
+                    <img class="employee-item-icon" src="../assets/people.svg" alt="" />
                     <div class="employee-item-text">
                         <h2>${employee.Name || employee.name}</h2>
                         <p>Pozíció: - <span class="doc-date">${position || employee.position || employee.role || "N/A"}</span></p>

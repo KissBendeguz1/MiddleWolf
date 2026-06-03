@@ -75,7 +75,15 @@
           </div>
         </section>
         <section class="content-all">
-            <div class="content">
+          <div onclick="vissza()" id="under-development-modal">
+            <div id="under-development-content">
+              <h2>Ez a funkció még fejlesztés alatt áll!</h2>
+              <p>Köszönjük a türelmedet, hamarosan elérhető lesz.</p>
+              
+            </div>
+
+          </div>
+            <div class="content" id="hidden-under-development">
                 <img src="../assets/velemeny.svg" alt="" width="50px" height="90px" class="svg-invert">
                 <h1 class="main_frame_title">Üzenetek</h1>
                 <input type="text" id="Company_message" placeholder="Üzenet......">
@@ -112,4 +120,5 @@
   </body>
       <script src="../js/manageNav.js"></script>
           <script src="../js/LoadSideNavBar.js"></script>
+          <script src="../js/underDevelopment.js"></script>
 </html>
