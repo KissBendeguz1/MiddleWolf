@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MiddleWolf</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="shortcut icon" href="../assets/Favicon.png" type="image/x-icon">
   </head>
   <script src="../js/config.js"></script>
@@ -147,17 +148,18 @@
                   <option value="1">⭐ 1+ csillag</option>
                 </select>
               </div>
-              <button id="map-filter-reset" class="map-filter-button">Keresés</button>
-              <button id="map-filter-reset" class="map-filter-button">Szűrők törlése</button>
+              <button id="map-filter-apply" class="map-filter-button">Keresés</button>
+              <button id="map-filter-clear" class="map-filter-button">Szűrők törlése</button>
             </div>
           </section>
           <section id="map-mapsection">
-            <div style="width: 100%; filter: none !important;"><iframe class="keep-light" width="100%" height="650px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=hu&amp;q=Miskolc+(My%20Business%20NamMiddleWolfe)&amp;t=p&amp;z=10&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.mapsdirections.info/de/evolkerung-auf-einer-karte-berechnen/">Meow</a></iframe></div>
+            <div id="map" style="width:100%;height:650px;border:1px solid #ddd;border-radius:6px;"></div>
           </section>
               
         </section>
     </div>
     <script src="../js/LoadSideNavBar.js"></script>
         <script src="../js/manageNav.js"></script>
+        <script src="../js/map.js"></script>
   </body>
 </html>

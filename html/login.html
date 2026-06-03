@@ -101,16 +101,26 @@
 
             <div id="Password" class="form-group">
               <label>Jelszó</label>
-              <input type="password" id="con_Password" placeholder="••••••••" />
+              <div class="input-container">
+                <input type="password" id="con_Password" placeholder="••••••••" />
+                <span class="password-toggle" data-target="con_Password" title="Jelszó megjelenítése">👁️</span>
+              </div>
+              <div class="password-strength">
+                <div class="strength-bar"></div>
+                <span class="strength-text"></span>
+              </div>
             </div>
 
             <div id="Password_again" class="form-group">
               <label>Jelszó Újra</label>
-              <input
-                type="password"
-                id="con_Password_again"
-                placeholder="••••••••"
-              />
+              <div class="input-container">
+                <input
+                  type="password"
+                  id="con_Password_again"
+                  placeholder="••••••••"
+                />
+                <span class="password-toggle" data-target="con_Password_again" title="Jelszó megjelenítése">👁️</span>
+              </div>
             </div>
 
             <div id="Mobile" class="form-group">
