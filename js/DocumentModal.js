@@ -302,8 +302,9 @@ function LoadDocumentToUI(id, title, date, content) {
     OpenDocument(title, content);
   };
 
-  container.insertAdjacentElement("beforeend", docElement);
+  container.appendChild(docElement);
 }
+
 
 function torles(docid) {
   console.log("Törlés indítása, ID:", docid);

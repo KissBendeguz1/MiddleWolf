@@ -36,6 +36,7 @@ function Close(){
     Box.style.display = "none";
 }
 
+/*
 function Send() {
     const container = document.getElementById('docs-list-container');
     const now = new Date();
@@ -80,4 +81,4 @@ function Send() {
         file_text.value = "";
         Close();
     }
-}
+}*/
