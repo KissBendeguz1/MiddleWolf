@@ -11,6 +11,9 @@ function ShowAlert(message, type) {
   displayAlert(message, type);
 }
 
+  const modalDisplay = document.getElementById('Delete-Docs-Modal');
+  modalDisplay.style.display = "none";
+
 function displayAlert(message, type) {
   let body = document.getElementsByTagName("body")[0];
   let alertBox = document.createElement("div");
@@ -327,7 +330,7 @@ function LoadDocumentToUI(id, title, date, content) {
         </div>
         <div class="docs-item-buttons">
             <button class="docs-item-button open-btn">Megnyitás</button>
-            <button class="docs-item-button" id="${id}" onclick="torles(${id})">Törlés</button>
+            <button class="docs-item-button" id="${id}" onclick="OpenModal(${id})">Törlés</button>
         </div>
     `;
 
@@ -341,13 +344,22 @@ function LoadDocumentToUI(id, title, date, content) {
   container.appendChild(docElement);
 }
 
+function OpenModal(docid){
+  const modalDisplay = document.getElementById('Delete-Docs-Modal');
+  modalDisplay.style.display = "flex";
+  const deletedocs = document.getElementById('delete-docs-accept');
+  deletedocs.setAttribute("onclick",`torles(${docid})`)
+  console.log(deletedocs)
+}
+
+
+function CloseModal(){
+  const modalDisplay = document.getElementById('Delete-Docs-Modal');
+  modalDisplay.style.display = "none";
+}
+
 function torles(docid) {
   console.log("Törlés indítása, ID:", docid);
-
-  // Megerősítés a felhasználótól (biztonsági lépés)
-  if (!confirm("Biztosan törölni szeretnéd ezt a dokumentumot?")) {
-    return;
-  }
 
   var xhrDelete = new XMLHttpRequest();
   xhrDelete.open("POST", `${API_BASE_URL}/docs/delete/`, true);
@@ -404,6 +416,7 @@ function OpenDocument(title, content) {
     alert("Hiba: A Box elemek nem találhatók a HTML-ben!");
   }
 }
+
 function addDocumentToUI(title, date) {
   const container = document.getElementById("docs-list-container");
 

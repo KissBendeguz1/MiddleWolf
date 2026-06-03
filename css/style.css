@@ -2068,6 +2068,51 @@ body.dark-mode iframe:not(.keep-light) {
   align-items: center;
 }
 
+#Delete-Docs-Modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+#delete-docs-content{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:4%; 
+  background: var(--background-color);
+  padding: 40px;
+  border-radius: 20px;
+  width: fit-content;
+  max-height: 80%;
+  overflow-y: auto; /* Ha túl hosszú a szöveg, lehessen görgetni */
+  color: var(--white-black);
+  box-shadow: var(--blue-color) 4px 4px 8px 2px;;
+}
+
+#delete-docs-content>button{
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(135deg, var(--blue-color), #8bb5d9);
+  color: var(--text-color);
+  border: none;
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+#delete-docs-content>button:hover{
+  transform: scale(1.05);
+  box-shadow: var(--blue-color) 4px 4px 6px 2px;
+  transition: ease-in-out 0.3s;
+  background-color: var(--blue-color);
+}
+
 #BoxH1{
   font-size: 24px;
   color: var(--white-black);
@@ -2843,15 +2888,15 @@ p {
 }
 
 .employee-modal-btn-cancel {
-  background-color: #e0e0e0;
-  color: var(--text-color);
-  box-shadow: #999 1px 1px 2px 0.5px;
+  background: linear-gradient(135deg, var(--blue-color), #8bb5d9);
+  color: var(--white-color);
+  box-shadow: var(--blue-color) 2px 2px 3px 1px;
 }
 
 .employee-modal-btn-cancel:hover {
-  background-color: #d0d0d0;
-  box-shadow: #999 2px 2px 4px 1px;
   transform: scale(1.05);
+  box-shadow: var(--blue-color) 4px 4px 6px 2px;
+  background: linear-gradient(135deg, #3a6ba3, #5a8fc4);
 }
 
 .employee-modal-btn-cancel:active {
@@ -2881,6 +2926,12 @@ p {
   color: var(--text-color);
   box-shadow: #ff3333 2px 2px 3px 1px;
   color: var(--white-color);
+}
+
+#confirm-cancel{
+  color: var(--white-black);
+  box-shadow: var(--blue-color) 4px 4px 6px 2px;
+  background: linear-gradient(135deg, #3a6ba3, #5a8fc4);
 }
 
 #map-mapsection {
